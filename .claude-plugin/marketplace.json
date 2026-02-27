@@ -1,0 +1,43 @@
+{
+  "name": "gir-plugins",
+  "owner": { "name": "RedcoatAsher", "url": "https://github.com/RedcoatAsher" },
+  "metadata": {
+    "description": "GIR — Modular Claude Code productivity ecosystem",
+    "version": "2.0.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "gir-core",
+      "source": "./gir-core",
+      "description": "Core agents, workflows, best practices, and auto-delegation for any Claude Code project",
+      "version": "2.0.0",
+      "category": "productivity",
+      "keywords": ["agents", "workflows", "best-practices", "delegation", "code-review"]
+    },
+    {
+      "name": "gir-web",
+      "source": "./gir-web",
+      "description": "Requires gir-core. Frontend/fullstack agents and design skills",
+      "version": "2.0.0",
+      "category": "web-development",
+      "keywords": ["frontend", "design", "deployment", "ui-generator"]
+    },
+    {
+      "name": "gir-automation",
+      "source": "./gir-automation",
+      "description": "Requires gir-core. n8n workflow builder agent",
+      "version": "2.0.0",
+      "category": "automation",
+      "keywords": ["n8n", "workflows", "automation"]
+    },
+    {
+      "name": "gir-tools",
+      "source": "./gir-tools",
+      "description": "Requires gir-core. Power user tools — AgentHub, subtask parallel execution",
+      "version": "2.0.0",
+      "category": "productivity",
+      "keywords": ["agenthub", "subtask", "parallel", "multi-session"]
+    }
+  ]
+}

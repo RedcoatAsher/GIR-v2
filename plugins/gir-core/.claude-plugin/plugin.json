@@ -1,0 +1,15 @@
+{
+  "name": "gir-core",
+  "version": "2.0.0",
+  "description": "Core Claude Code productivity system — agents, auto-delegation, workflows, and best practices",
+  "author": { "name": "RedcoatAsher", "url": "https://github.com/RedcoatAsher" },
+  "homepage": "https://github.com/RedcoatAsher/GIR-v2",
+  "repository": "https://github.com/RedcoatAsher/GIR-v2",
+  "license": "MIT",
+  "keywords": ["productivity", "agents", "workflows", "best-practices", "delegation"],
+  "agents": "./agents/",
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "hooks": "./hooks/hooks.json",
+  "mcpServers": "./.mcp.json"
+}

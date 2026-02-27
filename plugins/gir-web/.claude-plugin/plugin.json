@@ -1,0 +1,12 @@
+{
+  "name": "gir-web",
+  "version": "2.0.0",
+  "description": "Requires gir-core. Frontend/fullstack agents and design skills for Claude Code",
+  "author": { "name": "RedcoatAsher", "url": "https://github.com/RedcoatAsher" },
+  "homepage": "https://github.com/RedcoatAsher/GIR-v2",
+  "repository": "https://github.com/RedcoatAsher/GIR-v2",
+  "license": "MIT",
+  "keywords": ["frontend", "design", "ui", "deployment", "docs"],
+  "agents": "./agents/",
+  "skills": "./skills/"
+}

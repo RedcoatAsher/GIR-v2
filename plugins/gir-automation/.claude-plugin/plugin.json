@@ -1,0 +1,11 @@
+{
+  "name": "gir-automation",
+  "version": "2.0.0",
+  "description": "Requires gir-core. n8n workflow builder agent for Claude Code",
+  "author": { "name": "RedcoatAsher", "url": "https://github.com/RedcoatAsher" },
+  "homepage": "https://github.com/RedcoatAsher/GIR-v2",
+  "repository": "https://github.com/RedcoatAsher/GIR-v2",
+  "license": "MIT",
+  "keywords": ["n8n", "automation", "workflows"],
+  "agents": "./agents/"
+}
