@@ -6,10 +6,5 @@
   "homepage": "https://github.com/RedcoatAsher/GIR-v2",
   "repository": "https://github.com/RedcoatAsher/GIR-v2",
   "license": "MIT",
-  "keywords": ["productivity", "agents", "workflows", "best-practices", "delegation"],
-  "agents": "./agents/",
-  "skills": "./skills/",
-  "commands": "./commands/",
-  "hooks": "./hooks/hooks.json",
-  "mcpServers": "./.mcp.json"
+  "keywords": ["productivity", "agents", "workflows", "best-practices", "delegation"]
 }

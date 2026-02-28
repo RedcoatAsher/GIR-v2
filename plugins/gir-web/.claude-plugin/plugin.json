@@ -6,7 +6,5 @@
   "homepage": "https://github.com/RedcoatAsher/GIR-v2",
   "repository": "https://github.com/RedcoatAsher/GIR-v2",
   "license": "MIT",
-  "keywords": ["frontend", "design", "ui", "deployment", "docs"],
-  "agents": "./agents/",
-  "skills": "./skills/"
+  "keywords": ["frontend", "design", "ui", "deployment", "docs"]
 }

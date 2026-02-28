@@ -6,6 +6,5 @@
   "homepage": "https://github.com/RedcoatAsher/GIR-v2",
   "repository": "https://github.com/RedcoatAsher/GIR-v2",
   "license": "MIT",
-  "keywords": ["n8n", "automation", "workflows"],
-  "agents": "./agents/"
+  "keywords": ["n8n", "automation", "workflows"]
 }

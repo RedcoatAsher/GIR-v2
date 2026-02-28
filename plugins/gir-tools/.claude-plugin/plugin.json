@@ -6,7 +6,5 @@
   "homepage": "https://github.com/RedcoatAsher/GIR-v2",
   "repository": "https://github.com/RedcoatAsher/GIR-v2",
   "license": "MIT",
-  "keywords": ["agenthub", "subtask", "parallel", "multi-session"],
-  "agents": "./agents/",
-  "skills": "./skills/"
+  "keywords": ["agenthub", "subtask", "parallel", "multi-session"]
 }
