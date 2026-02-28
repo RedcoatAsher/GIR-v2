@@ -2,7 +2,7 @@
 
 > **"[Doom Song](https://youtu.be/Nw_cdqQHGA8?si=wxLOA3FYWppVxnOF&t=3)!"** — Modular Claude Code plugin ecosystem. Install only what you need — curated agents, auto-delegation, memory bank, and domain-specific tooling.
 
-<img src="https://i.pinimg.com/originals/57/6e/0e/576e0e99fd23505db71aa9caaa670fe3.gif" alt="GIR" width="150" align="right" />
+<img src="https://i.pinimg.com/originals/57/6e/0e/576e0e99fd23505db71aa9caaa670fe3.gif" alt="GIR" width="250" align="right" />
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
