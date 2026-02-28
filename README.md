@@ -1,6 +1,8 @@
-# GIR v2
+# GIR (Get It Running) v2
 
-> Modular Claude Code plugin ecosystem. Install only what you need — curated agents, auto-delegation, memory bank, and domain-specific tooling.
+> **"[Doom Song](https://youtu.be/Nw_cdqQHGA8?si=wxLOA3FYWppVxnOF&t=3)!"** — Modular Claude Code plugin ecosystem. Install only what you need — curated agents, auto-delegation, memory bank, and domain-specific tooling.
+
+<img src="https://i.pinimg.com/originals/57/6e/0e/576e0e99fd23505db71aa9caaa670fe3.gif" alt="GIR" width="150" align="right" />
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
@@ -54,6 +56,23 @@ GIR uses a **hub-and-spoke** model. `gir-core` is required and provides the foun
 
 ---
 
+## Token Economics
+
+GIR is designed for **zero wasted context**. You only load what you use.
+
+| Setup | Context Used | Token Savings |
+|-------|--------------|---------------|
+| Core only | ~7-8K (3.5-4%) | 45% vs. monolithic |
+| Core + 1 spoke | ~9-10K (4.5-5%) | 35-40% savings |
+| Core + 2-3 spokes | ~11-14K (5-7%) | 25-35% savings |
+| All modules | ~20K (10%) | Full modular ecosystem |
+
+**What this means:** Installing just `gir-core` uses less than 4% of your 200K context window, leaving 193K+ tokens for your actual code and tasks. Each additional module adds only 2-4K tokens.
+
+If you need a module, install it. If you don't, it costs nothing.
+
+---
+
 ## Install
 
 ### Step 1: Add the marketplace
@@ -87,6 +106,48 @@ claude plugin install gir-qa            # QA & review (CodeRabbit, Jules)
 
 ---
 
+## Quick Start by Tech Stack
+
+### Next.js / React Fullstack
+
+```bash
+claude plugin install gir-core
+claude plugin install gir-web         # Frontend tooling (v0, Figma, Vercel)
+```
+
+Then create/customize `CLAUDE-project.md` with:
+- Stack: Next.js 15.x, React 19, TypeScript, Tailwind
+- Key commands: `npm run dev`, `npm run build`, `npm test`
+
+### Backend API
+
+```bash
+claude plugin install gir-core
+```
+
+Then create/customize `CLAUDE-project.md` with:
+- Stack: FastAPI/Express, PostgreSQL, etc.
+- Key commands: `npm start`, `npm test`
+
+### Full-Stack + Automation
+
+```bash
+claude plugin install gir-core
+claude plugin install gir-web          # Frontend
+claude plugin install gir-automation   # n8n workflows
+```
+
+Then create/customize `CLAUDE-project.md` with all three stacks.
+
+### Data/ML Projects with Supabase
+
+```bash
+claude plugin install gir-core
+claude plugin install gir-database     # Supabase tools
+```
+
+---
+
 ## Modules
 
 | Module | Description | Includes | Who needs it |
@@ -101,21 +162,185 @@ claude plugin install gir-qa            # QA & review (CodeRabbit, Jules)
 
 ---
 
-## What stays in your project
+## What Stays in Your Project
 
 GIR plugins install globally. Your project keeps its own configuration:
 
-- **`CLAUDE-project.md`** — Project-specific tech stack, commands, and conventions. GIR reads this automatically.
-- **`.gir/`** — Memory bank directory. GIR writes session context, patterns, decisions, and troubleshooting notes here across sessions.
-- **`.gir/GIR.modules`** — Auto-generated registry of installed modules. Updated each session by module hooks.
+### Files You Own & Customize
 
-These files are yours. GIR does not overwrite them.
+- **`CLAUDE-project.md`** — **Edit this.** Your project-specific tech stack, dev commands, environment variables, conventions, and architectural decisions. This is the single source of truth for your project context. Create it by running:
+  ```bash
+  cp /path/to/GIR/templates/CLAUDE-project.md.template ./CLAUDE-project.md
+  ```
+  Then customize it for your stack.
+
+### Memory Bank (Optional but Recommended)
+
+Create `.gir/` for session-persistent patterns and decisions:
+
+```bash
+mkdir -p .gir
+```
+
+Files GIR creates/manages here:
+- **`CLAUDE-activeContext.md`** — Current session state
+- **`CLAUDE-patterns.md`** — Code conventions (auto-populated by debugger)
+- **`CLAUDE-decisions.md`** — Architecture choices (auto-populated by feature-architect)
+- **`CLAUDE-troubleshooting.md`** — Known issues and solutions (auto-populated by debugger)
+- **`CLAUDE-resources.md`** — External references and docs
+
+GIR populates these across sessions. You can also edit them manually.
+
+### Auto-Generated Registry
+
+- **`.gir/GIR.modules`** — Auto-generated list of installed modules and their tools. Updated each session, never edit manually.
+
+---
+
+### Important: What NOT to Edit
+
+GIR plugin files are **read-only in your project**. They live globally and are managed by the plugin system. Your `CLAUDE-project.md` tells them how to adapt to your project—you don't edit their files directly.
+
+If you need to customize plugin behavior:
+1. Add directives to `CLAUDE-project.md` under `[GIR CUSTOMIZATION]` section
+2. Create custom agents in `.claude/agents/custom/` if needed
+3. Use hook overrides (see module documentation)
+
+---
+
+## Updating Modules
+
+### Check for updates
+
+```bash
+claude plugin list
+```
+
+Look for available updates in the GIR marketplace.
+
+### Update a module
+
+```bash
+claude plugin upgrade gir-core
+claude plugin upgrade gir-web    # Update specific modules
+```
+
+Or update all:
+
+```bash
+claude plugin upgrade-all
+```
+
+**What happens on update:**
+- Module agents, skills, and commands are updated globally
+- Your `CLAUDE-project.md` and `.gir/` files are never touched
+- Memory bank files persist across updates
+- Session hooks are refreshed with latest logic
 
 ---
 
 ## Creating Custom Modules
 
 Any Claude Code plugin can become a GIR module by including a `gir-module.json` manifest, a SessionStart hook for self-registration, and declaring `"requires": ["gir-core"]`. See [PLAN-modularization.md](PLAN-modularization.md#phase-6-third-party-module-support) for the full module contract.
+
+---
+
+## FAQ
+
+### How do I set up a new project with GIR?
+
+1. Install `gir-core` globally: `claude plugin install gir-core`
+2. In your project, create `CLAUDE-project.md` from the template and customize it
+3. Install any domain-specific modules you need (gir-web, gir-automation, etc.)
+4. Start a Claude Code session — GIR auto-discovers your config
+
+### What's the difference between gir-core and the spokes?
+
+**gir-core** (required):
+- Foundation agents: feature-architect, code-reviewer, debugger, spec-analyst, subtask-mgr
+- Core workflows and delegation rules
+- Memory bank system
+- Session start hook
+
+**Spokes** (optional, domain-specific):
+- gir-web: v0, Figma, Vercel tools
+- gir-automation: n8n builder
+- gir-tools: AgentHub, team coordination
+- gir-database: Supabase
+- gir-ai: External AI tools (Gemini-CLI, Codex)
+- gir-qa: Code review (CodeRabbit, Jules)
+
+Install only what your project needs.
+
+### Which files in my project should I edit?
+
+**Always edit:**
+- `CLAUDE-project.md` — Your tech stack, commands, conventions
+
+**Optionally edit:**
+- `.gir/CLAUDE-patterns.md` — Code patterns (or let agents populate it)
+- `.gir/CLAUDE-decisions.md` — Architecture (or let agents populate it)
+- `.gir/CLAUDE-troubleshooting.md` — Known issues (or let agents populate it)
+
+**Never edit:**
+- `.gir/GIR.modules` — Auto-generated, do not modify
+- Plugin files (they're global, managed by the plugin system)
+
+### How do I customize GIR for my project?
+
+Edit `CLAUDE-project.md`. Add a `[GIR CUSTOMIZATION]` section with:
+- Custom delegation rules (who handles what)
+- Project-specific state machines
+- Environment-specific behaviors
+- Team-specific conventions
+
+Example:
+```markdown
+## [GIR CUSTOMIZATION]
+
+### Delegation Rules
+- Database changes: Always review with DBA
+- API changes: Feature-architect → code-reviewer → deploy
+
+### State Machines
+Feature states: Design → Development → Testing → Review → Deploy
+```
+
+### Can I work on multiple projects with different stacks?
+
+Yes. Each project has its own `CLAUDE-project.md` and `.gir/` directory. GIR automatically uses the right configuration for each project. The plugins are global, but your project-specific settings keep them in sync.
+
+### What if I don't need the memory bank?
+
+It's optional. `.gir/` is created automatically but not required. If you don't use it, GIR will function fine with just `CLAUDE-project.md`.
+
+### Can I create custom agents?
+
+Yes. Create `.claude/agents/custom/` in your project and add agent definitions there. Reference them in `CLAUDE-project.md` under `[GIR CUSTOMIZATION]`. See plugin documentation for the agent spec.
+
+### How much token overhead does GIR add?
+
+**Per session:**
+- gir-core: ~3-4% of 200K context (7-8K tokens)
+- Each additional module: ~1-2% (2-4K tokens)
+- Total with all modules: ~5-6% (10-12K tokens)
+
+This leaves ~188-193K tokens for your actual code and conversation. The modular design means you only pay for what you use.
+
+### How do I migrate from GIR v1 to v2?
+
+1. The plugin system is new, but the concepts are the same
+2. Your old `CLAUDE-project.md` style files work fine
+3. Install gir-core and relevant modules
+4. Review the new `CLAUDE-project.md` template and adapt your existing config
+5. Memory bank files (`.gir/`) remain compatible
+
+### What if a module has an issue?
+
+1. Check the module's documentation in the marketplace
+2. Open an issue: https://github.com/anthropics/claude-code/issues
+3. Temporarily disable the module: `claude plugin uninstall gir-<module>`
+4. File issues with the specific module maintainer
 
 ---
 
