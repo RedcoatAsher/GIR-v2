@@ -50,7 +50,7 @@ Additionally, `workflows/SKILL.md` references spoke-specific tools in its decisi
 | Registration mechanism | Self-registering SessionStart hooks per spoke | Each module registers itself; no central scanner needed |
 | Concurrent write safety | Each spoke hook reads-then-writes atomically (prompt-level lock via sequential Claude execution) | Claude processes prompts sequentially within a session; hooks don't execute in parallel threads, so simultaneous file corruption is not a concern in practice. If parallel hook execution is introduced in a future Claude version, migrate to a per-module file approach (`.gir/modules.d/gir-web.json`) with core aggregating them. |
 | Manifest format | `gir-module.json` per plugin | Standard contract for official + unofficial modules |
-| Stale entry cleanup | Core's SessionStart hook prunes by checking `plugins/[name]/` directory existence | Directory-based check is reliable; only prunes when the spoke plugin directory is gone. Verification prompt: "check if `plugins/gir-<name>/` exists before removing any entry." |
+| Stale entry cleanup | Spoke hooks self-manage their entries; core does NOT prune | GIR plugins are installed globally (not as project files), so filesystem checks would produce false positives. Stale entries from uninstalled spokes are harmless. Use `/gir-core:modules` to manually review. |
 
 ---
 
@@ -58,7 +58,7 @@ Additionally, `workflows/SKILL.md` references spoke-specific tools in its decisi
 
 ### Current (everything coupled)
 
-```
+```text
 SessionStart hook fires
   └─ Core loads ALL context (including spoke MCP tool docs)
      └─ ~220 lines of core-practices, many irrelevant to user's project
@@ -66,12 +66,11 @@ SessionStart hook fires
 
 ### Target (modular, self-registering)
 
-```
+```text
 SessionStart hooks fire (one per installed module)
   ├─ gir-core hook:
   │   ├─ Restore .gir/CLAUDE-activeContext.md
-  │   ├─ Read .gir/GIR.modules
-  │   ├─ Prune entries for uninstalled modules
+  │   ├─ Ensure .gir/GIR.modules exists with gir-core entry
   │   └─ Load ONLY core context (~140 lines, no spoke tools)
   │
   ├─ gir-web hook (only if installed):
@@ -593,7 +592,7 @@ Enhance `plugins/gir-core/hooks/hooks.json` to also handle the registry:
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Check if .gir/CLAUDE-activeContext.md exists in the current project. If it does, read it to restore session context. If it doesn't, briefly mention that the user can run /gir-core:init-memory-bank to set up a memory bank. Then, if .gir/GIR.modules exists, read it. For each listed module (other than gir-core), check if the directory `plugins/<module-name>/` exists in the current project. If it does NOT exist, remove that entry from GIR.modules (the module has been uninstalled). If the directory exists but the entry looks stale or malformed, leave it — spoke hooks will correct it on next registration. Ensure gir-core is listed using this exact format:\n\n### gir-core (v2.0.0) — core\n- **Agents**: feature-architect, code-reviewer, debugger, subtask-manager, spec-analyst\n- **Skills**: auto-delegation, core-practices, workflows, ralph-loops, specgates, state-machines\n- **Commands**: init-project, init-memory-bank, drift-check, status\n- **MCP**: sequential-thinking\n\nIf .gir/GIR.modules doesn't exist and .gir/ directory exists, create it with just the gir-core entry above. Do the module registry work silently."
+            "prompt": "Check if .gir/CLAUDE-activeContext.md exists in the current project. If it does, read it to restore session context. If it doesn't, briefly mention that the user can run /gir-core:init-memory-bank to set up a memory bank. Then, if .gir/GIR.modules exists, read it and ensure gir-core is listed using this exact format:\n\n### gir-core (v2.0.0) — core\n- **Agents**: feature-architect, code-reviewer, debugger, subtask-manager, spec-analyst\n- **Skills**: auto-delegation, core-practices, workflows, ralph-loops, specgates, state-machines\n- **Commands**: init-project, init-memory-bank, drift-check, status\n- **MCP**: sequential-thinking\n\nDo not remove spoke entries — spoke hooks self-manage their own entries and will refresh or clean up on their own session cycles. If .gir/GIR.modules doesn't exist and .gir/ directory exists, create it with just the gir-core entry above. Do the module registry work silently."
           }
         ]
       }
@@ -621,11 +620,13 @@ The generated `.gir/GIR.modules` file will look like this (Markdown for human re
 ### gir-web (v2.0.0) — spoke
 - **Agents**: docs-fetcher, deploy-manager, ui-generator
 - **Skills**: design-principles, frontend-design, web-tools
+- **Commands**: (none)
 - **MCP**: v0, figma, vercel, context7, ref
 
 ### gir-tools (v2.0.0) — spoke
 - **Agents**: team-lead, agenthub
 - **Skills**: subtask, agenthub-session-management
+- **Commands**: (none)
 - **MCP**: (none)
 ```
 
