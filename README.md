@@ -76,7 +76,7 @@ GIR is designed for **zero wasted context**. You only load what you use.
 | Core only | ~7-8K (3.5-4%) | 45% vs. monolithic |
 | Core + 1 spoke | ~9-10K (4.5-5%) | 35-40% savings |
 | Core + 2-3 spokes | ~11-14K (5-7%) | 25-35% savings |
-| All modules | ~20K (10%) | Full modular ecosystem |
+| All modules | ~19-32K (10-16%) | Full modular ecosystem |
 
 **What this means:** Installing just `gir-core` uses less than 4% of your 200K context window, leaving 193K+ tokens for your actual code and tasks. Each additional module adds only 2-4K tokens.
 
@@ -111,7 +111,7 @@ claude plugin install gir-qa            # QA & review (CodeRabbit, Jules)
 
 ### Step 4: Discover modules
 
-```
+```text
 /gir-core:modules
 ```
 
@@ -334,7 +334,7 @@ Yes. Create `.claude/agents/custom/` in your project and add agent definitions t
 **Per session:**
 - gir-core: ~3-4% of 200K context (7-8K tokens)
 - Each additional module: ~1-2% (2-4K tokens)
-- Total with all modules: ~5-6% (10-12K tokens)
+- Total with all modules: ~10-16% (19-32K tokens)
 
 This leaves ~188-193K tokens for your actual code and conversation. The modular design means you only pay for what you use.
 
@@ -349,9 +349,10 @@ This leaves ~188-193K tokens for your actual code and conversation. The modular 
 ### What if a module has an issue?
 
 1. Check the module's documentation in the marketplace
-2. Open an issue: https://github.com/anthropics/claude-code/issues
+2. Open an issue: https://github.com/RedcoatAsher/GIR-v2/issues
 3. Temporarily disable the module: `claude plugin uninstall gir-<module>`
-4. File issues with the specific module maintainer
+4. For Claude Code platform issues (not GIR-specific), use https://github.com/anthropics/claude-code/issues
+5. For third-party module issues, file with that module's maintainer
 
 ---
 

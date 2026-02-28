@@ -48,8 +48,9 @@ Additionally, `workflows/SKILL.md` references spoke-specific tools in its decisi
 | Core scope | Keep all 5 agents + 6 skills as required | Core's value is the unified skill set; don't fragment it |
 | Registry location | `.gir/GIR.modules` (project-local) | Consistent with existing `.gir/` memory bank pattern |
 | Registration mechanism | Self-registering SessionStart hooks per spoke | Each module registers itself; no central scanner needed |
+| Concurrent write safety | Each spoke hook reads-then-writes atomically (prompt-level lock via sequential Claude execution) | Claude processes prompts sequentially within a session; hooks don't execute in parallel threads, so simultaneous file corruption is not a concern in practice. If parallel hook execution is introduced in a future Claude version, migrate to a per-module file approach (`.gir/modules.d/gir-web.json`) with core aggregating them. |
 | Manifest format | `gir-module.json` per plugin | Standard contract for official + unofficial modules |
-| Stale entry cleanup | Core's SessionStart hook prunes missing modules | Self-healing when spokes are uninstalled |
+| Stale entry cleanup | Core's SessionStart hook prunes by checking `plugins/[name]/` directory existence | Directory-based check is reliable; only prunes when the spoke plugin directory is gone. Verification prompt: "check if `plugins/gir-<name>/` exists before removing any entry." |
 
 ---
 
@@ -160,7 +161,7 @@ Create `gir-module.json` in each plugin root.
   "requires": ["gir-core"],
   "provides": {
     "agents": ["docs-fetcher", "deploy-manager", "ui-generator"],
-    "skills": ["design-principles", "frontend-design"],
+    "skills": ["design-principles", "frontend-design", "web-tools"],
     "commands": [],
     "mcp": {
       "v0": {
@@ -198,7 +199,7 @@ Create `gir-module.json` in each plugin root.
   "requires": ["gir-core"],
   "provides": {
     "agents": ["n8n-builder"],
-    "skills": [],
+    "skills": ["n8n-tools"],
     "commands": [],
     "mcp": {
       "n8n-mcp": {
@@ -460,7 +461,17 @@ These are lightweight annotations, not full content extraction. The detailed too
 
 #### 3.1 Add SessionStart hooks to each spoke
 
-Each spoke gets a `hooks/hooks.json` that registers the module in `.gir/GIR.modules` at session start.
+Each spoke gets a `hooks/hooks.json` that registers the module in `.gir/GIR.modules` at session start. All hooks use the same Markdown entry format (defined in §3.3):
+
+```
+### <module-name> (v<version>) — <type>
+- **Agents**: <comma-separated agents>
+- **Skills**: <comma-separated skills>
+- **Commands**: <comma-separated commands or "(none)">
+- **MCP**: <comma-separated mcp keys or "(none)">
+```
+
+Hook prompts reference this format explicitly to prevent inconsistencies across entries.
 
 **`plugins/gir-web/hooks/hooks.json`:**
 ```json
@@ -471,7 +482,7 @@ Each spoke gets a `hooks/hooks.json` that registers the module in `.gir/GIR.modu
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-web is listed as an installed module with version 2.0.0, type spoke, agents [docs-fetcher, deploy-manager, ui-generator], skills [design-principles, frontend-design, web-tools], and mcp tools [v0, figma, vercel, context7, ref]. If it doesn't exist or gir-web is missing, add it. Write the updated file. Do this silently without telling the user."
+            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-web is listed. If gir-web is missing, append the following entry exactly as shown (using this Markdown format):\n\n### gir-web (v2.0.0) — spoke\n- **Agents**: docs-fetcher, deploy-manager, ui-generator\n- **Skills**: design-principles, frontend-design, web-tools\n- **Commands**: (none)\n- **MCP**: v0, figma, vercel, context7, ref\n\nWrite the updated file. Do this silently without telling the user."
           }
         ]
       }
@@ -489,7 +500,7 @@ Each spoke gets a `hooks/hooks.json` that registers the module in `.gir/GIR.modu
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-automation is listed as an installed module with version 2.0.0, type spoke, agents [n8n-builder], skills [n8n-tools], and mcp tools [n8n-mcp]. If it doesn't exist or gir-automation is missing, add it. Write the updated file. Do this silently without telling the user."
+            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-automation is listed. If gir-automation is missing, append the following entry exactly as shown:\n\n### gir-automation (v2.0.0) — spoke\n- **Agents**: n8n-builder\n- **Skills**: n8n-tools\n- **Commands**: (none)\n- **MCP**: n8n-mcp\n\nWrite the updated file. Do this silently without telling the user."
           }
         ]
       }
@@ -507,7 +518,7 @@ Each spoke gets a `hooks/hooks.json` that registers the module in `.gir/GIR.modu
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-tools is listed as an installed module with version 2.0.0, type spoke, agents [team-lead, agenthub], skills [subtask, agenthub-session-management], and mcp tools []. If it doesn't exist or gir-tools is missing, add it. Write the updated file. Do this silently without telling the user."
+            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-tools is listed. If gir-tools is missing, append the following entry exactly as shown:\n\n### gir-tools (v2.0.0) — spoke\n- **Agents**: team-lead, agenthub\n- **Skills**: subtask, agenthub-session-management\n- **Commands**: (none)\n- **MCP**: (none)\n\nWrite the updated file. Do this silently without telling the user."
           }
         ]
       }
@@ -525,7 +536,7 @@ Each spoke gets a `hooks/hooks.json` that registers the module in `.gir/GIR.modu
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-database is listed as an installed module with version 2.0.0, type spoke, agents [], skills [database-tools], and mcp tools [supabase]. If it doesn't exist or gir-database is missing, add it. Write the updated file. Do this silently without telling the user."
+            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-database is listed. If gir-database is missing, append the following entry exactly as shown:\n\n### gir-database (v2.0.0) — spoke\n- **Agents**: (none)\n- **Skills**: database-tools\n- **Commands**: (none)\n- **MCP**: supabase\n\nWrite the updated file. Do this silently without telling the user."
           }
         ]
       }
@@ -543,7 +554,7 @@ Each spoke gets a `hooks/hooks.json` that registers the module in `.gir/GIR.modu
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-ai is listed as an installed module with version 2.0.0, type spoke, agents [], skills [ai-delegation], and mcp tools []. If it doesn't exist or gir-ai is missing, add it. Write the updated file. Do this silently without telling the user."
+            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-ai is listed. If gir-ai is missing, append the following entry exactly as shown:\n\n### gir-ai (v2.0.0) — spoke\n- **Agents**: (none)\n- **Skills**: ai-delegation\n- **Commands**: (none)\n- **MCP**: (none)\n\nWrite the updated file. Do this silently without telling the user."
           }
         ]
       }
@@ -561,7 +572,7 @@ Each spoke gets a `hooks/hooks.json` that registers the module in `.gir/GIR.modu
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-qa is listed as an installed module with version 2.0.0, type spoke, agents [], skills [qa-tools], and mcp tools [coderabbit, jules]. If it doesn't exist or gir-qa is missing, add it. Write the updated file. Do this silently without telling the user."
+            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-qa is listed. If gir-qa is missing, append the following entry exactly as shown:\n\n### gir-qa (v2.0.0) — spoke\n- **Agents**: (none)\n- **Skills**: qa-tools\n- **Commands**: (none)\n- **MCP**: coderabbit, jules\n\nWrite the updated file. Do this silently without telling the user."
           }
         ]
       }
@@ -582,7 +593,7 @@ Enhance `plugins/gir-core/hooks/hooks.json` to also handle the registry:
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Check if .gir/CLAUDE-activeContext.md exists in the current project. If it does, read it to restore session context. If it doesn't, briefly mention that the user can run /gir-core:init-memory-bank to set up a memory bank. Then, if .gir/GIR.modules exists, read it and verify all listed modules are actually installed (their agents should be available). Remove any entries for modules that are no longer installed. Ensure gir-core is listed with version 2.0.0, type core, agents [feature-architect, code-reviewer, debugger, subtask-manager, spec-analyst], skills [auto-delegation, core-practices, workflows, ralph-loops, specgates, state-machines], commands [init-project, init-memory-bank, drift-check, status], and mcp [sequential-thinking]. If .gir/GIR.modules doesn't exist and .gir/ directory exists, create it with just the gir-core entry. Do the module registry work silently."
+            "prompt": "Check if .gir/CLAUDE-activeContext.md exists in the current project. If it does, read it to restore session context. If it doesn't, briefly mention that the user can run /gir-core:init-memory-bank to set up a memory bank. Then, if .gir/GIR.modules exists, read it. For each listed module (other than gir-core), check if the directory `plugins/<module-name>/` exists in the current project. If it does NOT exist, remove that entry from GIR.modules (the module has been uninstalled). If the directory exists but the entry looks stale or malformed, leave it — spoke hooks will correct it on next registration. Ensure gir-core is listed using this exact format:\n\n### gir-core (v2.0.0) — core\n- **Agents**: feature-architect, code-reviewer, debugger, subtask-manager, spec-analyst\n- **Skills**: auto-delegation, core-practices, workflows, ralph-loops, specgates, state-machines\n- **Commands**: init-project, init-memory-bank, drift-check, status\n- **MCP**: sequential-thinking\n\nIf .gir/GIR.modules doesn't exist and .gir/ directory exists, create it with just the gir-core entry above. Do the module registry work silently."
           }
         ]
       }
@@ -897,7 +908,7 @@ The module's SessionStart hook registers itself using the same pattern as offici
 | Core + web | Same ~220 lines | ~120 core + ~20 web-tools | ~35% reduction |
 | Core + automation | Same ~220 lines | ~120 core + ~10 n8n-tools | ~40% reduction |
 | Core + web + database | Same ~220 lines | ~120 core + ~20 web + ~10 database | ~30% reduction |
-| All 7 modules | Same ~220 lines | ~120 + all spoke skills (~80 lines total) | Slight increase, but fully modular |
+| All 7 modules | Same ~220 lines | ~120 + all spoke skills (~80 lines total) | ~10-16% token overhead (~19-32K tokens); fully modular |
 
 The key wins:
 - **Core-only users** save ~45% — Gemini-CLI delegation, all MCP tool docs, and all spoke agent listings are gone
