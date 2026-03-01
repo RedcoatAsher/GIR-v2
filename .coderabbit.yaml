@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: en-US
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  path_instructions:
+    - path: "plugins/**"
+      instructions: |
+        These are Claude Code plugin modules (spokes). Each plugin follows a standard
+        structure with .claude-plugin/plugin.json, agents/, commands/, skills/, and hooks/.
+        Review for correctness of plugin metadata, prompt quality in .md files, and
+        adherence to the modular architecture described in the README.
+    - path: "README.md"
+      instructions: |
+        This is the main project README for the GIR modular plugin ecosystem.
+        Review for clarity, accuracy of installation instructions, and consistency
+        with the actual plugin structure in the repository.
+    - path: "PLAN-modularization.md"
+      instructions: |
+        This is the architectural plan for modularizing GIR from v1 monolith to v2
+        spoke-based architecture. Review for completeness and feasibility.
+chat:
+  auto_reply: true
