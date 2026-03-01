@@ -1,15 +1,13 @@
 # GIR (Get It Running)
 ![Static Badge](https://img.shields.io/badge/version-v2.0.0-blue) ![GitHub Release](https://img.shields.io/github/v/release/redcoatasher/GIR-v2) ![Static Badge](https://img.shields.io/badge/works_with-claude_code-orange) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **"[Doom Song](https://youtu.be/Nw_cdqQHGA8?si=wxLOA3FYWppVxnOF&t=3)!"** — Modular Claude Code plugin ecosystem. Install only what you need — curated agents, auto-delegation, memory bank, and domain-specific tooling.
-> 
+> A modular Claude Code plugin ecosystem. Install only what you need — curated agents, auto-delegation, memory bank, and domain-specific tooling.
+ 
+> **"[Doom Song](https://youtu.be/Nw_cdqQHGA8?si=wxLOA3FYWppVxnOF&t=3)!"**
 
-<img src="https://i.pinimg.com/originals/57/6e/0e/576e0e99fd23505db71aa9caaa670fe3.gif" alt="GIR" width="250" align="right" />
-
----
 
 ## What Is GIR?
-
+<img src="https://i.pinimg.com/originals/57/6e/0e/576e0e99fd23505db71aa9caaa670fe3.gif" alt="GIR" width="300" align="right" />
 GIR is a modular ecosystem that separates:
 
 - Universal workflows (all projects)
