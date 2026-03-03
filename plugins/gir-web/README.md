@@ -41,6 +41,7 @@ The agents will still load without these MCP servers, but their primary capabili
 |-------|------------------|
 | **frontend-design** | Component architecture patterns, state management conventions, accessibility defaults, responsive layout guidance |
 | **design-principles** | Visual hierarchy, spacing systems, typography choices, and color usage — applied during UI generation and review |
+| **web-tools** | MCP tool reference for UI generation (v0, Figma) and deployment (Vercel) — quick reference for available tool names and actions |
 
 ---
 
