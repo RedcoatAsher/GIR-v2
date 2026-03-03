@@ -4,7 +4,7 @@
 
 **Status**: Implementation Complete (as of 2026-03-03)
 **Date**: 2026-02-28
-**Author**: RedcoatAsher + Claude
+**Author**: rivit-studio + Claude
 
 ---
 
@@ -36,7 +36,7 @@ Additionally, `workflows/SKILL.md` references spoke-specific tools in its decisi
 2. **True modularity** — Users install `gir-core`, then choose their spokes
 3. **Dynamic registry** — A `GIR.modules` file that auto-updates when modules are installed/removed
 4. **Extensibility** — Third-party / unofficial modules can self-register using the same system
-5. **Monorepo development** — Keep all official plugins in the GIR-v2 repo for development convenience
+5. **Monorepo development** — Keep all official plugins in the GIR repo for development convenience
 
 ---
 
@@ -682,7 +682,7 @@ Add `dependencies` and `required` fields:
 ```json
 {
   "name": "gir-plugins",
-  "owner": { "name": "RedcoatAsher", "url": "https://github.com/RedcoatAsher" },
+  "owner": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
   "metadata": {
     "description": "GIR — Modular Claude Code productivity ecosystem",
     "version": "2.0.0",
@@ -765,7 +765,7 @@ Rewrite the Install section to emphasize the modular experience:
 
 ### Step 1: Add the marketplace
 ```bash
-claude plugin marketplace add RedcoatAsher/GIR-v2
+claude plugin marketplace add rivit-studio/GIR
 ```
 
 ### Step 2: Install core (required)
@@ -923,7 +923,7 @@ The key wins:
 
 ### For existing users
 
-1. Update the marketplace: `claude plugin marketplace update RedcoatAsher/GIR-v2`
+1. Update the marketplace: `claude plugin marketplace update rivit-studio/GIR`
 2. Core update brings the new hook + cleaned skills automatically
 3. Installed spokes update and gain their own hooks
 4. First session after update: hooks create `.gir/GIR.modules`

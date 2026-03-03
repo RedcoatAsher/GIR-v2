@@ -308,7 +308,7 @@ GIR-v2 Plugin Installation
 Based on your v1 configuration, here are the recommended plugins:
 
   Required:
-    claude plugin marketplace add RedcoatAsher/GIR-v2
+    claude plugin marketplace add rivit-studio/GIR
     claude plugin install gir-core
 
   Recommended (based on your v1 setup):

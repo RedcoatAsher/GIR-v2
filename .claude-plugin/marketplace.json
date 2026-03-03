@@ -1,6 +1,6 @@
 {
   "name": "gir-plugins",
-  "owner": { "name": "RedcoatAsher", "url": "https://github.com/RedcoatAsher" },
+  "owner": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
   "metadata": {
     "description": "GIR — Modular Claude Code productivity ecosystem",
     "version": "2.0.0",
