@@ -1,5 +1,5 @@
 # GIR (Get It Running)
-![Static Badge](https://img.shields.io/badge/version-v2.0.0-blue) ![Static Badge](https://img.shields.io/badge/works_with-claude_code-orange) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![GitHub Release](https://img.shields.io/github/v/release/rivit-studio/GIR) ![Static Badge](https://img.shields.io/badge/works_with-claude_code-orange) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > A modular Claude Code plugin ecosystem. Install only what you need — curated agents, auto-delegation, memory bank, and domain-specific tooling.
  
@@ -88,7 +88,7 @@ If you need a module, install it. If you don't, it costs nothing.
 ### Step 1: Add the marketplace
 
 ```bash
-claude plugin marketplace add RedcoatAsher/GIR-v2
+claude plugin marketplace add rivit-studio/GIR
 ```
 
 ### Step 2: Install core (required)
@@ -349,7 +349,7 @@ It will scan for v1 artifacts, back everything up, convert your `CLAUDE.md` to t
 ### What if a module has an issue?
 
 1. Check the module's documentation in the marketplace
-2. Open an issue: https://github.com/RedcoatAsher/GIR-v2/issues
+2. Open an issue: https://github.com/rivit-studio/GIR/issues
 3. Temporarily disable the module: `claude plugin uninstall gir-<module>`
 4. For Claude Code platform issues (not GIR-specific), use https://github.com/anthropics/claude-code/issues
 5. For third-party module issues, file with that module's maintainer
