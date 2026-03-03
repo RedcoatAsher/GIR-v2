@@ -160,7 +160,7 @@ Then run `/gir-core:init-project` to scaffold `CLAUDE-project.md` for your stack
 
 | Module | Description | Includes | Who needs it |
 |--------|-------------|----------|--------------|
-| [gir-core](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 5 agents, 6 skills, 5 commands, SessionStart hook, sequential-thinking MCP | Everyone |
+| [gir-core](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 5 agents, 6 skills, 6 commands, SessionStart hook, sequential-thinking MCP | Everyone |
 | [gir-web](plugins/gir-web/) | Frontend and fullstack tooling — v0, Figma, Vercel | 3 agents, 3 skills | Frontend/fullstack devs |
 | [gir-automation](plugins/gir-automation/) | n8n workflow building | 1 agent, 1 skill | Teams using n8n |
 | [gir-tools](plugins/gir-tools/) | AgentHub integration and agent team coordination | 2 agents, 2 skills | Power users running parallel agent workflows |
