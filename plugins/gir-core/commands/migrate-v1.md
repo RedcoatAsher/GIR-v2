@@ -150,7 +150,7 @@ If `.gir/` exists, create the initial module registry. This will be populated fu
 ## Installed Modules
 
 ### gir-core (v2.0.0) — core
-- **Agents**: feature-architect, code-reviewer, debugger, subtask-manager, spec-analyst
+- **Agents**: feature-architect, code-reviewer, debugger, team-lead, spec-analyst
 - **Skills**: auto-delegation, core-practices, workflows, ralph-loops, specgates, state-machines
 - **Commands**: init-project, init-memory-bank, drift-check, status, migrate-v1
 - **MCP**: sequential-thinking
