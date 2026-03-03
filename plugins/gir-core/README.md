@@ -49,6 +49,8 @@ Six skills are loaded into every session.
 | `/init-memory-bank` | Creates the `.gir/` memory bank directory with starter files |
 | `/drift-check` | Compares current code state against the active spec; surfaces divergence |
 | `/status` | Prints active context, current session goals, and memory bank summary |
+| `/modules` | Lists all installed GIR modules and their registered tools |
+| `/migrate-v1` | Migrates a GIR v1 project to v2 — backs up, converts `CLAUDE.md`, installs right modules |
 
 ---
 
