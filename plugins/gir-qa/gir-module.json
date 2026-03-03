@@ -1,0 +1,22 @@
+{
+  "name": "gir-qa",
+  "version": "2.0.0",
+  "type": "spoke",
+  "description": "QA and review tools — CodeRabbit PR reviews, Jules AI delegation",
+  "requires": ["gir-core"],
+  "provides": {
+    "agents": [],
+    "skills": ["qa-tools"],
+    "commands": [],
+    "mcp": {
+      "coderabbit": {
+        "description": "Automated PR reviews",
+        "commands": ["get_coderabbit_reviews", "get_review_details", "resolve_comment"]
+      },
+      "jules": {
+        "description": "AI task delegation",
+        "commands": ["create_session", "get_session", "send_session_message"]
+      }
+    }
+  }
+}

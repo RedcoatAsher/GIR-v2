@@ -1,0 +1,10 @@
+{
+  "name": "gir-database",
+  "version": "2.0.0",
+  "description": "Requires gir-core. Database management — Supabase MCP tools for Claude Code",
+  "author": { "name": "RedcoatAsher", "url": "https://github.com/RedcoatAsher" },
+  "homepage": "https://github.com/RedcoatAsher/GIR-v2",
+  "repository": "https://github.com/RedcoatAsher/GIR-v2",
+  "license": "MIT",
+  "keywords": ["supabase", "database", "sql", "migrations"]
+}

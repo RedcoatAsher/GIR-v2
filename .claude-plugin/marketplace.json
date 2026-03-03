@@ -13,31 +13,62 @@
       "description": "Core agents, workflows, best practices, and auto-delegation for any Claude Code project",
       "version": "2.0.0",
       "category": "productivity",
+      "required": true,
       "keywords": ["agents", "workflows", "best-practices", "delegation", "code-review"]
     },
     {
       "name": "gir-web",
       "source": "./gir-web",
-      "description": "Requires gir-core. Frontend/fullstack agents and design skills",
+      "description": "Frontend/fullstack agents and design skills",
       "version": "2.0.0",
       "category": "web-development",
+      "dependencies": ["gir-core"],
       "keywords": ["frontend", "design", "deployment", "ui-generator"]
     },
     {
       "name": "gir-automation",
       "source": "./gir-automation",
-      "description": "Requires gir-core. n8n workflow builder agent",
+      "description": "n8n workflow builder agent",
       "version": "2.0.0",
       "category": "automation",
+      "dependencies": ["gir-core"],
       "keywords": ["n8n", "workflows", "automation"]
     },
     {
       "name": "gir-tools",
       "source": "./gir-tools",
-      "description": "Requires gir-core. Power user tools — AgentHub, subtask parallel execution",
+      "description": "Power user tools — AgentHub, subtask parallel execution, team coordination",
       "version": "2.0.0",
       "category": "productivity",
+      "dependencies": ["gir-core"],
       "keywords": ["agenthub", "subtask", "parallel", "multi-session"]
+    },
+    {
+      "name": "gir-database",
+      "source": "./gir-database",
+      "description": "Database management — Supabase MCP tools",
+      "version": "2.0.0",
+      "category": "database",
+      "dependencies": ["gir-core"],
+      "keywords": ["supabase", "database", "sql", "migrations"]
+    },
+    {
+      "name": "gir-ai",
+      "source": "./gir-ai",
+      "description": "AI tool delegation — Gemini-CLI, Codex, and other AI integrations",
+      "version": "2.0.0",
+      "category": "ai-tools",
+      "dependencies": ["gir-core"],
+      "keywords": ["gemini", "codex", "ai", "delegation"]
+    },
+    {
+      "name": "gir-qa",
+      "source": "./gir-qa",
+      "description": "QA & review tools — CodeRabbit PR reviews, Jules AI delegation",
+      "version": "2.0.0",
+      "category": "quality",
+      "dependencies": ["gir-core"],
+      "keywords": ["coderabbit", "jules", "code-review", "qa"]
     }
   ]
 }

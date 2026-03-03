@@ -1,0 +1,13 @@
+{
+  "name": "gir-ai",
+  "version": "2.0.0",
+  "type": "spoke",
+  "description": "AI tool integrations — Gemini-CLI, Codex, and other AI delegation targets",
+  "requires": ["gir-core"],
+  "provides": {
+    "agents": [],
+    "skills": ["ai-delegation"],
+    "commands": [],
+    "mcp": {}
+  }
+}

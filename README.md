@@ -161,7 +161,7 @@ claude plugin install gir-database     # Supabase tools
 
 | Module | Description | Includes | Who needs it |
 |--------|-------------|----------|--------------|
-| [gir-core](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 5 agents, 6 skills, 4 commands, SessionStart hook, sequential-thinking MCP | Everyone |
+| [gir-core](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 5 agents, 6 skills, 5 commands, SessionStart hook, sequential-thinking MCP | Everyone |
 | [gir-web](plugins/gir-web/) | Frontend and fullstack tooling — v0, Figma, Vercel | 3 agents, 3 skills | Frontend/fullstack devs |
 | [gir-automation](plugins/gir-automation/) | n8n workflow building | 1 agent, 1 skill | Teams using n8n |
 | [gir-tools](plugins/gir-tools/) | AgentHub integration and agent team coordination | 2 agents, 2 skills | Power users running parallel agent workflows |
@@ -178,8 +178,8 @@ GIR plugins install globally. Your project keeps its own configuration:
 ### Files You Own & Customize
 
 - **`CLAUDE-project.md`** — **Edit this.** Your project-specific tech stack, dev commands, environment variables, conventions, and architectural decisions. This is the single source of truth for your project context. Create it by running:
-  ```bash
-  cp /path/to/GIR/templates/CLAUDE-project.md.template ./CLAUDE-project.md
+  ```
+  /gir-core:init-project
   ```
   Then customize it for your stack.
 

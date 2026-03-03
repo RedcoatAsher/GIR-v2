@@ -14,8 +14,11 @@ Look for plugin directories under `~/.claude/plugins/`. Check whether these dire
 
 - `~/.claude/plugins/gir-core/`
 - `~/.claude/plugins/gir-web/`
-- `~/.claude/plugins/gir-mobile/`
 - `~/.claude/plugins/gir-automation/`
+- `~/.claude/plugins/gir-tools/`
+- `~/.claude/plugins/gir-database/`
+- `~/.claude/plugins/gir-ai/`
+- `~/.claude/plugins/gir-qa/`
 
 Note which ones are present and which are absent. If `~/.claude/plugins/` does not exist at all, note that no plugins directory was found.
 
@@ -36,6 +39,7 @@ Check whether `.gir/` exists in the current working directory.
   - `CLAUDE-patterns.md`
   - `CLAUDE-resources.md`
   - `CLAUDE-troubleshooting.md`
+  - Also check if `GIR.modules` is present.
 - If `.gir/` does not exist: note that the memory bank is not set up.
 
 ### Step 4: Check for available agents
@@ -64,16 +68,20 @@ Memory Bank (.gir/)
     CLAUDE-patterns.md         [present | missing]
     CLAUDE-resources.md        [present | missing]
     CLAUDE-troubleshooting.md  [present | missing]
+    GIR.modules                [present | missing]
 
   [If .gir/ does not exist]:
     Not initialized — run /gir-core:init-memory-bank
 
 Plugins (~/.claude/plugins/)
 ----------------------------
-  gir-core        [installed | not found]
+  gir-core        [installed | not found]  ← required
   gir-web         [installed | not found]
-  gir-mobile      [installed | not found]
   gir-automation  [installed | not found]
+  gir-tools       [installed | not found]
+  gir-database    [installed | not found]
+  gir-ai          [installed | not found]
+  gir-qa          [installed | not found]
   [any other directories found under ~/.claude/plugins/]
 
 Agents (~/.claude/agents/)
