@@ -124,9 +124,7 @@ claude plugin install gir-core
 claude plugin install gir-web         # Frontend tooling (v0, Figma, Vercel)
 ```
 
-Then create/customize `CLAUDE-project.md` with:
-- Stack: Next.js 15.x, React 19, TypeScript, Tailwind
-- Key commands: `npm run dev`, `npm run build`, `npm test`
+Then run `/gir-core:init-project` to scaffold `CLAUDE-project.md` for your stack.
 
 ### Backend API
 
@@ -134,9 +132,7 @@ Then create/customize `CLAUDE-project.md` with:
 claude plugin install gir-core
 ```
 
-Then create/customize `CLAUDE-project.md` with:
-- Stack: FastAPI/Express, PostgreSQL, etc.
-- Key commands: `npm start`, `npm test`
+Then run `/gir-core:init-project` to scaffold `CLAUDE-project.md` for your stack.
 
 ### Full-Stack + Automation
 
@@ -146,7 +142,7 @@ claude plugin install gir-web          # Frontend
 claude plugin install gir-automation   # n8n workflows
 ```
 
-Then create/customize `CLAUDE-project.md` with all three stacks.
+Then run `/gir-core:init-project` to scaffold `CLAUDE-project.md` for your stack.
 
 ### Data/ML Projects with Supabase
 
@@ -154,6 +150,8 @@ Then create/customize `CLAUDE-project.md` with all three stacks.
 claude plugin install gir-core
 claude plugin install gir-database     # Supabase tools
 ```
+
+Then run `/gir-core:init-project` to scaffold `CLAUDE-project.md` for your stack.
 
 ---
 
@@ -187,8 +185,8 @@ GIR plugins install globally. Your project keeps its own configuration:
 
 Create `.gir/` for session-persistent patterns and decisions:
 
-```bash
-mkdir -p .gir
+```
+/gir-core:init-memory-bank
 ```
 
 Files GIR creates/manages here:
@@ -259,9 +257,10 @@ Any Claude Code plugin can become a GIR module by including a `gir-module.json` 
 ### How do I set up a new project with GIR?
 
 1. Install `gir-core` globally: `claude plugin install gir-core`
-2. In your project, create `CLAUDE-project.md` from the template and customize it
-3. Install any domain-specific modules you need (gir-web, gir-automation, etc.)
-4. Start a Claude Code session — GIR auto-discovers your config
+2. Install any domain-specific modules you need (gir-web, gir-automation, etc.)
+3. In your project, run `/gir-core:init-project` to generate `CLAUDE-project.md`
+4. Optionally run `/gir-core:init-memory-bank` to set up the `.gir/` memory bank
+5. Start a Claude Code session — GIR auto-discovers your config
 
 ### What's the difference between gir-core and the spokes?
 
@@ -338,11 +337,13 @@ This leaves ~188-193K tokens for your actual code and conversation. The modular 
 
 ### How do I migrate from GIR v1 to v2?
 
-1. The plugin system is new, but the concepts are the same
-2. Your old `CLAUDE-project.md` style files work fine
-3. Install gir-core and relevant modules
-4. Review the new `CLAUDE-project.md` template and adapt your existing config
-5. Memory bank files (`.gir/`) remain compatible
+Run the migration command from your project root:
+
+```
+/gir-core:migrate-v1
+```
+
+It will scan for v1 artifacts, back everything up, convert your `CLAUDE.md` to the new `CLAUDE-project.md` format, preserve your memory bank, clean up v1 files, and guide you through installing the right v2 modules. Memory bank files (`.gir/`) are fully compatible and will not be touched.
 
 ### What if a module has an issue?
 
