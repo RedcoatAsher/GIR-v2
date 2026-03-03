@@ -2,9 +2,9 @@
   "name": "gir-qa",
   "version": "2.0.0",
   "description": "Requires gir-core. QA & review tools — CodeRabbit PR reviews and Jules AI delegation for Claude Code",
-  "author": { "name": "RedcoatAsher", "url": "https://github.com/RedcoatAsher" },
-  "homepage": "https://github.com/RedcoatAsher/GIR-v2",
-  "repository": "https://github.com/RedcoatAsher/GIR-v2",
+  "author": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
+  "homepage": "https://github.com/rivit-studio/GIR",
+  "repository": "https://github.com/rivit-studio/GIR",
   "license": "MIT",
   "keywords": ["coderabbit", "jules", "code-review", "qa"]
 }

@@ -2,9 +2,9 @@
   "name": "gir-tools",
   "version": "2.0.0",
   "description": "Requires gir-core. Power user tools — AgentHub session management, subtask parallel execution",
-  "author": { "name": "RedcoatAsher", "url": "https://github.com/RedcoatAsher" },
-  "homepage": "https://github.com/RedcoatAsher/GIR-v2",
-  "repository": "https://github.com/RedcoatAsher/GIR-v2",
+  "author": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
+  "homepage": "https://github.com/rivit-studio/GIR",
+  "repository": "https://github.com/rivit-studio/GIR",
   "license": "MIT",
   "keywords": ["agenthub", "subtask", "parallel", "multi-session"]
 }
