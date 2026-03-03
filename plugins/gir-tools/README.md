@@ -2,7 +2,7 @@
 
 > **Requires [gir-core](../gir-core/).** Install gir-core first.
 
-Power user tooling for parallel agent workflows. Adds AgentHub integration, agent team coordination, and enhanced subtask skills.
+Power user tooling for parallel agent workflows. Adds AgentHub integration, subtask parallel execution, and enhanced subtask skills.
 
 ---
 
@@ -20,7 +20,7 @@ claude plugin install gir-tools
 | Agent | Role |
 |-------|------|
 | **agenthub** | Connects Claude Code to the AgentHub macOS app. Manages agent sessions, routes tasks across running agents, and surfaces session state in the AgentHub UI. Requires the [AgentHub macOS app](https://agenthub.app) installed and running. |
-| **team-lead** | Coordinates multi-agent teams within a single Claude Code session. Assigns work to teammates, tracks progress, and synthesizes results. Requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` set in `settings.json`. |
+| **subtask-manager** | Creates and coordinates parallel subtasks via the `subtask` CLI. Spawns isolated subagents in Git worktrees for concurrent, conflict-free development. |
 
 ---
 
@@ -37,14 +37,16 @@ claude plugin install gir-tools
 
 **agenthub agent**: The AgentHub macOS app must be installed and running. No MCP configuration is required — AgentHub communicates directly with Claude Code.
 
-**team-lead agent**: Add the following to your Claude Code `settings.json` to enable agent teams:
+**subtask-manager agent**: The `subtask` CLI must be installed:
 
-```json
-{
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  }
-}
+```bash
+# Install (pick one)
+curl -fsSL https://subtask.dev/install.sh | bash
+brew install zippoxer/tap/subtask
+go install github.com/zippoxer/subtask/cmd/subtask@latest
+
+# Then initialize
+subtask init && subtask install
 ```
 
 ---

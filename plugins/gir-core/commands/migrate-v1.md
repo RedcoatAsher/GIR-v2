@@ -226,7 +226,7 @@ Compare the agent files against the v2 agent set:
 - `feature-architect.md`
 - `code-reviewer.md`
 - `debugger.md`
-- `subtask-manager.md`
+- `team-lead.md`
 - `spec-analyst.md`
 
 **v2 web agents** (provided by gir-web plugin):
@@ -238,7 +238,7 @@ Compare the agent files against the v2 agent set:
 - `n8n-builder.md`
 
 **v2 tools agents** (provided by gir-tools plugin):
-- `team-lead.md`
+- `subtask-manager.md`
 - `agenthub.md`
 
 For each agent file found in `.claude/agents/`:
