@@ -2,7 +2,7 @@
 
 > Split spokes into independent, marketplace-installable modules with a dynamic registry system.
 
-**Status**: Draft
+**Status**: Implementation Complete (as of 2026-03-03)
 **Date**: 2026-02-28
 **Author**: RedcoatAsher + Claude
 
@@ -123,7 +123,7 @@ Create `gir-module.json` in each plugin root.
       "feature-architect",
       "code-reviewer",
       "debugger",
-      "subtask-manager",
+      "team-lead",
       "spec-analyst"
     ],
     "skills": [
@@ -219,7 +219,7 @@ Create `gir-module.json` in each plugin root.
   "description": "Power user tools — AgentHub, team coordination, subtask parallel execution",
   "requires": ["gir-core"],
   "provides": {
-    "agents": ["team-lead", "agenthub"],
+    "agents": ["subtask-manager", "agenthub"],
     "skills": ["subtask", "agenthub-session-management"],
     "commands": [],
     "mcp": {}
@@ -517,7 +517,7 @@ Hook prompts reference this format explicitly to prevent inconsistencies across 
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-tools is listed. If gir-tools is missing, append the following entry exactly as shown:\n\n### gir-tools (v2.0.0) — spoke\n- **Agents**: team-lead, agenthub\n- **Skills**: subtask, agenthub-session-management\n- **Commands**: (none)\n- **MCP**: (none)\n\nWrite the updated file. Do this silently without telling the user."
+            "prompt": "If .gir/ directory exists in the current project, check if .gir/GIR.modules exists. If it does, read it and ensure gir-tools is listed. If gir-tools is missing, append the following entry exactly as shown:\n\n### gir-tools (v2.0.0) — spoke\n- **Agents**: subtask-manager, agenthub\n- **Skills**: subtask, agenthub-session-management\n- **Commands**: (none)\n- **MCP**: (none)\n\nWrite the updated file. Do this silently without telling the user."
           }
         ]
       }
@@ -592,7 +592,7 @@ Enhance `plugins/gir-core/hooks/hooks.json` to also handle the registry:
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Check if .gir/CLAUDE-activeContext.md exists in the current project. If it does, read it to restore session context. If it doesn't, briefly mention that the user can run /gir-core:init-memory-bank to set up a memory bank. Then, if .gir/GIR.modules exists, read it and ensure gir-core is listed using this exact format:\n\n### gir-core (v2.0.0) — core\n- **Agents**: feature-architect, code-reviewer, debugger, subtask-manager, spec-analyst\n- **Skills**: auto-delegation, core-practices, workflows, ralph-loops, specgates, state-machines\n- **Commands**: init-project, init-memory-bank, drift-check, status\n- **MCP**: sequential-thinking\n\nDo not remove spoke entries — an uninstalled spoke's hook no longer runs, so its entry will simply persist as stale. Stale entries are harmless; users can remove them manually or via /gir-core:modules. If .gir/GIR.modules doesn't exist and .gir/ directory exists, create it with just the gir-core entry above. Do the module registry work silently."
+            "prompt": "Check if .gir/CLAUDE-activeContext.md exists in the current project. If it does, read it to restore session context. If it doesn't, briefly mention that the user can run /gir-core:init-memory-bank to set up a memory bank. Then, if .gir/GIR.modules exists, read it and ensure gir-core is listed using this exact format:\n\n### gir-core (v2.0.0) — core\n- **Agents**: feature-architect, code-reviewer, debugger, team-lead, spec-analyst\n- **Skills**: auto-delegation, core-practices, workflows, ralph-loops, specgates, state-machines\n- **Commands**: init-project, init-memory-bank, drift-check, status, modules, migrate-v1\n- **MCP**: sequential-thinking\n\nDo not remove spoke entries — an uninstalled spoke's hook no longer runs, so its entry will simply persist as stale. Stale entries are harmless; users can remove them manually or via /gir-core:modules. If .gir/GIR.modules doesn't exist and .gir/ directory exists, create it with just the gir-core entry above. Do the module registry work silently."
           }
         ]
       }
@@ -612,9 +612,9 @@ The generated `.gir/GIR.modules` file will look like this (Markdown for human re
 ## Installed Modules
 
 ### gir-core (v2.0.0) — core
-- **Agents**: feature-architect, code-reviewer, debugger, subtask-manager, spec-analyst
+- **Agents**: feature-architect, code-reviewer, debugger, team-lead, spec-analyst
 - **Skills**: auto-delegation, core-practices, workflows, ralph-loops, specgates, state-machines
-- **Commands**: init-project, init-memory-bank, drift-check, status
+- **Commands**: init-project, init-memory-bank, drift-check, status, modules, migrate-v1
 - **MCP**: sequential-thinking
 
 ### gir-web (v2.0.0) — spoke
@@ -624,7 +624,7 @@ The generated `.gir/GIR.modules` file will look like this (Markdown for human re
 - **MCP**: v0, figma, vercel, context7, ref
 
 ### gir-tools (v2.0.0) — spoke
-- **Agents**: team-lead, agenthub
+- **Agents**: subtask-manager, agenthub
 - **Skills**: subtask, agenthub-session-management
 - **Commands**: (none)
 - **MCP**: (none)
