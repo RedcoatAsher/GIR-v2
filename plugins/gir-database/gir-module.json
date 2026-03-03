@@ -1,0 +1,18 @@
+{
+  "name": "gir-database",
+  "version": "2.0.0",
+  "type": "spoke",
+  "description": "Database management agents and tools — Supabase",
+  "requires": ["gir-core"],
+  "provides": {
+    "agents": [],
+    "skills": ["database-tools"],
+    "commands": [],
+    "mcp": {
+      "supabase": {
+        "description": "Supabase project and database management",
+        "commands": ["search_docs", "list_projects", "list_tables", "execute_sql", "apply_migration", "deploy_edge_function", "get_logs", "get_advisors", "create_branch", "merge_branch"]
+      }
+    }
+  }
+}

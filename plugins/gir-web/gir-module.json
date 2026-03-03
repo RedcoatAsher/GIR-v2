@@ -1,0 +1,34 @@
+{
+  "name": "gir-web",
+  "version": "2.0.0",
+  "type": "spoke",
+  "description": "Frontend/fullstack agents and design skills",
+  "requires": ["gir-core"],
+  "provides": {
+    "agents": ["docs-fetcher", "deploy-manager", "ui-generator"],
+    "skills": ["design-principles", "frontend-design", "web-tools"],
+    "commands": [],
+    "mcp": {
+      "v0": {
+        "description": "React scaffolding and UI mockups",
+        "commands": ["createChat"]
+      },
+      "figma": {
+        "description": "UI generation from Figma designs",
+        "commands": ["get_design_context", "get_screenshot", "generate_diagram"]
+      },
+      "vercel": {
+        "description": "Deployment management",
+        "commands": ["list_projects", "get_project", "list_deployments", "get_deployment", "get_deployment_build_logs", "deploy_to_vercel", "search_vercel_documentation"]
+      },
+      "context7": {
+        "description": "Library and API documentation lookup",
+        "commands": ["resolve-library-id", "get-library-docs"]
+      },
+      "ref": {
+        "description": "Broader documentation search and URL content",
+        "commands": ["search", "fetch"]
+      }
+    }
+  }
+}

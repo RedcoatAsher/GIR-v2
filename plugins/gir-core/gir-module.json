@@ -1,0 +1,37 @@
+{
+  "name": "gir-core",
+  "version": "2.0.0",
+  "type": "core",
+  "description": "Core agents, workflows, best practices, and auto-delegation",
+  "requires": [],
+  "provides": {
+    "agents": [
+      "feature-architect",
+      "code-reviewer",
+      "debugger",
+      "subtask-manager",
+      "spec-analyst"
+    ],
+    "skills": [
+      "auto-delegation",
+      "core-practices",
+      "workflows",
+      "ralph-loops",
+      "specgates",
+      "state-machines"
+    ],
+    "commands": [
+      "init-project",
+      "init-memory-bank",
+      "drift-check",
+      "status",
+      "modules"
+    ],
+    "mcp": {
+      "sequential-thinking": {
+        "description": "Extended reasoning for complex planning and debugging",
+        "commands": ["sequentialthinking"]
+      }
+    }
+  }
+}
