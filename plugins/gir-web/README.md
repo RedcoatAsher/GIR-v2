@@ -47,4 +47,4 @@ The agents will still load without these MCP servers, but their primary capabili
 
 ## License
 
-[MIT](LICENSE) — RedcoatAsher, 2026.
+[MIT](LICENSE) — rivit-studio, 2026.

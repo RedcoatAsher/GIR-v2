@@ -33,4 +33,4 @@ The skill will still load without it, but Supabase operations will be unavailabl
 
 ## License
 
-[MIT](LICENSE) — RedcoatAsher, 2026.
+[MIT](LICENSE) — rivit-studio, 2026.

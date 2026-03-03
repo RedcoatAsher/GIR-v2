@@ -25,4 +25,4 @@ claude plugin install gir-ai
 
 ## License
 
-[MIT](LICENSE) — RedcoatAsher, 2026.
+[MIT](LICENSE) — rivit-studio, 2026.

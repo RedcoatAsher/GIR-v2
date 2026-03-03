@@ -358,4 +358,4 @@ It will scan for v1 artifacts, back everything up, convert your `CLAUDE.md` to t
 
 ## License
 
-[MIT](LICENSE) — RedcoatAsher, 2026.
+[MIT](LICENSE) — rivit-studio, 2026.

@@ -53,4 +53,4 @@ subtask init && subtask install
 
 ## License
 
-[MIT](LICENSE) — RedcoatAsher, 2026.
+[MIT](LICENSE) — rivit-studio, 2026.

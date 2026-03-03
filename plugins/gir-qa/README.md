@@ -34,4 +34,4 @@ Configure these separately in your Claude Code MCP settings. The skill loads wit
 
 ## License
 
-[MIT](LICENSE) — RedcoatAsher, 2026.
+[MIT](LICENSE) — rivit-studio, 2026.

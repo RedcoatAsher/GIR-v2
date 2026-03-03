@@ -33,4 +33,4 @@ The agent will load without it, but will not be able to create or modify live wo
 
 ## License
 
-[MIT](LICENSE) — RedcoatAsher, 2026.
+[MIT](LICENSE) — rivit-studio, 2026.
