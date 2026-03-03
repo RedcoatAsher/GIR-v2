@@ -21,7 +21,7 @@ Five specialist agents are registered and available for delegation or direct inv
 | **feature-architect** | Breaks down features into tasks, writes specs, plans implementation sequences |
 | **code-reviewer** | Reviews diffs and files for correctness, clarity, security, and test coverage |
 | **debugger** | Investigates errors, traces root causes, proposes and verifies fixes |
-| **subtask-manager** | Creates and coordinates parallel subtasks via the `subtask` CLI |
+| **team-lead** | Orchestrates agent teams for complex, multi-part work. Delegates tasks, enforces quality gates, and coordinates teammates |
 | **spec-analyst** | Reads spec documents and translates them into actionable implementation plans |
 
 ---
@@ -63,6 +63,20 @@ gir-core installs a `SessionStart` hook that runs automatically when a Claude Co
 gir-core bundles the `sequential-thinking` MCP server. This gives Claude a structured tool for breaking down multi-step problems before executing them, reducing planning errors on complex tasks.
 
 No additional configuration is required — it runs as part of the plugin.
+
+---
+
+## Setup notes
+
+**team-lead agent**: Add the following to your Claude Code `settings.json` to enable agent teams:
+
+```json
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  }
+}
+```
 
 ---
 

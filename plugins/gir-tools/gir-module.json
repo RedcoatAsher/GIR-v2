@@ -2,10 +2,10 @@
   "name": "gir-tools",
   "version": "2.0.0",
   "type": "spoke",
-  "description": "Power user tools — AgentHub, team coordination, subtask parallel execution",
+  "description": "Power user tools — AgentHub, subtask parallel execution",
   "requires": ["gir-core"],
   "provides": {
-    "agents": ["team-lead", "agenthub"],
+    "agents": ["subtask-manager", "agenthub"],
     "skills": ["subtask", "agenthub-session-management"],
     "commands": [],
     "mcp": {}

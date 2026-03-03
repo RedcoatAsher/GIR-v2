@@ -44,7 +44,7 @@ GIR uses a **hub-and-spoke** model. `gir-core` is required and provides the foun
                         │  • feature-architect
                         │  • code-reviewer│
                         │  • debugger     │
-                        │  • subtask-mgr  │
+                        │  • team-lead    │
                         │  • spec-analyst │
                         │                 │
                         │  skills + cmds  │
@@ -57,9 +57,10 @@ GIR uses a **hub-and-spoke** model. `gir-core` is required and provides the foun
 │gir-web│  │gir-auto-│  │  gir-tools   │  │gir-data-│  │ gir-ai │  │ gir-qa │
 │       │  │ mation  │  │              │  │  base   │  │        │  │        │
 │• docs │  │         │  │ • agenthub   │  │         │  │• Gemini│  │• Code- │
-│• deploy│ │ • n8n-  │  │ • team-lead  │  │• Supa-  │  │  -CLI  │  │  Rabbit│
-│• ui-  │  │   builder│ │ • subtask    │  │  base   │  │• Codex │  │• Jules │
-│  gen  │  │         │  │   skills     │  │  tools  │  │        │  │        │
+│• deploy│ │ • n8n-  │  │ • subtask-   │  │• Supa-  │  │  -CLI  │  │  Rabbit│
+│• ui-  │  │   builder│ │   manager    │  │  base   │  │• Codex │  │• Jules │
+│  gen  │  │         │  │ • subtask    │  │  tools  │  │        │  │        │
+│       │  │         │  │   skills     │  │         │  │        │  │        │
 └───────┘  └─────────┘  └──────────────┘  └─────────┘  └────────┘  └────────┘
 ```
 
@@ -265,7 +266,7 @@ Any Claude Code plugin can become a GIR module by including a `gir-module.json` 
 ### What's the difference between gir-core and the spokes?
 
 **gir-core** (required):
-- Foundation agents: feature-architect, code-reviewer, debugger, spec-analyst, subtask-mgr
+- Foundation agents: feature-architect, code-reviewer, debugger, spec-analyst, team-lead
 - Core workflows and delegation rules
 - Memory bank system
 - Session start hook
@@ -273,7 +274,7 @@ Any Claude Code plugin can become a GIR module by including a `gir-module.json` 
 **Spokes** (optional, domain-specific):
 - gir-web: v0, Figma, Vercel tools
 - gir-automation: n8n builder
-- gir-tools: AgentHub, team coordination
+- gir-tools: AgentHub, subtask parallel execution
 - gir-database: Supabase
 - gir-ai: External AI tools (Gemini-CLI, Codex)
 - gir-qa: Code review (CodeRabbit, Jules)
