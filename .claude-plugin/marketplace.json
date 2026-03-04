@@ -3,13 +3,12 @@
   "owner": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
   "metadata": {
     "description": "GIR — Modular Claude Code productivity ecosystem",
-    "version": "2.0.0",
-    "pluginRoot": "./plugins"
+    "version": "2.0.0"
   },
   "plugins": [
     {
       "name": "gir-core",
-      "source": "./gir-core",
+      "source": "./plugins/gir-core",
       "description": "Core agents, workflows, best practices, and auto-delegation for any Claude Code project",
       "version": "2.0.0",
       "category": "productivity",
@@ -17,7 +16,7 @@
     },
     {
       "name": "gir-web",
-      "source": "./gir-web",
+      "source": "./plugins/gir-web",
       "description": "Frontend/fullstack agents and design skills",
       "version": "2.0.0",
       "category": "web-development",
@@ -25,7 +24,7 @@
     },
     {
       "name": "gir-automation",
-      "source": "./gir-automation",
+      "source": "./plugins/gir-automation",
       "description": "n8n workflow builder agent",
       "version": "2.0.0",
       "category": "automation",
@@ -33,7 +32,7 @@
     },
     {
       "name": "gir-tools",
-      "source": "./gir-tools",
+      "source": "./plugins/gir-tools",
       "description": "Power user tools — AgentHub, subtask parallel execution, team coordination",
       "version": "2.0.0",
       "category": "productivity",
@@ -41,7 +40,7 @@
     },
     {
       "name": "gir-database",
-      "source": "./gir-database",
+      "source": "./plugins/gir-database",
       "description": "Database management — Supabase MCP tools",
       "version": "2.0.0",
       "category": "database",
@@ -49,7 +48,7 @@
     },
     {
       "name": "gir-ai",
-      "source": "./gir-ai",
+      "source": "./plugins/gir-ai",
       "description": "AI tool delegation — Gemini-CLI, Codex, and other AI integrations",
       "version": "2.0.0",
       "category": "ai-tools",
@@ -57,7 +56,7 @@
     },
     {
       "name": "gir-qa",
-      "source": "./gir-qa",
+      "source": "./plugins/gir-qa",
       "description": "QA & review tools — CodeRabbit PR reviews, Jules AI delegation",
       "version": "2.0.0",
       "category": "quality",
