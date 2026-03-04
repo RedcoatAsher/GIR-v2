@@ -1,5 +1,5 @@
 # GIR (Get It Running)
-![GitHub Release](https://img.shields.io/github/v/release/rivit-studio/GIR) ![Static Badge](https://img.shields.io/badge/works_with-claude_code-orange) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Static Badge](https://img.shields.io/badge/version-2.0.0-blue) ![Static Badge](https://img.shields.io/badge/works_with-claude_code-orange) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > A modular Claude Code plugin ecosystem. Install only what you need — curated agents, auto-delegation, memory bank, and domain-specific tooling.
  
