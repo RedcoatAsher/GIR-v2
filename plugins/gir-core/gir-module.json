@@ -18,14 +18,13 @@
       "workflows",
       "ralph-loops",
       "specgates",
-      "state-machines"
-    ],
-    "commands": [
+      "state-machines",
       "init-project",
       "init-memory-bank",
       "drift-check",
       "status",
-      "modules"
+      "modules",
+      "migrate-v1"
     ],
     "mcp": {
       "sequential-thinking": {
