@@ -1,6 +1,6 @@
 ---
 name: core-practices
-description: Universal Claude Code best practices for any coding task. Covers tool usage patterns, anti-patterns, code review standards, commit conventions, and workflow quality standards. Apply to ALL software engineering tasks.
+description: "Universal Claude Code best practices covering the Explore-Plan-Code-Commit workflow, MCP tool strategy (Context7 for docs, sequential-thinking for planning, Gemini-CLI for delegation), git commit conventions (feat|fix|chore(scope): description), memory bank usage (.gir/ files), subagent deployment rules, and pre-completion checklist. Use when starting any coding task, planning multi-step implementations, reviewing code quality standards, or configuring MCP tool usage for a GIR project."
 ---
 # CLAUDE-core.md
 
