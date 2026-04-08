@@ -1,21 +1,45 @@
 ---
 name: ai-delegation
-description: AI tool delegation patterns — Gemini-CLI, Codex, and other external AI tools.
-  Apply when delegating tasks to external AI tools to save tokens.
+description: "Route tasks to external AI tools (Gemini-CLI, Codex) to save Claude Code context tokens. Defines delegation rules: offload file analysis (>200 lines), code review, test generation, refactoring, regex, boilerplate, and data transforms to external tools. Keep quick edits (<50 lines), direct Q&A, architecture decisions, and final implementations in the main Claude session. Use when context is growing large, tasks involve bulk analysis or boilerplate generation, or when multiple AI tools are available for parallel work."
 ---
+
 # AI Tool Delegation
 
-## Gemini-CLI Delegation
+Route tasks to external AI tools to save Claude Code context tokens.
 
-Offload to save tokens:
+## Workflow
 
-DELEGATE: File analysis (>200 lines), code review, test gen, refactoring,
-regex, boilerplate, data transforms, explaining code
+1. **Assess task size** — Check if the task involves >200 lines of analysis, bulk generation, or repetitive transforms
+2. **Choose tool** — Select Gemini-CLI for analysis/review tasks, Codex for code generation tasks
+3. **Delegate** — Offload the task with clear instructions and file paths
+4. **Integrate** — Review the external tool's output and apply it in the main session
 
-KEEP IN MAIN: Quick edits (<50 lines), direct Q&A, architecture decisions,
-final implementations
+## Delegation Rules
 
-## Other AI Tools
+### Offload to External Tools
+- File analysis (>200 lines)
+- Code review
+- Test generation
+- Refactoring large files
+- Regex pattern building
+- Boilerplate generation
+- Data transforms
+- Explaining unfamiliar code
 
-Additional AI delegation targets can be configured here as they become available
-(e.g., Codex, other CLI-based AI tools).
+### Keep in Main Claude Session
+- Quick edits (<50 lines)
+- Direct Q&A with the user
+- Architecture decisions
+- Final implementations
+- Tasks requiring conversation history
+
+## Supported Tools
+
+| Tool | Strengths | Best For |
+|------|-----------|----------|
+| Gemini-CLI | Large context window, fast analysis | File analysis, code review, explaining code |
+| Codex | Code generation, refactoring | Test generation, boilerplate, data transforms |
+
+## When to Delegate
+
+Delegate when context exceeds ~50K tokens and the task is self-contained (can be described without the full conversation history). Do not delegate tasks that depend on prior conversation decisions or require user interaction mid-task.

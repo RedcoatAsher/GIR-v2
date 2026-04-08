@@ -1,293 +1,93 @@
 ---
 name: agenthub-session-management
-description: Patterns for managing multiple Claude Code sessions using AgentHub
+description: "Coordinate multiple Claude Code sessions using AgentHub with git worktrees. Covers session lifecycle states (NEW through COMPLETED), JSONL session data at ~/.claude/projects/, four multi-session patterns (Feature Parallel, Bug Swarm, Exploration Fan-Out, Pipeline), worktree creation and cleanup, session monitoring via health checks, and coordination protocols for parallel work. Use when running parallel Claude Code sessions, setting up git worktrees for multi-agent work, debugging session state, or planning multi-session feature development."
 ---
 
 # AgentHub Session Management
 
-Skills for coordinating, monitoring, and optimizing multi-session Claude Code workflows.
+Coordinate, monitor, and optimize multi-session Claude Code workflows using AgentHub and git worktrees.
+
+## Workflow
+
+1. **Assess scope** — Determine if the task benefits from multiple sessions (independent components, >100K token context, different expertise needed)
+2. **Choose pattern** — Select from Feature Parallel, Bug Swarm, Exploration Fan-Out, or Pipeline based on task structure
+3. **Set up worktrees** — Create integration branch, component branches, and git worktrees
+4. **Monitor sessions** — Use AgentHub health checks and session state tracking
+5. **Coordinate merges** — Follow the completing protocol: commit per branch → PR to integration → resolve conflicts → test → merge
 
 ## Session Lifecycle
 
-### Session States
-```text
-NEW → THINKING → EXECUTING_TOOL → WAITING_FOR_USER → IDLE
-         ↓              ↓                ↓
-    AWAITING_APPROVAL   ↓                ↓
-         ↓              ↓                ↓
-         └──────────────┴────────────────┘
-                        ↓
-                    COMPLETED
-```
+Sessions progress through these states:
 
-### State Meanings
+| State | Meaning | Action |
+|-------|---------|--------|
+| NEW | Just created | Assign task |
+| THINKING | Processing request | Wait |
+| EXECUTING_TOOL | Running tool operation | Wait |
+| AWAITING_APPROVAL | Needs confirmation | Approve/Reject |
+| WAITING_FOR_USER | Needs input | Provide input |
+| IDLE | Ready for new task | Send request |
+| COMPLETED | Finished | Review output |
 
-| State | Description | User Action |
-|-------|-------------|-------------|
-| Thinking | Processing request | Wait |
-| Executing Tool | Running tool operation | Wait |
-| Awaiting Approval | Needs confirmation | Approve/Reject |
-| Waiting for User | Needs input | Provide input |
-| Idle | Ready for new task | Send request |
-
-## Session Data Structure
-
-### Location
-```text
-~/.claude/projects/{encoded-path}/{sessionId}.jsonl
-```
-
-### Encoded Path Format
-Project path is URL-encoded:
-- `/Users/dev/myproject` → `%2FUsers%2Fdev%2Fmyproject`
-
-### JSONL Entry Structure
-Each line in the session file is a JSON object:
-```json
-{
-  "type": "message|tool_use|tool_result",
-  "timestamp": "ISO-8601",
-  "content": {...}
-}
-```
+Session data is stored at `~/.claude/projects/{url-encoded-path}/{sessionId}.jsonl` as JSON objects with `type`, `timestamp`, and `content` fields.
 
 ## Multi-Session Patterns
 
-### Pattern 1: Feature Parallel
-Best for large features with independent components.
+### Feature Parallel
+Split a large feature into independent components (backend, frontend, tests), each in its own worktree and session.
 
-```text
-┌─────────────────────────────────────────────────┐
-│                  Main Feature                    │
-├─────────────┬─────────────┬─────────────────────┤
-│  Session 1  │  Session 2  │     Session 3       │
-│   Backend   │   Frontend  │     Tests           │
-│  (worktree) │  (worktree) │    (worktree)       │
-├─────────────┴─────────────┴─────────────────────┤
-│              Integration Branch                  │
-└─────────────────────────────────────────────────┘
-```
-
-**Setup**:
 ```bash
-# Create feature branches
-git checkout -b feature/main
-git push -u origin feature/main
-
-# Create component branches
+# Set up integration + component branches
+git checkout -b feature/main && git push -u origin feature/main
 git checkout -b feature/backend feature/main
 git checkout -b feature/frontend feature/main
-git checkout -b feature/tests feature/main
-
 # Create worktrees
 git worktree add ../proj-backend feature/backend
 git worktree add ../proj-frontend feature/frontend
-git worktree add ../proj-tests feature/tests
 ```
 
-### Pattern 2: Bug Swarm
-Multiple sessions tackling different bugs simultaneously.
+### Bug Swarm
+Multiple sessions tackling different bugs simultaneously — each on its own `bugfix/N` branch merging back to main. Best for sprint bug bashes and hotfix situations.
 
-```text
-┌───────────┬───────────┬───────────┐
-│  Bug #1   │  Bug #2   │  Bug #3   │
-│ Session A │ Session B │ Session C │
-│ bugfix/1  │ bugfix/2  │ bugfix/3  │
-└─────┬─────┴─────┬─────┴─────┬─────┘
-      │           │           │
-      └───────────┼───────────┘
-                  ↓
-              main branch
-```
+### Exploration Fan-Out
+Three sessions explore different approaches to the same problem. Evaluate results, select the best solution, then continue in a single main session. Best for architecture decisions and algorithm selection.
 
-**Best for**: Sprint bug bashes, hotfix situations
-
-### Pattern 3: Exploration Fan-Out
-Multiple sessions exploring different solutions.
-
-```text
-                 Problem
-                    │
-      ┌─────────────┼─────────────┐
-      ↓             ↓             ↓
-  Approach A    Approach B    Approach C
-  Session 1     Session 2     Session 3
-      │             │             │
-      └─────────────┼─────────────┘
-                    ↓
-            Best Solution Selected
-                    ↓
-              Main Session
-```
-
-**Best for**: Architecture decisions, algorithm selection
-
-### Pattern 4: Pipeline
-Sequential handoffs between specialized sessions.
-
-```text
-Session 1        Session 2        Session 3
-[Architect] ──→  [Implement] ──→   [Review]
-    │                 │                │
-    ↓                 ↓                ↓
-  Plan.md         Code + Tests    Feedback
-```
-
-**Handoff Document**:
-```markdown
-## Handoff: [From] → [To]
-**Date**: YYYY-MM-DD
-**Task**: [description]
-
-### Completed
-- [x] Item 1
-- [x] Item 2
-
-### In Progress
-- [ ] Item 3 (started, needs completion)
-
-### Pending
-- [ ] Item 4
-
-### Key Files
-- `path/to/file.ts` - [description]
-
-### Notes
-- [important context]
-- [decisions made]
-
-### Blockers
-- [any blockers for next session]
-```
+### Pipeline
+Sequential handoffs between specialized sessions (Architect → Implement → Review). Each session produces a handoff document with completed items, in-progress work, key files, and blockers.
 
 ## Git Worktree Best Practices
 
-### Creating Worktrees
 ```bash
-# Always branch from a clean state
-git fetch origin
-git checkout main
-git pull
-
-# Create feature branch first
+# Create: always branch from clean state
+git fetch origin && git checkout main && git pull
 git checkout -b feature/name
-
-# Then create worktree
 git worktree add ../project-feature feature/name
+
+# Cleanup
+git worktree list          # see all worktrees
+git worktree prune         # remove stale entries
+git worktree remove ../project-feature  # remove specific
 ```
 
-### Worktree Hygiene
-```bash
-# List all worktrees
-git worktree list
+Track active worktrees with a mapping table: Worktree Path | Branch | Session ID | Owner | Status.
 
-# Prune stale worktrees
-git worktree prune
+## Coordination Protocol
 
-# Remove specific worktree
-git worktree remove ../project-feature
+**Starting**: Create integration branch → branch per session → create worktrees → document assignments → set merge order.
 
-# Force remove (with uncommitted changes)
-git worktree remove --force ../project-feature
-```
+**During**: Regular AgentHub sync checks → update shared context → flag blockers immediately → enforce one-session-per-file ownership.
 
-### Worktree + Session Mapping
-Maintain a mapping document:
-```markdown
-## Active Worktrees
+**Completing**: Commit per branch → PR to integration branch (in order) → resolve conflicts → full test suite → merge to main.
 
-| Worktree Path | Branch | Session ID | Owner | Status |
-|---------------|--------|------------|-------|--------|
-| ../proj-auth | feature/auth | abc123 | @dev1 | Active |
-| ../proj-api | feature/api | def456 | @dev2 | Idle |
-```
+## Anti-Patterns to Avoid
 
-## Session Monitoring
+- **Cross-editing**: Multiple sessions editing the same file — assign clear file ownership
+- **Orphan worktrees**: Always clean up with `git worktree remove` when done
+- **Context loss**: Always create handoff documents between pipeline stages
+- **Silent failures**: Document session failures for the next session to pick up
 
-### Health Checks
-```bash
-# Find sessions active in last hour
-find ~/.claude/projects -name "*.jsonl" -mmin -60
+## When to Split vs Keep Single
 
-# Count active sessions per project
-for dir in ~/.claude/projects/*/; do
-  count=$(ls "$dir"*.jsonl 2>/dev/null | wc -l)
-  echo "$(basename "$dir"): $count sessions"
-done
-```
+**Split**: Task exceeds ~100K tokens, multiple independent components, different expertise needed (debug vs build).
 
-### Search Across Sessions
-```bash
-# Find error patterns
-grep -r "error" ~/.claude/projects/ --include="*.jsonl" | head -20
-
-# Find tool usage
-grep -r "tool_use" ~/.claude/projects/ --include="*.jsonl" | \
-  jq -r '.content.name' 2>/dev/null | sort | uniq -c | sort -rn
-```
-
-## Coordination Protocols
-
-### Starting Parallel Work
-1. Create integration branch
-2. Branch off for each session
-3. Create worktrees
-4. Document session assignments
-5. Set merge order/dependencies
-
-### During Parallel Work
-1. Regular sync checks via AgentHub
-2. Update shared context docs
-3. Flag blockers immediately
-4. No cross-session file edits
-
-### Completing Parallel Work
-1. Each session commits to own branch
-2. PR to integration branch (in order)
-3. Resolve conflicts per merge
-4. Full test suite on integration
-5. Merge to main
-
-## Anti-Patterns
-
-### Avoid
-- **Cross-editing**: Multiple sessions editing same file
-- **Orphan worktrees**: Not cleaning up after completion
-- **Silent failures**: Not documenting session failures
-- **Context loss**: No handoff documentation
-
-### Prefer
-- **Clear ownership**: One session per file/component
-- **Clean cleanup**: Remove worktrees when done
-- **Visible status**: Use AgentHub monitoring
-- **Rich handoffs**: Detailed transition docs
-
-## Token Optimization
-
-### When to Split Sessions
-- Task exceeds ~100K tokens of context
-- Multiple independent components
-- Different expertise needed (debug vs build)
-
-### When to Keep Single Session
-- Tightly coupled changes
-- Complex state to maintain
-- Quick iterations needed
-
-## AgentHub-Specific Features
-
-### Menu Bar Mode
-- Quick status overview
-- Session switching
-- Minimal screen usage
-
-### Popover Mode
-- Detailed session info
-- Multi-session comparison
-- Diff previews
-
-### Cross-Session Search
-- Search by content
-- Filter by state
-- Filter by project
-- Time-based filtering
+**Keep single**: Tightly coupled changes, complex state to maintain, quick iterations needed.
