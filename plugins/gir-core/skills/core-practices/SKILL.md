@@ -6,12 +6,6 @@ description: Universal Claude Code best practices for any coding task. Covers to
 
 > Universal Claude Code best practices — All project types
 
-## Session Initialization
-
-Run drift check on session start if `.gir/CLAUDE-activeContext.md` is stale (>24h) or missing. Compare scripts, deps, configs, dirs, env vars against CLAUDE-project.md baseline. On drift: update activeContext, ask user to update project config.
-
-See [CLAUDE-examples.md](CLAUDE-examples.md#session-initialization-examples) for implementation.
-
 ## Core Directives
 
 ### Execution Philosophy
@@ -94,41 +88,6 @@ See [CLAUDE-specgates.md](CLAUDE-specgates.md) for full conventions. Key rules: 
 
 **Workflow**: Read activeContext + MISSION on session start → check ESCALATION before risky actions → verify DOD before reporting complete
 
-## Workflow Patterns
-
-> See CLAUDE-workflows.md for comprehensive docs
-
-### Explore-Plan-Code-Commit (with Auto-Delegation)
-
-**1. Explore** — Read files, deploy Explore agent if >5 files, DON'T CODE YET
-
-**2. Plan** — Use sequential-thinking (mandatory), create TodoWrite, get approval
-- Deploy Plan agent if >8 items
-
-**3. Code** — Implement systematically, verify each step
-- Deploy parallel agents if >2 independent tasks
-- Use Gemini-CLI for boilerplate
-
-**4. Commit** — Deploy code-reviewer (mandatory), then commit
-
-### Subagent Strategy
-
-**Deploy for**: Exploration, architecture planning, parallel investigations, verification
-
-**Keep in main**: Tasks needing history, final implementations, architecture decisions
-
-### Multi-Claude Coordination
-
-Use for: Parallel features (git worktrees), implementation + review, research + dev, complex debugging
-
-See [CLAUDE-examples.md](CLAUDE-examples.md#multi-claude-coordination-quick-reference)
-
-### Context Management
-
-**Use `/clear`**: After features, switching tasks, before refactors
-
-**Don't clear**: Mid-task, when user might reference history
-
 ## Anti-Patterns
 
 **Code**: Inline styles, `any` type, `console.log` in commits, commented code, magic numbers, giant components (>150 lines), prop drilling >2 levels, useEffect for derived state
@@ -169,20 +128,6 @@ Provides: plan-implementer, requesting-code-review, subagent-driven-development,
 - Never assume user intent without confirmation
 
 **Effective prompts**: Be specific. "Add JWT auth with httpOnly cookies, login/logout at /api/auth/*, middleware for /api/user/*" vs "Add authentication"
-
-## Pre-Completion Checklist
-
-- [ ] Explored before coding
-- [ ] Used sequential-thinking for complex tasks
-- [ ] Planned and got approval
-- [ ] Solution verified (builds/runs)
-- [ ] No unnecessary files created
-- [ ] Edited existing files where possible
-- [ ] No console.log in code
-- [ ] Commit format: `feat|fix|chore(scope): description`
-- [ ] Memory bank updated if needed
-- [ ] Deployment successful (if applicable)
-- [ ] Context cleared with `/clear` if switching tasks
 
 ## Project Extensions
 

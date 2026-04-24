@@ -6,12 +6,7 @@ _Updated: 2026-04-24_
 Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 
 ## Active Priorities (ordered)
-
-1. **Merge auto-delegation into routing-stub** — delete `auto-delegation/SKILL.md`, fold the 3-tier routing matrix and key rules into `routing-stub/SKILL.md`. Single source of truth for routing decisions. Expected savings: −211 always-loaded lines.
-
-2. **Trim core-practices further** — remove ~60 lines that duplicate lazy-loaded skills (Workflow Patterns section) and DOD.md (Pre-Completion Checklist). Pure subtraction.
-
-3. **Wire feature-architect, debugger, spec-analyst agents to DOD/escalation** — add the same 3-line DOD/escalation check block already present in code-reviewer.md and team-lead.md. Closes the gap where these agents bypass GIR quality gates.
+<!-- Phase 2 complete. No active priorities. See Completed This Cycle. -->
 
 ## In Progress
 - [ ] Nothing currently in progress
@@ -27,6 +22,9 @@ Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 - init-memory-bank scaffolds 10 files — 2026-04-24 — commit ffec9e3
 - code-reviewer.md rewired to DOD/escalation/REVIEW-LOG — 2026-04-24 — commit 11fb595
 - team-lead.md cost discipline + DOD wiring — 2026-04-24 — commit 11fb595
+- Merged auto-delegation into routing-stub, deleted standalone skill (−211 lines) — 2026-04-24
+- Trimmed core-practices: removed Session Init, Workflow Patterns, Pre-Completion Checklist (−60 lines) — 2026-04-24
+- Wired feature-architect, debugger, spec-analyst to DOD/escalation gate checks — 2026-04-24
 
 ## Out of Scope (do not work on)
 - marketplace.json / README version bump — opportunistic only, zero reliability impact
@@ -36,5 +34,4 @@ Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 - skills_on_demand enforcement — comment in gir-module.json is sufficient
 
 ## Next Session: Start Here
-Implement the three active priorities in order. Each is small and independent after Priority 1.
-Start with Priority 1 (merge auto-delegation → routing-stub) — read both files in full before editing.
+Phase 1 and Phase 2 are complete. Next work would be Phase 3 (optional refinements) — see Out of Scope list above for what's deferred. No active priorities.

@@ -1,6 +1,6 @@
 ---
 name: routing-stub
-description: GIR orchestration core — routing rules, cost discipline, Graphify integration, escalation trigger, and lazy-load instructions. Always loaded.
+description: GIR orchestration core — routing rules, delegation tiers, cost discipline, Graphify integration, escalation trigger, and lazy-load instructions. Always loaded.
 ---
 
 # GIR — Orchestration Core
@@ -35,13 +35,36 @@ Narrow isolated result, only output matters → Subagent
 
 Agent Teams are never the default. Each member costs a full context window. Justify before spawning.
 
+## Delegation Tiers
+
+**Tier 1 — Always deploy:**
+- `sequential-thinking`: complex tasks (>3 steps), architecture, debugging, refactors (3+ files)
+- `code-reviewer`: before every commit, after major tasks
+- `Explore agent`: task involves >5 files, or "where is X" / "how does X work" questions
+
+**Tier 2 — Usually deploy:**
+- `Subtask`: >2 independent file-modifying tasks — parallel worktrees prevent conflicts
+- `Debugger agent`: no obvious cause, multi-system issue
+- `Ralph loop`: clear completion criteria, iterative work (TDD, build fixes)
+
+**Tier 3 — Never auto-delegate:**
+- Final implementation, direct Q&A, architecture decisions, single-file edits (<50 lines), trivial fixes
+
+## Task Priority Order
+
+```
+CRITICAL (blockers)  → schema, auth, type defs, env/config, dependencies
+HIGH (core)          → endpoints, DB queries, business logic, integrations
+MEDIUM (features)    → UI, forms, loading states, responsive design
+LOW (polish)         → animations, cleanup, docs
+```
+
 ## Lazy Skill Loading
 
 Load these only when the task requires them:
 - New feature or scope change → `/gir-core:load-specgates` before proceeding
 - Multi-step, delegated, or parallel work → `/gir-core:load-workflows`
 - Iterative refinement or high uncertainty → `/gir-core:load-ralph`
-- Complex agent routing → auto-delegation skill already loaded; use it
 
 ## Escalation Trigger
 

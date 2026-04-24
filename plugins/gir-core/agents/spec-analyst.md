@@ -65,6 +65,12 @@ Based on codebase exploration:
 
 Produce a structured spec document ready for feature-architect to plan against.
 
+## Gate Checks
+
+Before handing off spec:
+- Read `.gir/ESCALATION.md` if exists — flag any requirements that imply a must-escalate condition
+- Note in output if spec implies scope expansion beyond `.gir/MISSION.md` active priorities
+
 ## Output Format
 
 ```markdown

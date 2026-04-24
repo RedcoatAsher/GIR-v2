@@ -52,6 +52,12 @@ Update CLAUDE-troubleshooting.md:
 **Prevention**: How to avoid
 ```
 
+## Gate Checks
+
+Before applying any fix:
+- Read `.gir/ESCALATION.md` if exists — destructive or irreversible fixes require escalation before proceeding
+- After fix verified: confirm all `.gir/DOD.md` items still pass before reporting complete
+
 ## Anti-Patterns
 
 **Don't**: Random changes, fix symptoms, skip docs, ignore traces
