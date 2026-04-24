@@ -160,7 +160,7 @@ Then run `/gir-core:init-project` to scaffold `CLAUDE-project.md` for your stack
 
 | Module | Description | Includes | Who needs it |
 |--------|-------------|----------|--------------|
-| [gir-core](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 5 agents, 6 skills, 6 commands, SessionStart hook, sequential-thinking MCP | Everyone |
+| [gir-core](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 5 agents, 6 skills, 5 commands, SessionStart hook, sequential-thinking MCP | Everyone |
 | [gir-web](plugins/gir-web/) | Frontend and fullstack tooling — v0, Figma, Vercel | 3 agents, 3 skills | Frontend/fullstack devs |
 | [gir-automation](plugins/gir-automation/) | n8n workflow building | 1 agent, 1 skill | Teams using n8n |
 | [gir-tools](plugins/gir-tools/) | AgentHub integration and agent team coordination | 2 agents, 2 skills | Power users running parallel agent workflows |
@@ -335,16 +335,6 @@ Yes. Create `.claude/agents/custom/` in your project and add agent definitions t
 - Total with all modules: ~10-16% (19-32K tokens)
 
 This leaves ~188-193K tokens for your actual code and conversation. The modular design means you only pay for what you use.
-
-### How do I migrate from GIR v1 to v2?
-
-Run the migration command from your project root:
-
-```
-/gir-core:migrate-v1
-```
-
-It will scan for v1 artifacts, back everything up, convert your `CLAUDE.md` to the new `CLAUDE-project.md` format, preserve your memory bank, clean up v1 files, and guide you through installing the right v2 modules. Memory bank files (`.gir/`) are fully compatible and will not be touched.
 
 ### What if a module has an issue?
 
