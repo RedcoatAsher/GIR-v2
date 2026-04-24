@@ -1,7 +1,7 @@
 # GIR (Get It Running)
 ![Static Badge](https://img.shields.io/badge/version-2.0.0-blue) ![Static Badge](https://img.shields.io/badge/works_with-claude_code-orange) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> A modular Claude Code plugin ecosystem. Install only what you need — curated agents, auto-delegation, memory bank, and domain-specific tooling.
+> A modular Claude Code plugin ecosystem. Install only what you need — curated agents, routing-stub orchestration, memory bank, and domain-specific tooling.
  
 > **"[Doom Song](https://youtu.be/Nw_cdqQHGA8?si=wxLOA3FYWppVxnOF&t=3)!"**
 
@@ -249,7 +249,7 @@ claude plugin upgrade-all
 
 ## Creating Custom Modules
 
-Any Claude Code plugin can become a GIR module by including a `gir-module.json` manifest, a SessionStart hook for self-registration, and declaring `"requires": ["gir-core"]`. See [PLAN-modularization.md](PLAN-modularization.md#phase-6-third-party-module-support) for the full module contract.
+Any Claude Code plugin can become a GIR module by including a `gir-module.json` manifest, a SessionStart hook for self-registration, and declaring `"requires": ["gir-core"]`. See [docs/decisions/2026-03-03-modularization.md](docs/decisions/2026-03-03-modularization.md) for the module contract ADR.
 
 ---
 
