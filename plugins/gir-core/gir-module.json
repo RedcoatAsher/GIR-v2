@@ -2,7 +2,7 @@
   "name": "gir-core",
   "version": "2.1.0",
   "type": "core",
-  "description": "Core agents, workflows, best practices, and auto-delegation",
+  "description": "Core agents, workflows, and best practices",
   "requires": [],
   "provides": {
     "agents": [

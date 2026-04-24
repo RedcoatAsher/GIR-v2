@@ -1,6 +1,6 @@
 # gir-core
 
-> The required hub of the GIR plugin ecosystem. Provides agents, auto-delegation, workflow skills, slash commands, a SessionStart hook, and the sequential-thinking MCP server.
+> The required hub of the GIR plugin ecosystem. Provides agents, routing-stub orchestration, workflow skills, slash commands, a SessionStart hook, and the sequential-thinking MCP server.
 
 ---
 
@@ -28,16 +28,23 @@ Five specialist agents are registered and available for delegation or direct inv
 
 ## Skills
 
-Six skills are loaded into every session.
+Three skills are always loaded. Three are available on demand via `/load-*` commands.
+
+**Always loaded:**
 
 | Skill | What it activates |
 |-------|------------------|
+| **routing-stub** | Orchestration core — routing rules, delegation tiers, Graphify integration, escalation trigger |
 | **core-practices** | Universal coding standards, commit hygiene, error handling patterns |
-| **auto-delegation** | Routes tasks to the appropriate specialist agent based on intent; sets task priority |
-| **workflows** | Multi-step coordination patterns for complex features, reviews, and releases |
-| **ralph-loops** | Continuous iteration protocol — plan, execute, verify, repeat until done |
-| **specgates** | Spec-driven development gates; blocks implementation until spec is confirmed |
 | **state-machines** | Structured state/transition modeling for complex feature logic |
+
+**On demand:**
+
+| Skill | Load command | What it activates |
+|-------|-------------|------------------|
+| **workflows** | `/gir-core:load-workflows` | Multi-step coordination patterns for complex features, reviews, and releases |
+| **ralph-loops** | `/gir-core:load-ralph` | Continuous iteration protocol — plan, execute, verify, repeat until done |
+| **specgates** | `/gir-core:load-specgates` | Spec-driven development gates; blocks implementation until spec is confirmed |
 
 ---
 
@@ -50,12 +57,15 @@ Six skills are loaded into every session.
 | `/drift-check` | Compares current code state against the active spec; surfaces divergence |
 | `/status` | Prints active context, current session goals, and memory bank summary |
 | `/modules` | Lists all installed GIR modules and their registered tools |
+| `/load-workflows` | Loads the workflows skill on demand for multi-step or delegated work |
+| `/load-specgates` | Loads the specgates skill on demand for new features or scope changes |
+| `/load-ralph` | Loads the ralph-loops skill on demand for iterative refinement work |
 
 ---
 
 ## SessionStart Hook
 
-gir-core installs a `SessionStart` hook that runs automatically when a Claude Code session begins. It reads `.gir/CLAUDE-activeContext.md` if present and loads the session state into context — restoring goals, in-progress work, and relevant patterns without manual prompting.
+gir-core installs a `SessionStart` hook that runs automatically when a Claude Code session begins. It reads `.gir/MISSION.md` (active priorities), `.gir/CLAUDE-activeContext.md` (session state), and `.gir/ESCALATION.md` (must-escalate conditions) if present — restoring full operational context without manual prompting.
 
 ---
 
