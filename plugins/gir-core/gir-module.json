@@ -1,6 +1,6 @@
 {
   "name": "gir-core",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "type": "core",
   "description": "Core agents, workflows, best practices, and auto-delegation",
   "requires": [],
@@ -13,19 +13,25 @@
       "spec-analyst"
     ],
     "skills": [
+      "routing-stub",
       "auto-delegation",
       "core-practices",
+      "state-machines"
+    ],
+    "skills_on_demand": [
       "workflows",
       "ralph-loops",
-      "specgates",
-      "state-machines"
+      "specgates"
     ],
     "commands": [
       "init-project",
       "init-memory-bank",
       "drift-check",
       "status",
-      "modules"
+      "modules",
+      "load-workflows",
+      "load-specgates",
+      "load-ralph"
     ],
     "mcp": {
       "sequential-thinking": {

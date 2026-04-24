@@ -28,7 +28,7 @@ Check if `.gir/` already exists in the current project directory.
 
   Wait for user confirmation. If the user says no or anything other than "yes", stop and do not create any files.
 
-### Step 2: Create `.gir/` directory and write all 5 template files
+### Step 2: Create `.gir/` directory and write all 10 template files
 
 Write each file with the exact template content shown below. Do not modify the template content — write it exactly as provided.
 
@@ -519,6 +519,151 @@ Quick lookup table for common errors:
 
 ---
 
+### File 6: `.gir/MISSION.md`
+
+```markdown
+# Mission State
+
+_Updated: [Date]_
+
+## Active Mission
+<!-- One sentence: what is this project trying to accomplish right now -->
+
+## Active Priorities (ordered)
+1. <!-- Highest priority deliverable -->
+2. <!-- Second priority -->
+3. <!-- Third priority -->
+
+## In Progress
+- [ ] Task — assigned to: [agent/human] — started: [Date]
+
+## Blocked
+<!-- Item — blocked on: [what] — since: [Date] -->
+
+## Completed This Cycle
+<!-- Item — completed: [Date] — commit: [hash] -->
+
+## Out of Scope (do not work on)
+<!-- Item — reason: [why excluded] -->
+
+## Next Session: Start Here
+<!-- Leave a clear instruction for the next session to pick up exactly where left off -->
+
+## Unattended Operation Rules
+- Maximum autonomous iterations before human check-in: [N]
+- Stop and escalate if: [condition]
+- Stop and wait if CI fails more than 2 consecutive times
+```
+
+---
+
+### File 7: `.gir/ESCALATION.md`
+
+```markdown
+# Escalation Policy
+
+## Autonomously Allowed
+- Bug fixes (non-breaking)
+- Refactoring within existing module boundaries
+- Test additions or improvements
+- Documentation updates
+- Dependency bumps (patch or minor, non-breaking)
+- Code review and feedback
+- Additive schema migrations (new columns only, no removal or type changes)
+
+## Notify Only (log to REVIEW-LOG.md, continue)
+- New file added outside existing structure
+- New dependency added
+- New environment variable added
+- Significant refactor spanning multiple modules
+- New command or skill added
+
+## Must Escalate (stop, log, wait for human)
+- Any destructive data operation
+- Breaking change to public API
+- Security-sensitive change (auth, tokens, encryption, permissions)
+- Production configuration or infrastructure change
+- Scope expansion beyond original spec
+- Irreversible action (delete, drop, truncate, force push)
+- CI failure unresolvable after 2 attempts
+- Conflict between specs that cannot be resolved by reading existing decisions
+```
+
+---
+
+### File 8: `.gir/DOD.md`
+
+```markdown
+# Definition of Done
+
+## Required for every merge
+- [ ] Tests pass (CI green)
+- [ ] Lint clean (zero errors)
+- [ ] Typecheck clean
+- [ ] Change matches spec scope — no unrequested additions
+- [ ] No new TODO/FIXME without issue reference
+- [ ] No secrets or credentials introduced
+
+## Required for new features
+- [ ] Tests cover new behavior
+- [ ] Public API documented if changed
+- [ ] Migration path documented if breaking
+
+## Required for schema changes
+- [ ] Migration is reversible or rollback plan documented
+- [ ] No production data at risk
+
+## Rollback Safety
+Can this deploy be reverted in <15 minutes without data loss?
+If no: document why before merging.
+```
+
+---
+
+### File 9: `.gir/POLICY.md`
+
+```markdown
+# Repo Policy
+
+## Language and Stack
+<!-- e.g. TypeScript, Node 20, Postgres 15 -->
+
+## Branching
+<!-- e.g. feature/* → dev → prod, PRs required -->
+
+## Commit Style
+<!-- e.g. conventional commits: feat/fix/chore/refactor -->
+
+## Testing Requirements
+<!-- e.g. unit tests for all new functions, integration tests for API routes -->
+
+## Code Review
+<!-- e.g. self-review against DOD.md before any merge -->
+
+## Environment Variables
+<!-- e.g. all secrets in .env.local, never committed -->
+
+## Performance Budgets
+<!-- e.g. API responses < 200ms p95 -->
+
+## Security Rules
+<!-- e.g. no eval(), all inputs validated at boundary, parameterized queries only -->
+```
+
+---
+
+### File 10: `.gir/REVIEW-LOG.md`
+
+```markdown
+# Review Log
+
+| Date | Task | Outcome | Notes |
+|------|------|---------|-------|
+| [YYYY-MM-DD] | [Task description] | [Pass / Fail / Escalated] | [Why] |
+```
+
+---
+
 ### Step 3: Add `.gir/` to `.gitignore`
 
 Check if `.gitignore` exists in the current directory.
@@ -534,20 +679,25 @@ After writing all files, report:
 Memory bank initialized in .gir/
 
 Files created:
-  .gir/CLAUDE-activeContext.md  — Session state, current goals, and next steps
-  .gir/CLAUDE-decisions.md      — Log of architectural decisions and their rationale
-  .gir/CLAUDE-patterns.md       — Established code patterns and conventions
-  .gir/CLAUDE-resources.md      — External URLs for on-demand fetching
+  .gir/CLAUDE-activeContext.md   — Session state, current goals, and next steps
+  .gir/CLAUDE-decisions.md       — Log of architectural decisions and their rationale
+  .gir/CLAUDE-patterns.md        — Established code patterns and conventions
+  .gir/CLAUDE-resources.md       — External URLs for on-demand fetching
   .gir/CLAUDE-troubleshooting.md — Known issues and proven solutions
+  .gir/MISSION.md                — Active priorities and unattended operation state
+  .gir/ESCALATION.md             — Must-escalate conditions
+  .gir/DOD.md                    — Definition of done checklist
+  .gir/POLICY.md                 — Repo policy and conventions
+  .gir/REVIEW-LOG.md             — Review outcomes and audit trail
 
 .gitignore: .gir/ added (memory bank stays local, not committed)
 
 Next steps:
-  1. Update CLAUDE-activeContext.md with your current session goals
-  2. Fill in CLAUDE-patterns.md as you establish conventions
-  3. Log decisions in CLAUDE-decisions.md as you make architectural choices
-  4. Add external reference URLs to CLAUDE-resources.md
-  5. Document issues in CLAUDE-troubleshooting.md as you encounter and solve them
+  1. Edit MISSION.md with your active priorities
+  2. Review ESCALATION.md and adjust must-escalate thresholds for your project
+  3. Review DOD.md and adjust completion criteria for your project
+  4. Update CLAUDE-activeContext.md with your current session goals
+  5. Fill in POLICY.md with project conventions
 
 Tip: Run /gir-core:drift-check at any time to assess how fresh your memory bank is.
 ```

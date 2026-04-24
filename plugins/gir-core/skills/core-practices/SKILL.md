@@ -53,19 +53,6 @@ See [CLAUDE-specgates.md](CLAUDE-specgates.md) for full conventions. Key rules: 
 
 **Auto-trigger Context7**: When generating code, configuring libraries, or API questions.
 
-### Gemini-CLI Delegation
-
-Offload to save tokens:
-```
-DELEGATE: File analysis (>200 lines), code review, test gen, refactoring,
-regex, boilerplate, data transforms, explaining code
-
-KEEP IN MAIN: Quick edits (<50 lines), direct Q&A, architecture decisions,
-final implementations
-```
-
-See [CLAUDE-examples.md](CLAUDE-examples.md#gemini-cli-syntax-patterns) for syntax.
-
 ### Sequential-Thinking (Required)
 
 **Use `sequential-thinking:sequentialthinking` BEFORE**:
@@ -80,31 +67,6 @@ See [CLAUDE-examples.md](CLAUDE-examples.md#gemini-cli-syntax-patterns) for synt
 **Benefits**: 60-80% context savings, prevents re-planning, documents rationale
 
 **Skip for**: Single-file edits, obvious answers, trivial fixes (<10 lines)
-
-### UI Generation
-
-| Tool | Use |
-|------|-----|
-| **v0** createChat | React scaffolding, UI mockups |
-| **Figma** get_design_context | UI from Figma nodes |
-| **Figma** get_screenshot | Visual reference |
-| **Figma** generate_diagram | Flowcharts, diagrams in FigJam |
-
-### Vercel MCP
-`list_projects`, `get_project`, `list_deployments`, `get_deployment`, `get_deployment_build_logs`, `deploy_to_vercel`, `search_vercel_documentation`
-
-### Supabase MCP
-`search_docs`, `list_projects`, `list_tables`, `execute_sql`, `apply_migration`, `deploy_edge_function`, `get_logs`, `get_advisors`, `create_branch`, `merge_branch`
-
-### n8n MCP
-`search_nodes`, `get_node`, `validate_node`, `validate_workflow`, `search_templates`, `get_template`, `n8n_create_workflow`, `n8n_get_workflow`, `n8n_list_workflows`, `n8n_test_workflow`, `n8n_deploy_template`
-
-**Skills**: n8n-node-configuration, n8n-code-javascript/python, n8n-workflow-patterns, n8n-expression-syntax, n8n-validation-expert
-
-### Other Tools
-- **CodeRabbit**: PR reviews (`get_coderabbit_reviews`, `get_review_details`, `resolve_comment`)
-- **Jules**: AI delegation (`create_session`, `get_session`, `send_session_message`)
-- **claude-mem**: Memory (`search`, `timeline`, `get_observation`)
 
 ## Command Efficiency
 
@@ -124,8 +86,13 @@ See [CLAUDE-examples.md](CLAUDE-examples.md#gemini-cli-syntax-patterns) for synt
 | `.gir/CLAUDE-patterns.md` | Code patterns, conventions |
 | `.gir/CLAUDE-decisions.md` | Architecture decisions |
 | `.gir/CLAUDE-troubleshooting.md` | Issues and solutions |
+| `.gir/MISSION.md` | Active priorities, unattended operation state |
+| `.gir/POLICY.md` | Repo policy, conventions |
+| `.gir/ESCALATION.md` | Must-escalate conditions |
+| `.gir/DOD.md` | Definition of done checklist |
+| `.gir/REVIEW-LOG.md` | Review outcomes, audit trail |
 
-**Workflow**: Check activeContext first → apply delegation rules → follow Explore-Plan-Code-Commit
+**Workflow**: Read activeContext + MISSION on session start → check ESCALATION before risky actions → verify DOD before reporting complete
 
 ## Workflow Patterns
 
