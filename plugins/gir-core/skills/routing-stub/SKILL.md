@@ -13,15 +13,25 @@ Run silently on every session start:
 1. Read `.gir/MISSION.md` if exists → load active priorities
 2. Read `.gir/CLAUDE-activeContext.md` if exists → restore session state
 3. Read `.gir/ESCALATION.md` if exists → hold must-escalate conditions in context
-4. Structural/architectural/dependency task? → read `graphify-out/GRAPH_REPORT.md` before any raw file reads
+4. Structural/cross-community/impact task? → check God Nodes + Community Hubs in `graphify-out/GRAPH_REPORT.md` before raw file reads. Skip if corpus fits in one context window and task touches ≤1 community.
 
 ## Graphify Rule
 
 ```
-Structural query? → graphify-out/GRAPH_REPORT.md FIRST → then targeted file reads only
-Path already known? → read directly, skip Graphify
-Use Graphify for: impact analysis, dependency mapping, architecture queries, pre-task scoping
-Not for: policy, decisions, session state, code correctness
+Corpus fits in one context window? (report warns: "fits in a single context window")
+  → prefer inline reads unless task is cross-community or structural navigation
+
+Consult graphify-out/GRAPH_REPORT.md when:
+  - Touching a God Node (top 10 by edge count) → check impact before editing
+  - Cross-community task → use Community Hubs + Surprising Connections to map blast radius
+  - Unfamiliar area → use Knowledge Gaps to find undocumented links
+  - Dependency/impact analysis → check Hyperedges for group participation patterns
+
+Skip Graphify when:
+  - Path or file already known → read directly
+  - Task touches ≤1 community and corpus fits in context
+  - Policy, decisions, session state, code correctness
+
 Treat GRAPH_REPORT.md stale after 7 days or major merges → re-run /graphify
 ```
 
