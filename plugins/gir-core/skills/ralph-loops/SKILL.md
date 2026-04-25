@@ -47,7 +47,7 @@ Process:
 1. Implement changes
 2. Run verification
 3. If not passing, debug and iterate
-4. If passing: <promise>COMPLETE</promise>
+4. If passing: check `.gir/DOD.md` if it exists — all items must pass — then output <promise>COMPLETE</promise>
 
 Use TodoWrite to track iterations.
 Keep iterating without permission until:
@@ -105,6 +105,9 @@ npm run lint          # Quality
 ```
 
 ### Completion Promises
+
+Before emitting any promise, check `.gir/DOD.md` if it exists. All DOD items must pass — do not emit `COMPLETE` if they do not.
+
 ```
 <promise>COMPLETE</promise>
 <promise>TESTS_PASSING</promise>
