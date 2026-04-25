@@ -28,12 +28,12 @@ Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 - Dead auto-delegation references purged from hooks.json, gir-module.json, plugin.json, README (gir-core) — 2026-04-24 — commit 9657dad
 - Dead auto-delegation + PLAN-modularization references purged from root README, marketplace.json — 2026-04-24
 - Spoke agent bleed removed from core-practices/SKILL.md (docs-fetcher, deploy-manager, ui-generator, n8n-builder) — 2026-04-25
-- Phase 4: Graphify/context-discipline — routing-stub Graphify Rule rewritten with corpus-size gate and community-scope trigger — 2026-04-25
+- Phase 4: Graphify/context-discipline — routing-stub Graphify Rule rewritten with corpus-size gate and community-scope trigger — 2026-04-25 — commit f8bd2c4
 
 ## Out of Scope (do not work on)
 - drift-check MISSION.md enhancement — wait for evidence of real drift incidents
 - Spoke agent DOD wiring — optional, core gates cover merge path
-- Graphify usage guide — wait until GRAPH_REPORT.md format confirmed from live run
+- Graphify usage guide — format confirmed from live run (Phase 4). No standalone guide needed; routing-stub rule covers usage.
 - skills_on_demand enforcement — comment in gir-module.json is sufficient
 
 ## Next Session: Start Here
