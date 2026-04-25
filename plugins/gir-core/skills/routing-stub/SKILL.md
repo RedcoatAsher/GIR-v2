@@ -24,7 +24,7 @@ Corpus fits in one context window? (report warns: "fits in a single context wind
 Consult graphify-out/GRAPH_REPORT.md when:
   - Touching a God Node (top 10 by edge count) → check impact before editing
   - Cross-community task → use Community Hubs + Surprising Connections to map blast radius
-  - Unfamiliar area → use Knowledge Gaps to find undocumented links
+  - Unfamiliar area → use Surprising Connections to find undocumented links
   - Dependency/impact analysis → check Hyperedges for group participation patterns
 
 Skip Graphify when:

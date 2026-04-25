@@ -162,8 +162,8 @@ Benefits from autonomous iteration? → Yes → USE RALPH
 
 ## Resources
 
-- [CLAUDE-delegation.md](CLAUDE-delegation.md) — Ralph as Tier 2 Recommended
-- [CLAUDE-workflows.md](CLAUDE-workflows.md) — Workflow details
+- `/gir-core:routing-stub` — Ralph as Tier 2 Recommended (see Delegation Tiers)
+- `/gir-core:load-workflows` — Workflow details
 - Original: https://ghuntley.com/ralph/
 - Plugin: https://github.com/anthropics/claude-code/tree/main/plugins/ralph-wiggum
 - Orchestrator: https://github.com/mikeyobrien/ralph-orchestrator
