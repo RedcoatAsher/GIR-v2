@@ -6,7 +6,7 @@ _Updated: 2026-04-25_
 Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 
 ## Active Priorities (ordered)
-<!-- Phase 4 complete. No active priorities. -->
+<!-- Phase 5 complete. No active priorities. -->
 
 ## In Progress
 - [ ] Nothing currently in progress
@@ -29,6 +29,7 @@ Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 - Dead auto-delegation + PLAN-modularization references purged from root README, marketplace.json — 2026-04-24
 - Spoke agent bleed removed from core-practices/SKILL.md (docs-fetcher, deploy-manager, ui-generator, n8n-builder) — 2026-04-25
 - Phase 4: Graphify/context-discipline — routing-stub Graphify Rule rewritten with corpus-size gate and community-scope trigger — 2026-04-25 — commit f8bd2c4
+- Phase 5: core-practices drift — fixed stale specgates link, dropped empty section, added ESCALATION-LOG.md to Memory Bank — 2026-04-25
 
 ## Out of Scope (do not work on)
 - drift-check MISSION.md enhancement — wait for evidence of real drift incidents
@@ -37,4 +38,4 @@ Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 - skills_on_demand enforcement — comment in gir-module.json is sufficient
 
 ## Next Session: Start Here
-Phases 1–4 complete and verified clean. No active priorities. Repo is stable. Any further work requires new evidence of need — see Out of Scope list before starting anything.
+Phases 1–5 complete and verified clean. No active priorities. Repo is stable. Any further work requires new evidence of need — see Out of Scope list before starting anything.

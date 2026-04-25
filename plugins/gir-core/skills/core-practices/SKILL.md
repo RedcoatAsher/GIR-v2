@@ -21,7 +21,7 @@ description: Universal Claude Code best practices for any coding task. Covers to
 > **Critical**: "Steps #1-#2 (Explore-Plan) are crucial—without them, Claude tends to jump straight to coding" — Anthropic
 
 ### Spec-Driven Conventions
-See [CLAUDE-specgates.md](CLAUDE-specgates.md) for full conventions. Key rules: max 3 `[NEEDS CLARIFICATION]` markers per feature (resolve before coding), mark parallel tasks with `[P]` + file paths, use phased task structure (Setup→Foundational→Stories→Polish), document state machines for features with >3 states.
+See `/gir-core:load-specgates` for full conventions. Key rules: max 3 `[NEEDS CLARIFICATION]` markers per feature (resolve before coding), mark parallel tasks with `[P]` + file paths, use phased task structure (Setup→Foundational→Stories→Polish), document state machines for features with >3 states.
 
 ### File Rules
 - Never create files unless necessary
@@ -85,6 +85,7 @@ See [CLAUDE-specgates.md](CLAUDE-specgates.md) for full conventions. Key rules: 
 | `.gir/ESCALATION.md` | Must-escalate conditions |
 | `.gir/DOD.md` | Definition of done checklist |
 | `.gir/REVIEW-LOG.md` | Review outcomes, audit trail |
+| `.gir/ESCALATION-LOG.md` | Escalation events with full context + timestamps |
 
 **Workflow**: Read activeContext + MISSION on session start → check ESCALATION before risky actions → verify DOD before reporting complete
 
@@ -124,6 +125,4 @@ Provides: plan-implementer, requesting-code-review, subagent-driven-development,
 - Never assume user intent without confirmation
 
 **Effective prompts**: Be specific. "Add JWT auth with httpOnly cookies, login/logout at /api/auth/*, middleware for /api/user/*" vs "Add authentication"
-
-## Project Extensions
 
