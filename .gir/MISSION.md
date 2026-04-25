@@ -1,12 +1,12 @@
 # Mission State
 
-_Updated: 2026-04-25_
+_Updated: 2026-04-26_
 
 ## Active Mission
 Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 
 ## Active Priorities (ordered)
-<!-- Phase 5 complete. No active priorities. -->
+<!-- Phase 6 complete. No active priorities. -->
 
 ## In Progress
 - [ ] Nothing currently in progress
@@ -31,6 +31,7 @@ Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 - Phase 4: Graphify/context-discipline — routing-stub Graphify Rule rewritten with corpus-size gate and community-scope trigger — 2026-04-25 — commit f8bd2c4
 - Phase 5 (partial): core-practices drift fixes — stale specgates link, empty section, ESCALATION-LOG.md entry — 2026-04-25 — commit 0986400
 - Phase 5 (complete): routing-stub Knowledge Gaps → Surprising Connections, ralph-loops stale file links removed, verified clean — 2026-04-25 — commit 62555b7
+- Phase 6 (complete): core-practices sequential-thinking section collapsed to one-line pointer (routing-stub Tier 1 is authoritative); session-start workflow line replaced with pointer to routing-stub Session Start Protocol — 2026-04-26
 
 ## Out of Scope (do not work on)
 - drift-check MISSION.md enhancement — wait for evidence of real drift incidents
@@ -39,4 +40,4 @@ Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 - skills_on_demand enforcement — comment in gir-module.json is sufficient
 
 ## Next Session: Start Here
-Phases 1–5 complete and verified clean. No active priorities. Repo is stable. Any further work requires new evidence of need — see Out of Scope list before starting anything.
+Phases 1–6 complete and verified clean. No active priorities. Repo is stable. Any further work requires new evidence of need — see Out of Scope list before starting anything.

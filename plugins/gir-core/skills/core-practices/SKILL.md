@@ -47,20 +47,9 @@ See `/gir-core:load-specgates` for full conventions. Key rules: max 3 `[NEEDS CL
 
 **Auto-trigger Context7**: When generating code, configuring libraries, or API questions.
 
-### Sequential-Thinking (Required)
+### Sequential-Thinking
 
-**Use `sequential-thinking:sequentialthinking` BEFORE**:
-- Multi-step architectural decisions
-- Planning phases (before TodoWrite)
-- Complex debugging
-- Large refactors (3+ files)
-- Feature design with options
-- Performance/security analysis
-- Migration planning
-
-**Benefits**: 60-80% context savings, prevents re-planning, documents rationale
-
-**Skip for**: Single-file edits, obvious answers, trivial fixes (<10 lines)
+See routing-stub Tier 1 — deploy for complex tasks (>3 steps), architecture, debugging, refactors (3+ files). Skip for single-file edits and trivial fixes.
 
 ## Command Efficiency
 
@@ -87,7 +76,7 @@ See `/gir-core:load-specgates` for full conventions. Key rules: max 3 `[NEEDS CL
 | `.gir/REVIEW-LOG.md` | Review outcomes, audit trail |
 | `.gir/ESCALATION-LOG.md` | Escalation events with full context + timestamps |
 
-**Workflow**: Read activeContext + MISSION on session start → check ESCALATION before risky actions → verify DOD before reporting complete
+**Workflow**: See routing-stub Session Start Protocol — authoritative for session init, escalation checks, and completion gates.
 
 ## Anti-Patterns
 
