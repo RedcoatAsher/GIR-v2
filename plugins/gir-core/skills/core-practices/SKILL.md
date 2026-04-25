@@ -100,10 +100,6 @@ See [CLAUDE-specgates.md](CLAUDE-specgates.md) for full conventions. Key rules: 
 
 **Core**: feature-architect, code-reviewer, debugger
 
-**Web**: docs-fetcher, deploy-manager, ui-generator
-
-**Automation**: n8n-builder
-
 **Usage**: `/agent <name>` or Task tool
 
 ### Recommended Skills

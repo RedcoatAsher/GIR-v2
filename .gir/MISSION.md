@@ -1,12 +1,12 @@
 # Mission State
 
-_Updated: 2026-04-24_
+_Updated: 2026-04-25_
 
 ## Active Mission
 Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 
 ## Active Priorities (ordered)
-<!-- Phase 2 complete. No active priorities. See Completed This Cycle. -->
+<!-- Phase 3 complete. No active priorities. -->
 
 ## In Progress
 - [ ] Nothing currently in progress
@@ -27,6 +27,7 @@ Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 - Wired feature-architect, debugger, spec-analyst to DOD/escalation gate checks — 2026-04-24 — commit 060c756
 - Dead auto-delegation references purged from hooks.json, gir-module.json, plugin.json, README (gir-core) — 2026-04-24 — commit 9657dad
 - Dead auto-delegation + PLAN-modularization references purged from root README, marketplace.json — 2026-04-24
+- Spoke agent bleed removed from core-practices/SKILL.md (docs-fetcher, deploy-manager, ui-generator, n8n-builder) — 2026-04-25
 
 ## Out of Scope (do not work on)
 - drift-check MISSION.md enhancement — wait for evidence of real drift incidents
@@ -35,4 +36,4 @@ Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 - skills_on_demand enforcement — comment in gir-module.json is sufficient
 
 ## Next Session: Start Here
-Phase 1 and Phase 2 are complete and verified clean. No active priorities. Next work is Phase 3 (optional refinements) — see Out of Scope list above. Repo is ready for Phase 3.
+Phases 1, 2, and 3 are complete and verified clean. No active priorities. Repo is stable. Any further work requires new evidence of need — see Out of Scope list before starting anything.
