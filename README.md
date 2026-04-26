@@ -1,5 +1,11 @@
 # GIR (Get It Running)
-![Static Badge](https://img.shields.io/badge/version-2.0.0-blue) ![Static Badge](https://img.shields.io/badge/works_with-claude_code-orange) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/rivit-studio/GIR?style=social)](https://github.com/rivit-studio/GIR/stargazers)
+[![GitHub last commit](https://img.shields.io/github/last-commit/rivit-studio/GIR)](https://github.com/rivit-studio/GIR/commits/main)
+[![GitHub issues](https://img.shields.io/github/issues/rivit-studio/GIR)](https://github.com/rivit-studio/GIR/issues)
+![Static Badge](https://img.shields.io/badge/version-2.1.0-blue)
+![Static Badge](https://img.shields.io/badge/works_with-claude_code-orange)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/rivit-studio/GIR/pulls)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > A modular Claude Code plugin ecosystem. Install only what you need — curated agents, routing-stub orchestration, memory bank, and domain-specific tooling.
  
@@ -160,7 +166,7 @@ Then run `/gir-core:init-project` to scaffold `CLAUDE-project.md` for your stack
 
 | Module | Description | Includes | Who needs it |
 |--------|-------------|----------|--------------|
-| [gir-core](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 5 agents, 6 skills, 5 commands, SessionStart hook, sequential-thinking MCP | Everyone |
+| [gir-core](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 5 agents, 6 skills, 8 commands, SessionStart hook, sequential-thinking MCP | Everyone |
 | [gir-web](plugins/gir-web/) | Frontend and fullstack tooling — v0, Figma, Vercel | 3 agents, 3 skills | Frontend/fullstack devs |
 | [gir-automation](plugins/gir-automation/) | n8n workflow building | 1 agent, 1 skill | Teams using n8n |
 | [gir-tools](plugins/gir-tools/) | AgentHub integration and agent team coordination | 2 agents, 2 skills | Power users running parallel agent workflows |
@@ -190,14 +196,24 @@ Create `.gir/` for session-persistent patterns and decisions:
 /gir-core:init-memory-bank
 ```
 
+> **Note:** `.gir/` is added to `.gitignore` automatically — these files are local to your machine, not committed to version control.
+
 Files GIR creates/manages here:
-- **`CLAUDE-activeContext.md`** — Current session state
+
+**Session state (auto-populated):**
+- **`CLAUDE-activeContext.md`** — Current session state, goals, in-progress tasks
 - **`CLAUDE-patterns.md`** — Code conventions (auto-populated by debugger)
 - **`CLAUDE-decisions.md`** — Architecture choices (auto-populated by feature-architect)
 - **`CLAUDE-troubleshooting.md`** — Known issues and solutions (auto-populated by debugger)
 - **`CLAUDE-resources.md`** — External references and docs
 
-GIR populates these across sessions. You can also edit them manually.
+**Policy and operations (customize these):**
+- **`MISSION.md`** — Active priorities and unattended operation state
+- **`ESCALATION.md`** — Must-escalate conditions for your project
+- **`DOD.md`** — Definition of done checklist
+- **`POLICY.md`** — Repo conventions (branching, commit style, testing rules)
+- **`REVIEW-LOG.md`** — Review outcomes and audit trail
+- **`ESCALATION-LOG.md`** — Escalation events with full context and timestamps
 
 ### Auto-Generated Registry
 
@@ -253,6 +269,15 @@ Any Claude Code plugin can become a GIR module by including a `gir-module.json` 
 
 ---
 
+## Operating Model
+
+How GIR works day-to-day (session-start, routing rules, Graphify gate, delegation tiers, completion gate, rule authority):
+
+- **[docs/OPERATING-MODEL.md](docs/OPERATING-MODEL.md)** — Single reference for the live operating model
+- **[docs/SETUP-STORY.md](docs/SETUP-STORY.md)** — Phase 0–8 bootstrapping arc with reusable prompt templates for new GIR installations
+
+---
+
 ## FAQ
 
 ### How do I set up a new project with GIR?
@@ -286,13 +311,20 @@ Install only what your project needs.
 **Always edit:**
 - `CLAUDE-project.md` — Your tech stack, commands, conventions
 
-**Optionally edit:**
-- `.gir/CLAUDE-patterns.md` — Code patterns (or let agents populate it)
-- `.gir/CLAUDE-decisions.md` — Architecture (or let agents populate it)
-- `.gir/CLAUDE-troubleshooting.md` — Known issues (or let agents populate it)
+**Customize after `/init-memory-bank`:**
+- `.gir/MISSION.md` — Set your active priorities for this session cycle
+- `.gir/ESCALATION.md` — Adjust must-escalate thresholds for your project
+- `.gir/DOD.md` — Adjust completion criteria for your project
+- `.gir/POLICY.md` — Add project branching, commit, and testing conventions
+
+**Let agents populate (or edit manually):**
+- `.gir/CLAUDE-patterns.md` — Code patterns
+- `.gir/CLAUDE-decisions.md` — Architecture decisions
+- `.gir/CLAUDE-troubleshooting.md` — Known issues
 
 **Never edit:**
 - `.gir/GIR.modules` — Auto-generated, do not modify
+- `.gir/ESCALATION-LOG.md` — Auto-appended on escalation events
 - Plugin files (they're global, managed by the plugin system)
 
 ### How do I customize GIR for my project?

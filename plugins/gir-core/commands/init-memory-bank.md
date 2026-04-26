@@ -1,6 +1,6 @@
 # /init-memory-bank
 
-Scaffold the `.gir/` memory bank directory in the current project with all 5 template files.
+Scaffold the `.gir/` memory bank directory in the current project with all 11 template files.
 
 ---
 
@@ -28,7 +28,7 @@ Check if `.gir/` already exists in the current project directory.
 
   Wait for user confirmation. If the user says no or anything other than "yes", stop and do not create any files.
 
-### Step 2: Create `.gir/` directory and write all 10 template files
+### Step 2: Create `.gir/` directory and write all 11 template files
 
 Write each file with the exact template content shown below. Do not modify the template content — write it exactly as provided.
 
@@ -669,11 +669,12 @@ If no: document why before merging.
 ```markdown
 # Escalation Log
 
-> Auto-appended by routing-stub when a must-escalate condition is triggered. Do not edit manually.
+> Auto-appended by routing-stub when a must-escalate condition is triggered.
+> Resume instructions are written to `.gir/CLAUDE-activeContext.md` — not here.
 
-| Timestamp | Condition | Context | Resume Instructions |
-|-----------|-----------|---------|---------------------|
-| [YYYY-MM-DD HH:MM] | [Which must-escalate rule was hit] | [Full context at time of stop] | [What human needs to do to resume] |
+| Timestamp | Condition | Context | Resolution |
+|-----------|-----------|---------|------------|
+| [YYYY-MM-DD HH:MM] | [Which must-escalate rule was hit] | [Full context at time of stop] | [How resolved, or "open"] |
 ```
 
 ---

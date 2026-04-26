@@ -125,6 +125,22 @@ No changes to core skills. Documentation only.
 
 ---
 
+## Phase 8 — Codification
+
+**Goal**: Wire the operating model into discoverable entry points and close any scaffold gaps surfaced by earlier phases.
+
+**Prompt template**:
+```
+Link docs/OPERATING-MODEL.md and docs/SETUP-STORY.md from the gir-core README under an "Operating Model & Setup" section.
+Add ESCALATION-LOG.md to the init-memory-bank scaffold as File 11 with a header + audit table.
+Fix any stale file counts in init-memory-bank's intro and Step 2 header to match actual file count.
+Confirm ESCALATION-LOG.md template does not duplicate resume instructions — those go to CLAUDE-activeContext.md per routing-stub.
+Update MISSION.md to log Phase 8 complete.
+No new features. Documentation and scaffold corrections only.
+```
+
+---
+
 ## Reuse Notes
 
 - Run phases sequentially on a new repo. Skip any phase that doesn't apply (e.g. Phase 4 if you don't use Graphify).
