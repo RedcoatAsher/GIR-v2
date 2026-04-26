@@ -6,7 +6,7 @@ _Updated: 2026-04-26_
 Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 
 ## Active Priorities (ordered)
-<!-- Phase 7 complete. No active priorities. -->
+<!-- Phase 8 complete. No active priorities. -->
 
 ## In Progress
 - [ ] Nothing currently in progress
@@ -33,6 +33,7 @@ Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 - Phase 5 (complete): routing-stub Knowledge Gaps → Surprising Connections, ralph-loops stale file links removed, verified clean — 2026-04-25 — commit 62555b7
 - Phase 6 (complete): core-practices sequential-thinking section collapsed to one-line pointer (routing-stub Tier 1 is authoritative); session-start workflow line replaced with pointer to routing-stub Session Start Protocol — 2026-04-26
 - Phase 7 (complete): created docs/OPERATING-MODEL.md (rule authority map, Graphify gate, session-start, routing, completion gate) and docs/SETUP-STORY.md (Phase 0–7 arc with reusable prompt templates) — 2026-04-26
+- Phase 8 (complete): added Operating Model & Setup links to gir-core README; added ESCALATION-LOG.md as File 11 to init-memory-bank scaffold; updated Step 4 confirmation list — 2026-04-26
 
 ## Out of Scope (do not work on)
 - drift-check MISSION.md enhancement — wait for evidence of real drift incidents
@@ -41,4 +42,4 @@ Make GIR the most reliable, token-efficient orchestration layer for Claude Code.
 - skills_on_demand enforcement — comment in gir-module.json is sufficient
 
 ## Next Session: Start Here
-Phases 1–7 complete and verified clean. No active priorities. Repo is stable and fully documented. Reference pattern extracted to docs/OPERATING-MODEL.md and docs/SETUP-STORY.md. Any further work requires new evidence of need — see Out of Scope list before starting anything.
+Phases 1–8 complete and verified clean. No active priorities. Repo is stable, fully documented, and reusable. Operating model: docs/OPERATING-MODEL.md. Bootstrapping arc: docs/SETUP-STORY.md. Any further work requires new evidence of need — see Out of Scope list before starting anything.

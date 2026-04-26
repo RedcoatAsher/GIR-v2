@@ -91,6 +91,13 @@ No additional configuration is required — it runs as part of the plugin.
 
 ---
 
+## Operating Model & Setup
+
+- **[Operating Model](../../docs/OPERATING-MODEL.md)** — session-start protocol, Graphify gate, routing rules, delegation tiers, completion gate, and rule authority map. Start here to understand how gir-core works day-to-day.
+- **[Setup Story](../../docs/SETUP-STORY.md)** — Phase 0–7 bootstrapping arc with reusable prompt templates. Use when setting up a new GIR-style repo or hardening an existing one.
+
+---
+
 ## Works best with
 
 - [gir-web](../gir-web/) — adds frontend/fullstack agents and design skills

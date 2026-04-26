@@ -664,6 +664,20 @@ If no: document why before merging.
 
 ---
 
+### File 11: `.gir/ESCALATION-LOG.md`
+
+```markdown
+# Escalation Log
+
+> Auto-appended by routing-stub when a must-escalate condition is triggered. Do not edit manually.
+
+| Timestamp | Condition | Context | Resume Instructions |
+|-----------|-----------|---------|---------------------|
+| [YYYY-MM-DD HH:MM] | [Which must-escalate rule was hit] | [Full context at time of stop] | [What human needs to do to resume] |
+```
+
+---
+
 ### Step 3: Add `.gir/` to `.gitignore`
 
 Check if `.gitignore` exists in the current directory.
@@ -689,6 +703,7 @@ Files created:
   .gir/DOD.md                    — Definition of done checklist
   .gir/POLICY.md                 — Repo policy and conventions
   .gir/REVIEW-LOG.md             — Review outcomes and audit trail
+  .gir/ESCALATION-LOG.md         — Escalation events with full context and resume instructions
 
 .gitignore: .gir/ added (memory bank stays local, not committed)
 
