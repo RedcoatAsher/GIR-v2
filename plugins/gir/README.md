@@ -1,4 +1,4 @@
-# gir-core
+# gir
 
 > The required hub of the GIR plugin ecosystem. Provides agents, routing-stub orchestration, workflow skills, slash commands, a SessionStart hook, and the sequential-thinking MCP server.
 
@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-claude plugin install gir-core
+claude plugin install gir
 ```
 
 ---
@@ -42,9 +42,9 @@ Three skills are always loaded. Three are available on demand via `/load-*` comm
 
 | Skill | Load command | What it activates |
 |-------|-------------|------------------|
-| **workflows** | `/gir-core:load-workflows` | Multi-step coordination patterns for complex features, reviews, and releases |
-| **ralph-loops** | `/gir-core:load-ralph` | Continuous iteration protocol — plan, execute, verify, repeat until done |
-| **specgates** | `/gir-core:load-specgates` | Spec-driven development gates; blocks implementation until spec is confirmed |
+| **workflows** | `/gir:load-workflows` | Multi-step coordination patterns for complex features, reviews, and releases |
+| **ralph-loops** | `/gir:load-ralph` | Continuous iteration protocol — plan, execute, verify, repeat until done |
+| **specgates** | `/gir:load-specgates` | Spec-driven development gates; blocks implementation until spec is confirmed |
 
 ---
 
@@ -65,13 +65,13 @@ Three skills are always loaded. Three are available on demand via `/load-*` comm
 
 ## SessionStart Hook
 
-gir-core installs a `SessionStart` hook that runs automatically when a Claude Code session begins. It reads `.gir/MISSION.md` (active priorities), `.gir/CLAUDE-activeContext.md` (session state), and `.gir/ESCALATION.md` (must-escalate conditions) if present — restoring full operational context without manual prompting.
+gir installs a `SessionStart` hook that runs automatically when a Claude Code session begins. It reads `.gir/MISSION.md` (active priorities), `.gir/CLAUDE-activeContext.md` (session state), and `.gir/ESCALATION.md` (must-escalate conditions) if present — restoring full operational context without manual prompting.
 
 ---
 
 ## sequential-thinking MCP
 
-gir-core bundles the `sequential-thinking` MCP server. This gives Claude a structured tool for breaking down multi-step problems before executing them, reducing planning errors on complex tasks.
+gir bundles the `sequential-thinking` MCP server. This gives Claude a structured tool for breaking down multi-step problems before executing them, reducing planning errors on complex tasks.
 
 No additional configuration is required — it runs as part of the plugin.
 
@@ -93,7 +93,7 @@ No additional configuration is required — it runs as part of the plugin.
 
 ## Operating Model & Setup
 
-- **[Operating Model](../../docs/OPERATING-MODEL.md)** — session-start protocol, Graphify gate, routing rules, delegation tiers, completion gate, and rule authority map. Start here to understand how gir-core works day-to-day.
+- **[Operating Model](../../docs/OPERATING-MODEL.md)** — session-start protocol, Graphify gate, routing rules, delegation tiers, completion gate, and rule authority map. Start here to understand how gir works day-to-day.
 - **[Setup Story](../../docs/SETUP-STORY.md)** — Phase 0–7 bootstrapping arc with reusable prompt templates. Use when setting up a new GIR-style repo or hardening an existing one.
 
 ---

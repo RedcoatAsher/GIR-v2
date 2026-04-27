@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "type": "spoke",
   "description": "Power user tools — AgentHub, subtask parallel execution",
-  "requires": ["gir-core"],
+  "requires": ["gir"],
   "provides": {
     "agents": ["subtask-manager", "agenthub"],
     "skills": ["subtask", "agenthub-session-management"],

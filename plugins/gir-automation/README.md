@@ -1,6 +1,6 @@
 # gir-automation
 
-> **Requires [gir-core](../gir-core/).** Install gir-core first.
+> **Requires [gir](../gir/).** Install gir first.
 
 n8n workflow tooling for Claude Code. Adds a specialist agent that builds, edits, and debugs n8n automation workflows.
 
@@ -9,7 +9,7 @@ n8n workflow tooling for Claude Code. Adds a specialist agent that builds, edits
 ## Install
 
 ```bash
-claude plugin install gir-core        # Required first
+claude plugin install gir        # Required first
 claude plugin install gir-automation
 ```
 

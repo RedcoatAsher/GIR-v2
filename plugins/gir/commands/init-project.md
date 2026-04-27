@@ -437,5 +437,5 @@ Sections that need your attention:
 - Session Baseline: Run the suggested commands to fill in dep_count, scripts, top_dirs
 - Git Workflow: Document your branch strategy and any custom rules
 
-Tip: Run /gir-core:init-memory-bank to also scaffold the .gir/ memory bank directory.
+Tip: Run /gir:init-memory-bank to also scaffold the .gir/ memory bank directory.
 ```

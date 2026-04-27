@@ -2,7 +2,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/rivit-studio/GIR?style=social)](https://github.com/rivit-studio/GIR/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/rivit-studio/GIR)](https://github.com/rivit-studio/GIR/commits/main)
 [![GitHub issues](https://img.shields.io/github/issues/rivit-studio/GIR)](https://github.com/rivit-studio/GIR/issues)
-![Static Badge](https://img.shields.io/badge/version-2.1.0-blue)
+![Static Badge](https://img.shields.io/badge/version-2.2.0-blue)
 ![Static Badge](https://img.shields.io/badge/works_with-claude_code-orange)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/rivit-studio/GIR/pulls)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -25,7 +25,7 @@ Drop into any project for instant Claude Code productivity.
 
 ## Why Modular?
 
-GIR is designed so you **only pay the token cost for what you use**. Install `gir-core`, then add only the spokes your project needs. No wasted context, no irrelevant tools loaded into every session.
+GIR is designed so you **only pay the token cost for what you use**. Install `gir`, then add only the spokes your project needs. No wasted context, no irrelevant tools loaded into every session.
 
 | Setup | Token Savings vs. Monolithic |
 |-------|------------------------------|
@@ -40,11 +40,11 @@ Each module self-registers at session start. Installed modules list their tools 
 
 ## Architecture
 
-GIR uses a **hub-and-spoke** model. `gir-core` is required and provides the foundation. Spoke plugins are optional and extend it for specific domains.
+GIR uses a **hub-and-spoke** model. `gir` is required and provides the foundation. Spoke plugins are optional and extend it for specific domains.
 
 ```
                         ┌─────────────────┐
-                        │    gir-core     │  ← REQUIRED
+                        │      gir        │  ← REQUIRED
                         │                 │
                         │  agents:        │
                         │  • feature-architect
@@ -83,7 +83,7 @@ GIR is designed for **zero wasted context**. You only load what you use.
 | Core + 2-3 spokes | ~11-14K (5-7%) | 25-35% savings |
 | All modules | ~19-32K (10-16%) | Full modular ecosystem |
 
-**What this means:** Installing just `gir-core` uses less than 4% of your 200K context window, leaving 193K+ tokens for your actual code and tasks. Each additional module adds only 2-4K tokens.
+**What this means:** Installing just `gir` uses less than 4% of your 200K context window, leaving 193K+ tokens for your actual code and tasks. Each additional module adds only 2-4K tokens.
 
 If you need a module, install it. If you don't, it costs nothing.
 
@@ -100,7 +100,7 @@ claude plugin marketplace add rivit-studio/GIR
 ### Step 2: Install core (required)
 
 ```bash
-claude plugin install gir-core
+claude plugin install gir
 ```
 
 ### Step 3: Install the modules you need
@@ -117,7 +117,7 @@ claude plugin install gir-qa            # QA & review (CodeRabbit, Jules)
 ### Step 4: Discover modules
 
 ```text
-/gir-core:modules
+/gir:modules
 ```
 
 ---
@@ -127,38 +127,38 @@ claude plugin install gir-qa            # QA & review (CodeRabbit, Jules)
 ### Next.js / React Fullstack
 
 ```bash
-claude plugin install gir-core
+claude plugin install gir
 claude plugin install gir-web         # Frontend tooling (v0, Figma, Vercel)
 ```
 
-Then run `/gir-core:init-project` to scaffold `CLAUDE-project.md` for your stack.
+Then run `/gir:init-project` to scaffold `CLAUDE-project.md` for your stack.
 
 ### Backend API
 
 ```bash
-claude plugin install gir-core
+claude plugin install gir
 ```
 
-Then run `/gir-core:init-project` to scaffold `CLAUDE-project.md` for your stack.
+Then run `/gir:init-project` to scaffold `CLAUDE-project.md` for your stack.
 
 ### Full-Stack + Automation
 
 ```bash
-claude plugin install gir-core
+claude plugin install gir
 claude plugin install gir-web          # Frontend
 claude plugin install gir-automation   # n8n workflows
 ```
 
-Then run `/gir-core:init-project` to scaffold `CLAUDE-project.md` for your stack.
+Then run `/gir:init-project` to scaffold `CLAUDE-project.md` for your stack.
 
 ### Data/ML Projects with Supabase
 
 ```bash
-claude plugin install gir-core
+claude plugin install gir
 claude plugin install gir-database     # Supabase tools
 ```
 
-Then run `/gir-core:init-project` to scaffold `CLAUDE-project.md` for your stack.
+Then run `/gir:init-project` to scaffold `CLAUDE-project.md` for your stack.
 
 ---
 
@@ -166,7 +166,7 @@ Then run `/gir-core:init-project` to scaffold `CLAUDE-project.md` for your stack
 
 | Module | Description | Includes | Who needs it |
 |--------|-------------|----------|--------------|
-| [gir-core](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 5 agents, 6 skills, 8 commands, SessionStart hook, sequential-thinking MCP | Everyone |
+| [gir](plugins/gir/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 5 agents, 6 skills, 8 commands, SessionStart hook, sequential-thinking MCP | Everyone |
 | [gir-web](plugins/gir-web/) | Frontend and fullstack tooling — v0, Figma, Vercel | 3 agents, 3 skills | Frontend/fullstack devs |
 | [gir-automation](plugins/gir-automation/) | n8n workflow building | 1 agent, 1 skill | Teams using n8n |
 | [gir-tools](plugins/gir-tools/) | AgentHub integration and agent team coordination | 2 agents, 2 skills | Power users running parallel agent workflows |
@@ -184,7 +184,7 @@ GIR plugins install globally. Your project keeps its own configuration:
 
 - **`CLAUDE-project.md`** — **Edit this.** Your project-specific tech stack, dev commands, environment variables, conventions, and architectural decisions. This is the single source of truth for your project context. Create it by running:
   ```
-  /gir-core:init-project
+  /gir:init-project
   ```
   Then customize it for your stack.
 
@@ -193,7 +193,7 @@ GIR plugins install globally. Your project keeps its own configuration:
 Create `.gir/` for session-persistent patterns and decisions:
 
 ```
-/gir-core:init-memory-bank
+/gir:init-memory-bank
 ```
 
 > **Note:** `.gir/` is added to `.gitignore` automatically — these files are local to your machine, not committed to version control.
@@ -245,7 +245,7 @@ Look for available updates in the GIR marketplace.
 ### Update a module
 
 ```bash
-claude plugin upgrade gir-core
+claude plugin upgrade gir
 claude plugin upgrade gir-web    # Update specific modules
 ```
 
@@ -265,7 +265,7 @@ claude plugin upgrade-all
 
 ## Creating Custom Modules
 
-Any Claude Code plugin can become a GIR module by including a `gir-module.json` manifest, a SessionStart hook for self-registration, and declaring `"requires": ["gir-core"]`. See [docs/decisions/2026-03-03-modularization.md](docs/decisions/2026-03-03-modularization.md) for the module contract ADR.
+Any Claude Code plugin can become a GIR module by including a `gir-module.json` manifest, a SessionStart hook for self-registration, and declaring `"requires": ["gir"]`. See [docs/decisions/2026-03-03-modularization.md](docs/decisions/2026-03-03-modularization.md) for the module contract ADR.
 
 ---
 
@@ -282,15 +282,15 @@ How GIR works day-to-day (session-start, routing rules, Graphify gate, delegatio
 
 ### How do I set up a new project with GIR?
 
-1. Install `gir-core` globally: `claude plugin install gir-core`
+1. Install `gir` globally: `claude plugin install gir`
 2. Install any domain-specific modules you need (gir-web, gir-automation, etc.)
-3. In your project, run `/gir-core:init-project` to generate `CLAUDE-project.md`
-4. Optionally run `/gir-core:init-memory-bank` to set up the `.gir/` memory bank
+3. In your project, run `/gir:init-project` to generate `CLAUDE-project.md`
+4. Optionally run `/gir:init-memory-bank` to set up the `.gir/` memory bank
 5. Start a Claude Code session — GIR auto-discovers your config
 
-### What's the difference between gir-core and the spokes?
+### What's the difference between gir and the spokes?
 
-**gir-core** (required):
+**gir** (required):
 - Foundation agents: feature-architect, code-reviewer, debugger, spec-analyst, team-lead
 - Core workflows and delegation rules
 - Memory bank system
@@ -362,7 +362,7 @@ Yes. Create `.claude/agents/custom/` in your project and add agent definitions t
 ### How much token overhead does GIR add?
 
 **Per session:**
-- gir-core: ~3-4% of 200K context (7-8K tokens)
+- gir: ~3-4% of 200K context (7-8K tokens)
 - Each additional module: ~1-2% (2-4K tokens)
 - Total with all modules: ~10-16% (19-32K tokens)
 

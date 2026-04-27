@@ -6,4 +6,4 @@ Load the GIR specgates skill for this session.
 
 ## Instructions
 
-Read and apply the full content of `plugins/gir-core/skills/specgates/SKILL.md`. Confirm loaded with: "Specgates skill loaded."
+Read and apply the full content of `plugins/gir/skills/specgates/SKILL.md`. Confirm loaded with: "Specgates skill loaded."

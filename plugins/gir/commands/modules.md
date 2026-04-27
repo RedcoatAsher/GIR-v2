@@ -14,7 +14,7 @@ Then inform the user about available official modules they haven't installed:
 
 | Module | Description | Install |
 |--------|-------------|---------|
-| gir-core | Core agents, workflows, best practices (REQUIRED) | `claude plugin install gir-core` |
+| gir | Core agents, workflows, best practices (REQUIRED) | `claude plugin install gir` |
 | gir-web | Frontend/fullstack agents and design skills | `claude plugin install gir-web` |
 | gir-automation | n8n workflow builder agent | `claude plugin install gir-automation` |
 | gir-tools | AgentHub + team coordination + subtask parallel execution | `claude plugin install gir-tools` |
@@ -24,4 +24,4 @@ Then inform the user about available official modules they haven't installed:
 
 Mark installed modules with a checkmark. Show their version and what they provide.
 
-If `.gir/GIR.modules` doesn't exist, say the memory bank hasn't been initialized and suggest running `/gir-core:init-memory-bank` first.
+If `.gir/GIR.modules` doesn't exist, say the memory bank hasn't been initialized and suggest running `/gir:init-memory-bank` first.

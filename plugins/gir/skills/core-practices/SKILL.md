@@ -21,7 +21,7 @@ description: Universal Claude Code best practices for any coding task. Covers to
 > **Critical**: "Steps #1-#2 (Explore-Plan) are crucial—without them, Claude tends to jump straight to coding" — Anthropic
 
 ### Spec-Driven Conventions
-See `/gir-core:load-specgates` for full conventions. Key rules: max 3 `[NEEDS CLARIFICATION]` markers per feature (resolve before coding), mark parallel tasks with `[P]` + file paths, use phased task structure (Setup→Foundational→Stories→Polish), document state machines for features with >3 states.
+See `/gir:load-specgates` for full conventions. Key rules: max 3 `[NEEDS CLARIFICATION]` markers per feature (resolve before coding), mark parallel tasks with `[P]` + file paths, use phased task structure (Setup→Foundational→Stories→Polish), document state machines for features with >3 states.
 
 ### File Rules
 - Never create files unless necessary

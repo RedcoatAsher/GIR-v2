@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "type": "spoke",
   "description": "Database management agents and tools — Supabase",
-  "requires": ["gir-core"],
+  "requires": ["gir"],
   "provides": {
     "agents": [],
     "skills": ["database-tools"],

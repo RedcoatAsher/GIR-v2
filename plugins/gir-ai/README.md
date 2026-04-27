@@ -1,6 +1,6 @@
 # gir-ai
 
-> **Requires [gir-core](../gir-core/).** Install gir-core first.
+> **Requires [gir](../gir/).** Install gir first.
 
 AI tool delegation patterns for Claude Code. Adds guidance for offloading tasks to Gemini-CLI, Codex, and other external AI tools to save context tokens.
 
@@ -9,7 +9,7 @@ AI tool delegation patterns for Claude Code. Adds guidance for offloading tasks 
 ## Install
 
 ```bash
-claude plugin install gir-core   # Required first
+claude plugin install gir   # Required first
 claude plugin install gir-ai
 ```
 

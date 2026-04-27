@@ -1,6 +1,6 @@
 # gir-database
 
-> **Requires [gir-core](../gir-core/).** Install gir-core first.
+> **Requires [gir](../gir/).** Install gir first.
 
 Database management tooling for Claude Code. Adds Supabase MCP integration for schema management, migrations, edge functions, and query execution.
 
@@ -9,7 +9,7 @@ Database management tooling for Claude Code. Adds Supabase MCP integration for s
 ## Install
 
 ```bash
-claude plugin install gir-core   # Required first
+claude plugin install gir   # Required first
 claude plugin install gir-database
 ```
 

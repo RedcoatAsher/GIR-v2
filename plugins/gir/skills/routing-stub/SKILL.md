@@ -72,9 +72,9 @@ LOW (polish)         → animations, cleanup, docs
 ## Lazy Skill Loading
 
 Load these only when the task requires them:
-- New feature or scope change → `/gir-core:load-specgates` before proceeding
-- Multi-step, delegated, or parallel work → `/gir-core:load-workflows`
-- Iterative refinement or high uncertainty → `/gir-core:load-ralph`
+- New feature or scope change → `/gir:load-specgates` before proceeding
+- Multi-step, delegated, or parallel work → `/gir:load-workflows`
+- Iterative refinement or high uncertainty → `/gir:load-ralph`
 
 ## Escalation Trigger
 

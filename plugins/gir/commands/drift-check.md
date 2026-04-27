@@ -20,7 +20,7 @@ No memory bank found.
 .gir/CLAUDE-activeContext.md does not exist in this directory.
 
 To set up a memory bank, run:
-  /gir-core:init-memory-bank
+  /gir:init-memory-bank
 
 The memory bank helps Claude restore context at the start of each session and track decisions, patterns, and known issues across sessions.
 ```

@@ -715,5 +715,5 @@ Next steps:
   4. Update CLAUDE-activeContext.md with your current session goals
   5. Fill in POLICY.md with project conventions
 
-Tip: Run /gir-core:drift-check at any time to assess how fresh your memory bank is.
+Tip: Run /gir:drift-check at any time to assess how fresh your memory bank is.
 ```

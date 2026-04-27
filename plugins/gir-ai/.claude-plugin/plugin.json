@@ -1,7 +1,7 @@
 {
   "name": "gir-ai",
   "version": "2.0.0",
-  "description": "Requires gir-core. AI tool delegation — Gemini-CLI, Codex, and other AI integrations for Claude Code",
+  "description": "Requires gir. AI tool delegation — Gemini-CLI, Codex, and other AI integrations for Claude Code",
   "author": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
   "homepage": "https://github.com/rivit-studio/GIR",
   "repository": "https://github.com/rivit-studio/GIR",

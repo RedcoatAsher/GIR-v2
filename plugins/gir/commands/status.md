@@ -12,7 +12,7 @@ Follow these steps in order. Gather all information before presenting the report
 
 Look for plugin directories under `~/.claude/plugins/`. Check whether these directories exist:
 
-- `~/.claude/plugins/gir-core/`
+- `~/.claude/plugins/gir/`
 - `~/.claude/plugins/gir-web/`
 - `~/.claude/plugins/gir-automation/`
 - `~/.claude/plugins/gir-tools/`
@@ -57,7 +57,7 @@ GIR Status
 Project
 -------
   Directory:      [current working directory path]
-  CLAUDE-project: [present | MISSING — run /gir-core:init-project]
+  CLAUDE-project: [present | MISSING — run /gir:init-project]
   [If present, show]:  Name: [detected name]  Type: [detected type]
 
 Memory Bank (.gir/)
@@ -71,11 +71,11 @@ Memory Bank (.gir/)
     GIR.modules                [present | missing]
 
   [If .gir/ does not exist]:
-    Not initialized — run /gir-core:init-memory-bank
+    Not initialized — run /gir:init-memory-bank
 
 Plugins (~/.claude/plugins/)
 ----------------------------
-  gir-core        [installed | not found]  ← required
+  gir             [installed | not found]  ← required
   gir-web         [installed | not found]
   gir-automation  [installed | not found]
   gir-tools       [installed | not found]
@@ -92,11 +92,11 @@ Agents (~/.claude/agents/)
 Recommendations
 ---------------
   [List only what's missing or needs attention, e.g.:]
-  - CLAUDE-project.md not found — run /gir-core:init-project to generate one
-  - Memory bank not initialized — run /gir-core:init-memory-bank to scaffold .gir/
+  - CLAUDE-project.md not found — run /gir:init-project to generate one
+  - Memory bank not initialized — run /gir:init-memory-bank to scaffold .gir/
   - [specific missing memory bank files if .gir/ exists but files are absent]
   [If everything is configured]:
-  - Configuration looks complete. Run /gir-core:drift-check to assess memory bank freshness.
+  - Configuration looks complete. Run /gir:drift-check to assess memory bank freshness.
 ```
 
 Keep the report factual and concise. Do not speculate about plugins or agents that aren't found — only report what is present.

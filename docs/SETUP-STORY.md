@@ -6,7 +6,7 @@
 
 ## Phase 0 — Bootstrap
 
-**Goal**: Install gir-core, scaffold memory bank, verify plugin wiring.
+**Goal**: Install gir, scaffold memory bank, verify plugin wiring.
 
 ```
 Run /init-memory-bank to scaffold .gir/ with 10 template files.
@@ -23,7 +23,7 @@ Verify: routing-stub and core-practices are in gir-module.json always-load list.
 **Prompt template**:
 ```
 Audit the GIR plugin structure. Verify:
-- gir-core is the mandatory hub (always-load: routing-stub, core-practices)
+- gir is the mandatory hub (always-load: routing-stub, core-practices)
 - spoke plugins are optional and lazy-loaded
 - no spoke docs are embedded in core-practices
 - SessionStart hooks read MISSION.md + ESCALATION.md
@@ -131,7 +131,7 @@ No changes to core skills. Documentation only.
 
 **Prompt template**:
 ```
-Link docs/OPERATING-MODEL.md and docs/SETUP-STORY.md from the gir-core README under an "Operating Model & Setup" section.
+Link docs/OPERATING-MODEL.md and docs/SETUP-STORY.md from the gir README under an "Operating Model & Setup" section.
 Add ESCALATION-LOG.md to the init-memory-bank scaffold as File 11 with a header + audit table.
 Fix any stale file counts in init-memory-bank's intro and Step 2 header to match actual file count.
 Confirm ESCALATION-LOG.md template does not duplicate resume instructions — those go to CLAUDE-activeContext.md per routing-stub.

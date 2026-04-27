@@ -1,6 +1,6 @@
 {
-  "name": "gir-core",
-  "version": "2.1.0",
+  "name": "gir",
+  "version": "2.2.0",
   "type": "core",
   "description": "Core agents, workflows, and best practices",
   "requires": [],
@@ -30,7 +30,9 @@
       "modules",
       "load-workflows",
       "load-specgates",
-      "load-ralph"
+      "load-ralph",
+      "update",
+      "init-setup"
     ],
     "mcp": {
       "sequential-thinking": {
