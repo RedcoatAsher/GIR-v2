@@ -63,7 +63,7 @@ Agent Teams cost a full context window per member. Justify before spawning.
 - `Explore agent`: task involves >5 files or "where/how does X work" questions
 
 **Tier 2 — Usually:**
-- `Subtask`: >2 independent file-modifying tasks
+- `parallel-orchestrator` (`/gir:parallel`): >2 independent file-modifying tasks — native worktree isolation, no external tools
 - `Debugger agent`: no obvious cause, multi-system issue
 - `Ralph loop`: clear completion criteria, iterative work (TDD, build fixes)
 
