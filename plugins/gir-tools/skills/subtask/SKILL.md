@@ -3,6 +3,8 @@ name: subtask
 description: Parallel task execution using Git worktrees. Use this skill when the user wants to work on multiple features simultaneously, spawn parallel subagents, or distribute work across isolated environments. Enables faster development by running tasks concurrently while preventing code conflicts.
 ---
 
+> **Deprecated as of GIR v2.2.0.** Native parallel execution is now built into `gir` via the `parallel-orchestrator` agent and `parallel-agents` skill — no external CLI required. This skill remains available for users with the subtask CLI already installed. New projects should use `/gir:parallel` instead.
+
 # Subtask Skill
 
 Distribute work across multiple parallel tasks using Git worktrees. Each task runs in isolation, enabling concurrent development without conflicts.

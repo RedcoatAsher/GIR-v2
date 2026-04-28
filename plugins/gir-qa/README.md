@@ -1,6 +1,6 @@
 # gir-qa
 
-> **Requires [gir-core](../gir-core/).** Install gir-core first.
+> **Requires [gir](../gir/).** Install gir first.
 
 QA and code review tooling for Claude Code. Integrates CodeRabbit for automated PR reviews and Jules for AI task delegation.
 
@@ -9,7 +9,7 @@ QA and code review tooling for Claude Code. Integrates CodeRabbit for automated 
 ## Install
 
 ```bash
-claude plugin install gir-core   # Required first
+claude plugin install gir   # Required first
 claude plugin install gir-qa
 ```
 

@@ -1,7 +1,7 @@
 {
   "name": "gir-database",
   "version": "2.0.0",
-  "description": "Requires gir-core. Database management — Supabase MCP tools for Claude Code",
+  "description": "Requires gir. Database management — Supabase MCP tools for Claude Code",
   "author": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
   "homepage": "https://github.com/rivit-studio/GIR",
   "repository": "https://github.com/rivit-studio/GIR",

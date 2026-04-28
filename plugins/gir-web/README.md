@@ -1,6 +1,6 @@
 # gir-web
 
-> **Requires [gir-core](../gir-core/).** Install gir-core first.
+> **Requires [gir](../gir/).** Install gir first.
 
 Frontend and fullstack tooling for Claude Code. Adds specialist agents for documentation fetching, deployment management, and UI generation, plus skills for design fundamentals and frontend patterns.
 
@@ -9,7 +9,7 @@ Frontend and fullstack tooling for Claude Code. Adds specialist agents for docum
 ## Install
 
 ```bash
-claude plugin install gir-core   # Required first
+claude plugin install gir   # Required first
 claude plugin install gir-web
 ```
 

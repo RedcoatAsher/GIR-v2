@@ -1,6 +1,6 @@
 # gir-tools
 
-> **Requires [gir-core](../gir-core/).** Install gir-core first.
+> **Requires [gir](../gir/).** Install gir first.
 
 Power user tooling for parallel agent workflows. Adds AgentHub integration, subtask parallel execution, and enhanced subtask skills.
 
@@ -9,7 +9,7 @@ Power user tooling for parallel agent workflows. Adds AgentHub integration, subt
 ## Install
 
 ```bash
-claude plugin install gir-core    # Required first
+claude plugin install gir    # Required first
 claude plugin install gir-tools
 ```
 

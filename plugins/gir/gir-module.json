@@ -1,0 +1,50 @@
+{
+  "name": "gir",
+  "version": "2.2.0",
+  "type": "core",
+  "description": "Core agents, workflows, and best practices",
+  "requires": [],
+  "provides": {
+    "agents": [
+      "feature-architect",
+      "code-reviewer",
+      "debugger",
+      "team-lead",
+      "spec-analyst",
+      "parallel-orchestrator",
+      "autonomous-executor"
+    ],
+    "skills": [
+      "routing-stub",
+      "core-practices",
+      "state-machines"
+    ],
+    "skills_on_demand": [
+      "workflows",
+      "ralph-loops",
+      "specgates",
+      "parallel-agents",
+      "autonomous-mode"
+    ],
+    "commands": [
+      "init-project",
+      "init-memory-bank",
+      "drift-check",
+      "status",
+      "modules",
+      "load-workflows",
+      "load-specgates",
+      "load-ralph",
+      "update",
+      "init-setup",
+      "parallel",
+      "run"
+    ],
+    "mcp": {
+      "sequential-thinking": {
+        "description": "Extended reasoning for complex planning and debugging",
+        "commands": ["sequentialthinking"]
+      }
+    }
+  }
+}
