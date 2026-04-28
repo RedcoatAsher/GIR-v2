@@ -42,32 +42,72 @@ Each module self-registers at session start. Installed modules list their tools 
 
 GIR uses a **hub-and-spoke** model. `gir` is required and provides the foundation. Spoke plugins are optional and extend it for specific domains.
 
+```mermaid
+graph TD
+    gir("**gir** ← required
+    ────────────────────
+    agents: feature-architect
+    code-reviewer · debugger
+    team-lead · spec-analyst
+    ────────────────────
+    skills · commands · hooks · MCP")
+
+    gir --> web("**gir-web**
+    docs-fetcher
+    deploy-manager
+    ui-generator")
+
+    gir --> auto("**gir-automation**
+    n8n-builder")
+
+    gir --> tools("**gir-tools**
+    agenthub
+    subtask-manager")
+
+    gir --> db("**gir-database**
+    Supabase MCP")
+
+    gir --> ai("**gir-ai**
+    Gemini-CLI · Codex")
+
+    gir --> qa("**gir-qa**
+    CodeRabbit · Jules")
 ```
-                        ┌─────────────────┐
-                        │      gir        │  ← REQUIRED
-                        │                 │
-                        │  agents:        │
-                        │  • feature-architect
-                        │  • code-reviewer│
-                        │  • debugger     │
-                        │  • team-lead    │
-                        │  • spec-analyst │
-                        │                 │
-                        │  skills + cmds  │
-                        │  hooks + MCP    │
-                        └────────┬────────┘
-                                 │
-    ┌────────────┬───────────────┼───────────────┬────────────┬────────────┐
-    │            │               │               │            │            │
-┌───▼───┐  ┌────▼────┐  ┌───────▼──────┐  ┌────▼────┐  ┌────▼───┐  ┌────▼───┐
-│gir-web│  │gir-auto-│  │  gir-tools   │  │gir-data-│  │ gir-ai │  │ gir-qa │
-│       │  │ mation  │  │              │  │  base   │  │        │  │        │
-│• docs │  │         │  │ • agenthub   │  │         │  │• Gemini│  │• Code- │
-│• deploy│ │ • n8n-  │  │ • subtask-   │  │• Supa-  │  │  -CLI  │  │  Rabbit│
-│• ui-  │  │   builder│ │   manager    │  │  base   │  │• Codex │  │• Jules │
-│  gen  │  │         │  │ • subtask    │  │  tools  │  │        │  │        │
-│       │  │         │  │   skills     │  │         │  │        │  │        │
-└───────┘  └─────────┘  └──────────────┘  └─────────┘  └────────┘  └────────┘
+
+---
+
+## How It Works
+
+Every Claude Code session, GIR activates automatically, loads your project context, and routes tasks to the right agent.
+
+```mermaid
+flowchart TD
+    A([Session Start]) --> B[gir SessionStart Hook]
+    B --> C{.gir/ exists?}
+    C -->|yes| D[Read MISSION.md\nactiveContext.md\nESCALATION.md\nGIR.modules]
+    C -->|no| E[Suggest /gir:init-setup]
+    D --> F([Context Ready])
+
+    F --> G[User Prompt]
+
+    G --> H{routing-stub}
+
+    H -->|slash command| I["<b>/gir:command</b>
+    init-setup · update
+    status · drift-check
+    init-project · modules"]
+
+    H -->|Tier 1 — simple| J[Direct Execution]
+
+    H -->|Tier 2/3 — complex| K[Agent Delegation]
+    K --> L["feature-architect
+    code-reviewer · debugger
+    team-lead · spec-analyst
+    + installed spoke agents"]
+
+    L --> M{DOD + ESCALATION gate}
+    M -->|pass| N([Done])
+    M -->|fail| O([Escalate to User])
 ```
 
 ---
