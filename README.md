@@ -204,6 +204,8 @@ Then run `/gir:init-project` to scaffold `CLAUDE-project.md` for your stack.
 
 ## Modules
 
+<img src="https://static.wikia.nocookie.net/zimwiki/images/d/d2/Girdog.png/revision/latest/scale-to-width-down/300" alt="GIR dog" width="100" align="right" />
+
 | Module | Description | Includes | Who needs it |
 |--------|-------------|----------|--------------|
 | [gir](plugins/gir/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 5 agents, 6 skills, 8 commands, SessionStart hook, sequential-thinking MCP | Everyone |
@@ -317,6 +319,8 @@ How GIR works day-to-day (session-start, routing rules, Graphify gate, delegatio
 - **[docs/SETUP-STORY.md](docs/SETUP-STORY.md)** — Phase 0–8 bootstrapping arc with reusable prompt templates for new GIR installations
 
 ---
+
+<img src="https://timelinecovers.pro/facebook-cover/download/tv-show-invader-zim-facebook-cover.jpg" alt="Invader Zim" width="100%" />
 
 ## FAQ
 
