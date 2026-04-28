@@ -553,6 +553,20 @@ _Updated: [Date]_
 - Maximum autonomous iterations before human check-in: [N]
 - Stop and escalate if: [condition]
 - Stop and wait if CI fails more than 2 consecutive times
+
+## Autonomous Run State
+
+<!-- Managed by /gir:run — do not edit manually during a run -->
+autonomous_run:
+  status: idle
+  unattended: false
+  resume_after_cap: false
+  started_at: null
+  current_phase: null
+  completed_phases: []
+  current_task: null
+  checkpoint_at: null
+  scheduled_resume_id: null
 ```
 
 ---

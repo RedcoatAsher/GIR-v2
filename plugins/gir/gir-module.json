@@ -11,7 +11,8 @@
       "debugger",
       "team-lead",
       "spec-analyst",
-      "parallel-orchestrator"
+      "parallel-orchestrator",
+      "autonomous-executor"
     ],
     "skills": [
       "routing-stub",
@@ -22,7 +23,8 @@
       "workflows",
       "ralph-loops",
       "specgates",
-      "parallel-agents"
+      "parallel-agents",
+      "autonomous-mode"
     ],
     "commands": [
       "init-project",
@@ -35,7 +37,8 @@
       "load-ralph",
       "update",
       "init-setup",
-      "parallel"
+      "parallel",
+      "run"
     ],
     "mcp": {
       "sequential-thinking": {
