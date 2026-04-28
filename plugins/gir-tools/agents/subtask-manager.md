@@ -6,6 +6,8 @@ model: sonnet
 skills: subtask
 ---
 
+> **Deprecated as of GIR v2.2.0.** Use the `parallel-orchestrator` agent in `gir` instead — same worktree isolation, no external CLI, DOD gates included. This agent remains functional for existing subtask CLI users.
+
 # Subtask Manager Agent
 
 Orchestrate parallel development using Subtask and Git worktrees. Spawn subagents for concurrent, isolated execution.

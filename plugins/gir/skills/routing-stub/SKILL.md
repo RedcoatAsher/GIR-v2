@@ -45,6 +45,22 @@ Narrow isolated result, only output matters → Subagent
 
 Agent Teams are never the default. Each member costs a full context window. Justify before spawning.
 
+## Parallel Trigger Phrases
+
+When the user message contains any of these patterns, automatically invoke `/gir:parallel` before responding:
+
+- "parallelize [work / tasks / agents / this / these]"
+- "dispatch agents"
+- "run [X] in parallel" / "run these in parallel"
+- "parallel agents" / "parallel tasks" / "parallel execution"
+- "spawn agents" / "spawn [N] agents"
+- "work on [X] simultaneously" / "do these simultaneously"
+- "[X] and [Y] at the same time"
+- "split [work / tasks] across agents"
+- "concurrent [tasks / agents / execution]"
+
+Do not wait for user to type `/gir:parallel` — detect and invoke automatically.
+
 ## Delegation Tiers
 
 **Tier 1 — Always deploy:**
@@ -53,7 +69,7 @@ Agent Teams are never the default. Each member costs a full context window. Just
 - `Explore agent`: task involves >5 files, or "where is X" / "how does X work" questions
 
 **Tier 2 — Usually deploy:**
-- `Subtask`: >2 independent file-modifying tasks — parallel worktrees prevent conflicts
+- `parallel-orchestrator`: >2 independent file-modifying tasks — native worktree isolation, no external tools
 - `Debugger agent`: no obvious cause, multi-system issue
 - `Ralph loop`: clear completion criteria, iterative work (TDD, build fixes)
 
@@ -73,7 +89,8 @@ LOW (polish)         → animations, cleanup, docs
 
 Load these only when the task requires them:
 - New feature or scope change → `/gir:load-specgates` before proceeding
-- Multi-step, delegated, or parallel work → `/gir:load-workflows`
+- Multi-step or delegated work → `/gir:load-workflows`
+- Parallel work detected → `/gir:parallel` (auto-triggered by parallel trigger phrases above)
 - Iterative refinement or high uncertainty → `/gir:load-ralph`
 
 ## Escalation Trigger
