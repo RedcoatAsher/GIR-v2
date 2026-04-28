@@ -61,6 +61,14 @@
       "version": "2.0.0",
       "category": "quality",
       "keywords": ["coderabbit", "jules", "code-review", "qa"]
+    },
+    {
+      "name": "gir-migrate",
+      "source": "./plugins/gir-migrate",
+      "description": "One-time GSD 2.0 → GIR migration tool. Install, migrate, uninstall.",
+      "version": "1.0.0",
+      "category": "utility",
+      "keywords": ["migration", "gsd", "setup", "one-time"]
     }
   ]
 }
