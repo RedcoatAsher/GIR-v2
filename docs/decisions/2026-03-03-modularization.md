@@ -7,7 +7,7 @@
 
 Split GIR from monolithic CLAUDE.md into a hub-and-spoke plugin architecture:
 - `gir-core`: mandatory hub — agents, core skills, commands
-- `gir-web`, `gir:atc`, `gir-automation`, `gir-ai`, `gir-database`, `gir-qa`: optional domain spokes
+- `gir-web`, `gir-atc`, `gir-automation`, `gir-ai`, `gir-database`, `gir-qa`: optional domain spokes
 
 ## Rationale
 

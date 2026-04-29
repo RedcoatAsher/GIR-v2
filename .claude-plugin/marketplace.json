@@ -31,7 +31,7 @@
       "keywords": ["n8n", "workflows", "automation"]
     },
     {
-      "name": "gir:atc",
+      "name": "gir-atc",
       "source": "./plugins/gir-atc",
       "description": "Agentic traffic control — multi-agent dispatch, coordination patterns, and session routing",
       "version": "2.5.1",

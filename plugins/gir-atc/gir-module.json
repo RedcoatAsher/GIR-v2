@@ -1,5 +1,5 @@
 {
-  "name": "gir:atc",
+  "name": "gir-atc",
   "version": "2.5.1",
   "type": "spoke",
   "description": "Agentic traffic control — multi-agent dispatch and coordination patterns",
