@@ -4,3 +4,4 @@
 .env
 .enrc
 graphify-out/
+.worktrees/

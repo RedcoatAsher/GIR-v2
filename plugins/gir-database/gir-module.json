@@ -1,9 +1,9 @@
 {
   "name": "gir-database",
-  "version": "2.0.0",
+  "version": "2.5.1",
   "type": "spoke",
   "description": "Database management agents and tools — Supabase",
-  "requires": ["gir"],
+  "requires": ["gir-core"],
   "provides": {
     "agents": [],
     "skills": ["database-tools"],

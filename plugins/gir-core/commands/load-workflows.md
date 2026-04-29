@@ -6,4 +6,4 @@ Load the GIR workflows skill for this session.
 
 ## Instructions
 
-Read and apply the full content of `plugins/gir/skills/workflows/SKILL.md`. Confirm loaded with: "Workflows skill loaded."
+Read and apply the full content of `plugins/gir-core/skills/workflows/SKILL.md`. Confirm loaded with: "Workflows skill loaded."
