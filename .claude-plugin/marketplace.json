@@ -7,8 +7,8 @@
   },
   "plugins": [
     {
-      "name": "gir",
-      "source": "./plugins/gir",
+      "name": "gir-core",
+      "source": "./plugins/gir-core",
       "description": "Core agents, routing-stub orchestration, workflows, and best practices for any Claude Code project",
       "version": "2.2.0",
       "category": "productivity",

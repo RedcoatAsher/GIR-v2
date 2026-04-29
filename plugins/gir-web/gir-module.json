@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "type": "spoke",
   "description": "Frontend/fullstack agents and design skills",
-  "requires": ["gir"],
+  "requires": ["gir-core"],
   "provides": {
     "agents": ["docs-fetcher", "deploy-manager", "ui-generator"],
     "skills": ["design-principles", "frontend-design", "web-tools"],
