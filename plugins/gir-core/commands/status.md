@@ -15,7 +15,7 @@ Look for plugin directories under `~/.claude/plugins/`. Check whether these dire
 - `~/.claude/plugins/gir-core/`
 - `~/.claude/plugins/gir-web/`
 - `~/.claude/plugins/gir-automation/`
-- `~/.claude/plugins/gir-tools/`
+- `~/.claude/plugins/gir:atc/`
 - `~/.claude/plugins/gir-database/`
 - `~/.claude/plugins/gir-ai/`
 - `~/.claude/plugins/gir-qa/`
@@ -78,7 +78,7 @@ Plugins (~/.claude/plugins/)
   gir             [installed | not found]  ← required
   gir-web         [installed | not found]
   gir-automation  [installed | not found]
-  gir-tools       [installed | not found]
+  gir:atc         [installed | not found]
   gir-database    [installed | not found]
   gir-ai          [installed | not found]
   gir-qa          [installed | not found]
