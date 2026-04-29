@@ -1,6 +1,6 @@
 {
   "name": "gir-automation",
-  "version": "2.0.0",
+  "version": "2.5.1",
   "description": "Requires gir. n8n workflow builder agent for Claude Code",
   "author": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
   "homepage": "https://github.com/rivit-studio/GIR",

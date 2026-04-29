@@ -1,6 +1,6 @@
 {
   "name": "gir-web",
-  "version": "2.0.0",
+  "version": "2.5.1",
   "description": "Requires gir. Frontend/fullstack agents and design skills for Claude Code",
   "author": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
   "homepage": "https://github.com/rivit-studio/GIR",

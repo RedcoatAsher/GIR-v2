@@ -2,7 +2,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/rivit-studio/GIR?style=social)](https://github.com/rivit-studio/GIR/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/rivit-studio/GIR)](https://github.com/rivit-studio/GIR/commits/main)
 [![GitHub issues](https://img.shields.io/github/issues/rivit-studio/GIR)](https://github.com/rivit-studio/GIR/issues)
-![Static Badge](https://img.shields.io/badge/version-2.2.0-blue)
+![Static Badge](https://img.shields.io/badge/version-2.5.1-blue)
 ![Static Badge](https://img.shields.io/badge/works_with-claude_code-orange)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/rivit-studio/GIR/pulls)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -60,8 +60,8 @@ graph TD
     gir --> auto("**gir-automation**
     n8n-builder")
 
-    gir --> tools("**gir-tools**
-    agenthub")
+    gir --> tools("**gir:atc**
+    multi-agent dispatch")
 
     gir --> db("**gir-database**
     Supabase MCP")
@@ -195,7 +195,7 @@ claude plugin install gir
 ```bash
 claude plugin install gir-web           # Frontend/fullstack (v0, Figma, Vercel)
 claude plugin install gir-automation    # n8n workflow automation
-claude plugin install gir-tools         # AgentHub + team coordination
+claude plugin install gir:atc            # Agentic traffic control — multi-agent coordination
 claude plugin install gir-database      # Database management (Supabase)
 claude plugin install gir-ai            # AI delegation (Gemini-CLI, Codex)
 claude plugin install gir-qa            # QA & review (CodeRabbit, Jules)
@@ -263,10 +263,10 @@ Then run `/gir:init-setup` to scaffold your project.
 
 | Module | Description | Includes | Who needs it |
 |--------|-------------|----------|--------------|
-| [gir](plugins/gir/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 7 agents, 8 skills, 12 commands, SessionStart hook, sequential-thinking MCP | Everyone |
+| [gir](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 7 agents, 8 skills, 12 commands, SessionStart hook, sequential-thinking MCP | Everyone |
 | [gir-web](plugins/gir-web/) | Frontend and fullstack tooling — v0, Figma, Vercel | 3 agents, 3 skills, 5 MCP servers | Frontend/fullstack devs |
 | [gir-automation](plugins/gir-automation/) | n8n workflow building | 1 agent, 1 skill, n8n MCP | Teams using n8n |
-| [gir-tools](plugins/gir-tools/) | AgentHub integration and team coordination | 2 agents, 2 skills | Power users running agent workflows |
+| [gir:atc](plugins/gir-atc/) | Agentic traffic control — multi-agent dispatch and coordination patterns | | Advanced multi-agent coordination |
 | [gir-database](plugins/gir-database/) | Database management — Supabase | 1 skill, Supabase MCP | Projects using Supabase |
 | [gir-ai](plugins/gir-ai/) | AI tool delegation — Gemini-CLI, Codex | 1 skill | Users with external AI tools |
 | [gir-qa](plugins/gir-qa/) | QA & review tools — CodeRabbit, Jules | 1 skill, 2 MCP servers | Teams using automated code review |
@@ -430,7 +430,7 @@ How GIR works day-to-day (session-start, routing rules, Graphify gate, delegatio
 **Spokes** (optional, domain-specific):
 - gir-web: v0, Figma, Vercel tools
 - gir-automation: n8n builder
-- gir-tools: AgentHub team coordination
+- gir:atc: Agentic traffic control — multi-agent dispatch and coordination
 - gir-database: Supabase
 - gir-ai: External AI tools (Gemini-CLI, Codex)
 - gir-qa: Code review (CodeRabbit, Jules)

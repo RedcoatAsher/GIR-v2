@@ -64,7 +64,7 @@ Do not wait for user to type `/gir:parallel` — detect and invoke automatically
 ## Delegation Tiers
 
 **Tier 1 — Always deploy:**
-- `sequential-thinking`: complex tasks (>3 steps), architecture, debugging, refactors (3+ files)
+- `gir-sequential-thinking`: complex tasks (>3 steps), architecture, debugging, refactors (3+ files)
 - `code-reviewer`: before every commit, after major tasks
 - `Explore agent`: task involves >5 files, or "where is X" / "how does X work" questions
 
