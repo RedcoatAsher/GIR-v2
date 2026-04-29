@@ -31,12 +31,12 @@
       "keywords": ["n8n", "workflows", "automation"]
     },
     {
-      "name": "gir-tools",
-      "source": "./plugins/gir-tools",
-      "description": "Power user tools — AgentHub, subtask parallel execution, team coordination",
+      "name": "gir:atc",
+      "source": "./plugins/gir-atc",
+      "description": "Agentic traffic control — multi-agent dispatch, coordination patterns, and session routing",
       "version": "2.0.0",
       "category": "productivity",
-      "keywords": ["agenthub", "subtask", "parallel", "multi-session"]
+      "keywords": ["agentic", "traffic-control", "coordination", "dispatch", "multi-agent"]
     },
     {
       "name": "gir-database",

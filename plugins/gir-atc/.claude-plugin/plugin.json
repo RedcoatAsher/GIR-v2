@@ -1,0 +1,10 @@
+{
+  "name": "gir:atc",
+  "version": "2.0.0",
+  "description": "Requires gir-core. Agentic traffic control — multi-agent dispatch, coordination patterns, and session routing",
+  "author": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
+  "homepage": "https://github.com/rivit-studio/GIR",
+  "repository": "https://github.com/rivit-studio/GIR",
+  "license": "MIT",
+  "keywords": ["agentic", "traffic-control", "coordination", "dispatch", "multi-agent"]
+}

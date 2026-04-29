@@ -1,0 +1,13 @@
+{
+  "name": "gir:atc",
+  "version": "2.0.0",
+  "type": "spoke",
+  "description": "Agentic traffic control — multi-agent dispatch and coordination patterns",
+  "requires": ["gir-core"],
+  "provides": {
+    "agents": [],
+    "skills": [],
+    "commands": [],
+    "mcp": {}
+  }
+}
