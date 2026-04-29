@@ -1,6 +1,6 @@
 {
   "name": "gir-migrate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Requires gir. One-time migration tool — converts GSD 2.0 project files (.gsd/) to GIR format (.gir/). Install, migrate, uninstall.",
   "author": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
   "homepage": "https://github.com/rivit-studio/GIR",

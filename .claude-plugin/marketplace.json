@@ -3,14 +3,14 @@
   "owner": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
   "metadata": {
     "description": "GIR — Modular Claude Code productivity ecosystem",
-    "version": "2.0.0"
+    "version": "2.5.1"
   },
   "plugins": [
     {
       "name": "gir-core",
       "source": "./plugins/gir-core",
       "description": "Core agents, routing-stub orchestration, workflows, and best practices for any Claude Code project",
-      "version": "2.2.0",
+      "version": "2.5.1",
       "category": "productivity",
       "keywords": ["agents", "workflows", "best-practices", "delegation", "code-review"]
     },
@@ -18,7 +18,7 @@
       "name": "gir-web",
       "source": "./plugins/gir-web",
       "description": "Frontend/fullstack agents and design skills",
-      "version": "2.0.0",
+      "version": "2.5.1",
       "category": "web-development",
       "keywords": ["frontend", "design", "deployment", "ui-generator"]
     },
@@ -26,7 +26,7 @@
       "name": "gir-automation",
       "source": "./plugins/gir-automation",
       "description": "n8n workflow builder agent",
-      "version": "2.0.0",
+      "version": "2.5.1",
       "category": "automation",
       "keywords": ["n8n", "workflows", "automation"]
     },
@@ -34,7 +34,7 @@
       "name": "gir:atc",
       "source": "./plugins/gir-atc",
       "description": "Agentic traffic control — multi-agent dispatch, coordination patterns, and session routing",
-      "version": "2.0.0",
+      "version": "2.5.1",
       "category": "productivity",
       "keywords": ["agentic", "traffic-control", "coordination", "dispatch", "multi-agent"]
     },
@@ -42,7 +42,7 @@
       "name": "gir-database",
       "source": "./plugins/gir-database",
       "description": "Database management — Supabase MCP tools",
-      "version": "2.0.0",
+      "version": "2.5.1",
       "category": "database",
       "keywords": ["supabase", "database", "sql", "migrations"]
     },
@@ -50,7 +50,7 @@
       "name": "gir-ai",
       "source": "./plugins/gir-ai",
       "description": "AI tool delegation — Gemini-CLI, Codex, and other AI integrations",
-      "version": "2.0.0",
+      "version": "2.5.1",
       "category": "ai-tools",
       "keywords": ["gemini", "codex", "ai", "delegation"]
     },
@@ -58,7 +58,7 @@
       "name": "gir-qa",
       "source": "./plugins/gir-qa",
       "description": "QA & review tools — CodeRabbit PR reviews, Jules AI delegation",
-      "version": "2.0.0",
+      "version": "2.5.1",
       "category": "quality",
       "keywords": ["coderabbit", "jules", "code-review", "qa"]
     },
@@ -66,7 +66,7 @@
       "name": "gir-migrate",
       "source": "./plugins/gir-migrate",
       "description": "One-time GSD 2.0 → GIR migration tool. Install, migrate, uninstall.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "utility",
       "keywords": ["migration", "gsd", "setup", "one-time"]
     }
