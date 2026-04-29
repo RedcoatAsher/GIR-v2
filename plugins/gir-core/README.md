@@ -141,7 +141,7 @@ No additional configuration required — it runs as part of the plugin.
 
 - [gir-web](../gir-web/) — adds frontend/fullstack agents and design skills
 - [gir-automation](../gir-automation/) — adds n8n workflow building
-- [gir:atc](../gir-atc/) — adds AgentHub integration and agent team coordination
+- [gir-atc](../gir-atc/) — adds AgentHub integration and agent team coordination
 - [gir-database](../gir-database/) — adds Supabase database management tools
 - [gir-ai](../gir-ai/) — adds AI tool delegation patterns (Gemini-CLI, Codex)
 - [gir-qa](../gir-qa/) — adds QA and review tools (CodeRabbit, Jules)

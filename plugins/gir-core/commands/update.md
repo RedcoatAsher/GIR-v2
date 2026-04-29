@@ -16,7 +16,7 @@ Run the following to see what GIR plugins are currently installed and if updates
 claude plugin list
 ```
 
-Read the output. Identify which GIR plugins are installed (gir, gir-web, gir-automation, gir:atc, gir-database, gir-ai, gir-qa) and whether any show available updates.
+Read the output. Identify which GIR plugins are installed (gir, gir-web, gir-automation, gir-atc, gir-database, gir-ai, gir-qa) and whether any show available updates.
 
 ### Step 2: Show current state
 
@@ -47,7 +47,7 @@ If other GIR spoke plugins are installed, upgrade them too:
 ```bash
 claude plugin upgrade gir-web        # if installed
 claude plugin upgrade gir-automation # if installed
-claude plugin upgrade gir:atc        # if installed
+claude plugin upgrade gir-atc        # if installed
 claude plugin upgrade gir-database   # if installed
 claude plugin upgrade gir-ai         # if installed
 claude plugin upgrade gir-qa         # if installed
