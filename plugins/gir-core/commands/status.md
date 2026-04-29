@@ -12,7 +12,7 @@ Follow these steps in order. Gather all information before presenting the report
 
 Look for plugin directories under `~/.claude/plugins/`. Check whether these directories exist:
 
-- `~/.claude/plugins/gir/`
+- `~/.claude/plugins/gir-core/`
 - `~/.claude/plugins/gir-web/`
 - `~/.claude/plugins/gir-automation/`
 - `~/.claude/plugins/gir-tools/`

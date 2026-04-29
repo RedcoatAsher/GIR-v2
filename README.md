@@ -263,7 +263,7 @@ Then run `/gir:init-setup` to scaffold your project.
 
 | Module | Description | Includes | Who needs it |
 |--------|-------------|----------|--------------|
-| [gir](plugins/gir/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 7 agents, 8 skills, 12 commands, SessionStart hook, sequential-thinking MCP | Everyone |
+| [gir](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 7 agents, 8 skills, 12 commands, SessionStart hook, sequential-thinking MCP | Everyone |
 | [gir-web](plugins/gir-web/) | Frontend and fullstack tooling — v0, Figma, Vercel | 3 agents, 3 skills, 5 MCP servers | Frontend/fullstack devs |
 | [gir-automation](plugins/gir-automation/) | n8n workflow building | 1 agent, 1 skill, n8n MCP | Teams using n8n |
 | [gir-tools](plugins/gir-tools/) | AgentHub integration and team coordination | 2 agents, 2 skills | Power users running agent workflows |

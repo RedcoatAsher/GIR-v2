@@ -6,4 +6,4 @@ Load the GIR ralph-loops skill for this session.
 
 ## Instructions
 
-Read and apply the full content of `plugins/gir/skills/ralph-loops/SKILL.md`. Confirm loaded with: "Ralph loops skill loaded."
+Read and apply the full content of `plugins/gir-core/skills/ralph-loops/SKILL.md`. Confirm loaded with: "Ralph loops skill loaded."
