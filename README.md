@@ -375,7 +375,7 @@ claude plugin list
 ### Update a specific module
 
 ```bash
-claude plugin upgrade gir
+claude plugin upgrade gir-core
 claude plugin upgrade gir-web    # Update specific modules
 ```
 
@@ -390,6 +390,29 @@ claude plugin upgrade-all
 - Your `CLAUDE-project.md` and `.gir/` files are never touched
 - Memory bank files persist across updates
 - Session hooks are refreshed with latest logic
+
+---
+
+## Upgrading from v2.2.0 or Earlier
+
+Two plugins were renamed in v2.5.1. `claude plugin upgrade-all` won't catch these — the old plugin names become orphaned. Run the migration manually:
+
+```bash
+# Remove renamed plugins
+claude plugin uninstall gir         # was the core hub
+claude plugin uninstall gir-tools   # if you had it installed
+
+# Install under new names
+claude plugin install gir-core
+claude plugin install gir-atc       # only if you had gir-tools
+
+# Update everything else (version bumps only, names unchanged)
+claude plugin upgrade-all
+```
+
+All other plugins (`gir-web`, `gir-automation`, `gir-database`, `gir-ai`, `gir-qa`, `gir-migrate`) upgrade normally with `upgrade-all`.
+
+Your `.gir/` memory bank and project files are untouched by this process.
 
 ---
 
