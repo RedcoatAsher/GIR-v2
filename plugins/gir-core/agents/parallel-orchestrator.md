@@ -1,6 +1,7 @@
 ---
 name: parallel-orchestrator
 description: Parallel task orchestration using Claude Code's native Agent tool with worktree isolation. Use when the user wants to parallelize work, dispatch agents, or run independent tasks concurrently.
+model: sonnet
 ---
 
 # Parallel Orchestrator
@@ -49,18 +50,20 @@ For dependent streams: complete blocking streams first, then dispatch dependents
 
 Log dispatch in `.gir/REVIEW-LOG.md`:
 ```
-[timestamp] parallel-orchestrator: dispatched N agents for [task summary]
+[timestamp] parallel-orchestrator: dispatched N agents (models: sonnet×2, haiku×1) for [task summary]
 Streams: [A, B, C]
 ```
 
 ### Phase 3 — Review
 
 When all agents return:
-1. Read each status (DONE / DONE_WITH_CONCERNS / BLOCKED)
-2. BLOCKED → stop, escalate to user with full agent context
-3. DONE_WITH_CONCERNS → continue merge but flag concerns clearly
-4. Check for unexpected file overlap
-5. Summarize what each agent did
+1. Parse each agent's fenced `agent_result` block (schema in the `parallel-agents` skill)
+2. Missing or malformed `agent_result` → treat as DONE_WITH_CONCERNS and verify the worktree diff manually before merging
+3. `escalation_hit: true` → stop, escalate to user with full agent context
+4. Other BLOCKED or failed streams → apply the Failure Handling ladder from the `parallel-agents` skill — do not improvise retries
+5. DONE_WITH_CONCERNS → continue merge but flag concerns clearly
+6. Check for unexpected file overlap
+7. Summarize what each agent did
 
 ### Phase 4 — Merge and Gate
 
@@ -70,6 +73,10 @@ After review:
 3. Run lint/typecheck/tests on full codebase
 4. If DOD passes → report complete with summary
 5. If DOD fails → fix in main session, do not re-parallelize for the fix
+6. Log completion in `.gir/REVIEW-LOG.md` with observable facts only:
+   ```
+   [timestamp] parallel-orchestrator: completed [task summary] — N streams, [duration], retries: R
+   ```
 
 ### Anti-patterns
 
