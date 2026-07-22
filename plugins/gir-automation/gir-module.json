@@ -1,6 +1,6 @@
 {
   "name": "gir-automation",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "type": "spoke",
   "description": "n8n workflow builder agent",
   "requires": ["gir-core"],

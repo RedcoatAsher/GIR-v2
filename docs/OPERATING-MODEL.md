@@ -72,6 +72,20 @@ Agent Teams cost a full context window per member. Justify before spawning.
 
 ---
 
+## Model Routing
+
+```text
+haiku   → mechanical + lookup: docs fetch, log scan, file inventory, boilerplate
+sonnet  → default: implementation, review, debugging, orchestration
+inherit → final implementation in autonomous runs, architecture, ambiguous scope
+```
+
+Pin models in agent frontmatter; state per-stream models at parallel dispatch. Routing above a task's tier requires one justification line in `.gir/REVIEW-LOG.md`. External-CLI delegation thresholds live in gir-ai's `ai-delegation` skill.
+
+*Defined in routing-stub. This is a mirror for human readers.*
+
+---
+
 ## Completion Gate
 
 Task is complete only when:
@@ -80,6 +94,29 @@ Task is complete only when:
 - No unresolved must-escalate conditions
 
 Check `.gir/DOD.md` before every completion claim. ralph-loops must also check DOD before emitting `COMPLETE`.
+
+---
+
+## Context Economy (prompt caching)
+
+Claude Code caches prompt prefixes automatically. The always-loaded skills (`routing-stub`, `core-practices`, `state-machines`) and every hook prompt are cache-prefix material — treat them accordingly:
+
+- Keep them **stable within a release** — no volatile state (dates, project facts, run state). Volatile state lives in `.gir/` files read at runtime.
+- Every addition to an always-loaded file needs a justification in the release plan. Default home for new rules is an on-demand skill or a doc.
+
+---
+
+## Workflow Index
+
+| Intent | Command |
+|--------|---------|
+| Full project setup | `/gir:init-setup` |
+| Parallelize independent work | `/gir:parallel` |
+| Unattended plan execution | `/gir:run` |
+| Memory-bank freshness audit | `/gir:drift-check` |
+| Ecosystem health check | `/gir:doctor` |
+| Session/module status | `/gir:status`, `/gir:modules` |
+| Load on-demand conventions | `/gir:load-specgates`, `/gir:load-workflows`, `/gir:load-ralph` |
 
 ---
 
@@ -92,8 +129,16 @@ One source per rule. No duplicates.
 | Session-start steps | routing-stub | core-practices |
 | Graphify gate | routing-stub | anywhere else |
 | Delegation tiers + sequential-thinking | routing-stub | core-practices |
+| Model routing | routing-stub | parallel-agents, agent prose, core-practices |
 | Escalation trigger | routing-stub | core-practices |
 | Completion gate | routing-stub + DOD.md | core-practices |
+| Parallel failure handling (retry/fallback) | parallel-agents | parallel-orchestrator, autonomous-executor |
+| `agent_result` return schema | parallel-agents | parallel-orchestrator |
+| Context checkpointing | autonomous-mode | autonomous-executor |
+| Memory-first lookup | core-practices | debugger, routing-stub |
+| External first-pass review | ai-delegation (gir-ai) | code-reviewer, qa-tools |
+| Prefix stability / context economy | OPERATING-MODEL.md | any skill |
+| Dispatch observability (agents+models+duration) | parallel-orchestrator | routing-stub |
 | MCP tool strategy | core-practices | routing-stub |
 | Anti-patterns | core-practices | routing-stub |
 | Git/file conventions | core-practices | routing-stub |

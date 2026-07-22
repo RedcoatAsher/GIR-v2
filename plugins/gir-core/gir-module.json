@@ -1,6 +1,6 @@
 {
   "name": "gir-core",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "type": "core",
   "description": "Core agents, workflows, and best practices",
   "requires": [],
@@ -38,7 +38,8 @@
       "update",
       "init-setup",
       "parallel",
-      "run"
+      "run",
+      "doctor"
     ],
     "mcp": {
       "gir-sequential-thinking": {

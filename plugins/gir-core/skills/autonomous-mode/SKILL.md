@@ -92,6 +92,14 @@ When resuming after cap:
    [timestamp] RESUMED after cap interruption. Resuming phase [N] at: [current_task]
    ```
 
+## Context Checkpointing
+
+Long runs outlive their context. At every phase boundary, rewrite `.gir/CLAUDE-activeContext.md` — current phase, decisions made, next steps — so a fresh session can resume from files alone.
+
+- On any resume, treat `.gir/` file state as authoritative over remembered conversation
+- Context feels heavy mid-run → checkpoint first, then continue
+- Never checkpoint after compaction — by then detail is already lost
+
 ## Idempotency Requirement
 
 Phases must be safe to re-run. autonomous-executor should:

@@ -1,6 +1,6 @@
 {
   "name": "gir-qa",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "description": "Requires gir. QA & review tools — CodeRabbit PR reviews and Jules AI delegation for Claude Code",
   "author": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
   "homepage": "https://github.com/rivit-studio/GIR",
