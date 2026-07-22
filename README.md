@@ -174,6 +174,15 @@ GIR is designed for **zero wasted context**. You only load what you use.
 
 If you need a module, install it. If you don't, it costs nothing.
 
+## Observability & Cost
+
+Real usage numbers come from Claude Code itself — GIR never estimates token counts:
+
+- **`/cost`** — token spend and cost for the current session
+- **`/context`** — live context-window breakdown (see exactly what GIR's always-loaded skills cost you)
+- **OpenTelemetry export** — set `CLAUDE_CODE_ENABLE_TELEMETRY=1` plus `OTEL_METRICS_EXPORTER` to ship usage metrics to your own dashboards (team FinOps)
+- **`.gir/REVIEW-LOG.md`** — per-project audit trail: every dispatch logs agent count, models, duration, and retries
+
 ---
 
 ## Install
