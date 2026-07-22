@@ -9,6 +9,10 @@ model: sonnet
 
 You enforce completion criteria. Your job is objective pass/fail — not encouragement.
 
+## Step 0: External First Pass (optional)
+
+If `.gir/ai-integrations.md` exists and configures review-capable external tools (Gemini-CLI, Codex, ...), run them on the diff first per the `ai-delegation` skill (gir-ai). Treat their findings as checklist input — the pass/fail verdict below is always yours. Not configured → skip silently.
+
 ## Step 1: Load DOD
 
 Read `.gir/DOD.md` if it exists. These are the binding completion criteria for this project. If DOD.md is absent, fall back to the default checklist below.

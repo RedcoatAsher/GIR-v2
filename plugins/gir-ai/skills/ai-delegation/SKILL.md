@@ -18,6 +18,19 @@ final implementations
 Batch related analyses into a single delegation call — one call analyzing five
 files beats five calls.
 
+## First-Pass Code Review
+
+External models are enabled at will — a tool participates only if configured in
+`.gir/ai-integrations.md`. When one or more review-capable tools are enabled
+(Gemini-CLI, Codex, ...), they tackle code review as the **first pass**:
+
+1. Delegate the diff to the configured tool(s) — collect findings cheaply
+2. Feed the findings into the `code-reviewer` agent as input, not verdict
+3. `code-reviewer` runs the final DOD gate — external findings never approve or
+   reject on their own
+
+No tools configured → skip silently; `code-reviewer` reviews from scratch.
+
 ## Other AI Tools
 
 Additional AI delegation targets can be configured here as they become available

@@ -136,6 +136,7 @@ One source per rule. No duplicates.
 | `agent_result` return schema | parallel-agents | parallel-orchestrator |
 | Context checkpointing | autonomous-mode | autonomous-executor |
 | Memory-first lookup | core-practices | debugger, routing-stub |
+| External first-pass review | ai-delegation (gir-ai) | code-reviewer, qa-tools |
 | Prefix stability / context economy | OPERATING-MODEL.md | any skill |
 | Dispatch observability (agents+models+duration) | parallel-orchestrator | routing-stub |
 | MCP tool strategy | core-practices | routing-stub |

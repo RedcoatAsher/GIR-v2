@@ -14,6 +14,7 @@ Orchestrator AI-practices release. ADR: [`docs/decisions/2026-07-22-orchestrator
 - **`/gir:doctor`** — deterministic ecosystem health check (manifest JSON validity, version lock-step, GIR.modules registry, memory-bank presence)
 - **Context Economy rule** — always-loaded skills and hook prompts are cache-prefix material: stable within a release, no volatile state (OPERATING-MODEL.md)
 - **Memory-first lookup** — check `.gir/` troubleshooting/patterns/decisions before re-deriving (core-practices)
+- **External first-pass code review** — models configured in `.gir/ai-integrations.md` (Gemini-CLI, Codex, ...) are enabled at will and tackle code review as the first pass; the `code-reviewer` agent keeps the final DOD verdict
 - **Observability & Cost docs** — README section on `/cost`, `/context`, OpenTelemetry export; dispatch logs now carry agent count, models, duration, retries
 - Root `CHANGELOG.md`; Workflow Index and new Rule Authority Map rows in OPERATING-MODEL.md
 
