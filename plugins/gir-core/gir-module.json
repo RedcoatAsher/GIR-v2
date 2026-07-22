@@ -38,7 +38,8 @@
       "update",
       "init-setup",
       "parallel",
-      "run"
+      "run",
+      "doctor"
     ],
     "mcp": {
       "gir-sequential-thinking": {

@@ -50,7 +50,7 @@ graph TD
     debugger · team-lead · spec-analyst
     parallel-orchestrator · autonomous-executor
     ────────────────────
-    12 commands · 8 skills · hooks · MCP")
+    13 commands · 8 skills · hooks · MCP")
 
     gir --> web("**gir-web**
     docs-fetcher
@@ -93,7 +93,7 @@ flowchart TD
 
     H -->|slash command| I["**/gir:command**
     init-setup · update · status
-    drift-check · modules
+    drift-check · doctor · modules
     init-project · init-memory-bank
     parallel · run
     load-workflows · load-specgates · load-ralph"]
@@ -272,7 +272,7 @@ Then run `/gir:init-setup` to scaffold your project.
 
 | Module | Description | Includes | Who needs it |
 |--------|-------------|----------|--------------|
-| [gir](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 7 agents, 8 skills, 12 commands, SessionStart hook, sequential-thinking MCP | Everyone |
+| [gir](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 7 agents, 8 skills, 13 commands, SessionStart hook, sequential-thinking MCP | Everyone |
 | [gir-web](plugins/gir-web/) | Frontend and fullstack tooling — v0, Figma, Vercel | 3 agents, 3 skills, 5 MCP servers | Frontend/fullstack devs |
 | [gir-automation](plugins/gir-automation/) | n8n workflow building | 1 agent, 1 skill, n8n MCP | Teams using n8n |
 | [gir-atc](plugins/gir-atc/) | Agentic traffic control — multi-agent dispatch and coordination patterns | | Advanced multi-agent coordination |
@@ -305,6 +305,7 @@ Then run `/gir:init-setup` to scaffold your project.
 | `/gir:status` | Show active context, current plan, installed modules |
 | `/gir:modules` | List installed modules and their tools |
 | `/gir:drift-check` | Detect stale references and doc drift |
+| `/gir:doctor` | Deterministic ecosystem health check (manifests, versions, registry, memory bank) |
 | `/gir:load-workflows` | Load workflows skill on demand |
 | `/gir:load-specgates` | Load specgates skill on demand |
 | `/gir:load-ralph` | Load ralph-loops skill on demand |
@@ -455,7 +456,7 @@ How GIR works day-to-day (session-start, routing rules, Graphify gate, delegatio
 
 **gir** (required):
 - 7 agents: feature-architect, code-reviewer, debugger, spec-analyst, team-lead, parallel-orchestrator, autonomous-executor
-- 12 slash commands under `/gir:`
+- 13 slash commands under `/gir:`
 - Core workflows, delegation rules, memory bank system
 - Session start hook
 
