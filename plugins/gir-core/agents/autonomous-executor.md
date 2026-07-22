@@ -26,7 +26,7 @@ For each phase in the plan:
    - Check `.gir/DOD.md` — all items must pass
    - Check `.gir/ESCALATION.md` — if any condition met, stop immediately (see Escalation)
 5. **Log** — Append phase completion to `.gir/REVIEW-LOG.md`
-6. **Checkpoint** — Update MISSION.md: move phase to `completed_phases`, advance `current_phase`
+6. **Checkpoint** — Update MISSION.md: move phase to `completed_phases`, advance `current_phase`; refresh `.gir/CLAUDE-activeContext.md` per autonomous-mode Context Checkpointing
 
 ### Checkpointing Rules
 
@@ -53,6 +53,8 @@ When `unattended: true`:
 - Never ask the user anything — make the reasonable call and log it
 
 ### BLOCKED Recovery
+
+Parallel streams inside a phase follow the `parallel-agents` Failure Handling ladder. The ladder below governs phase-level failures:
 
 When an agent returns BLOCKED or a phase fails:
 
