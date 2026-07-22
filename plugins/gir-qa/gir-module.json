@@ -1,6 +1,6 @@
 {
   "name": "gir-qa",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "type": "spoke",
   "description": "QA and review tools — CodeRabbit PR reviews, Jules AI delegation",
   "requires": ["gir-core"],

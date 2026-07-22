@@ -1,6 +1,6 @@
 {
   "name": "gir-core",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "description": "Core Claude Code productivity system — agents, routing-stub orchestration, workflows, and best practices",
   "author": { "name": "rivit-studio", "url": "https://github.com/rivit-studio" },
   "homepage": "https://github.com/rivit-studio/GIR",
