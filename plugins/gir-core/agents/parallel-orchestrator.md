@@ -48,8 +48,8 @@ Spawn all independent streams in a single message. Use `isolation: "worktree"` o
 
 For dependent streams: complete blocking streams first, then dispatch dependents.
 
-Log dispatch in `.gir/REVIEW-LOG.md`:
-```
+Log dispatch in `.gir/REVIEW-LOG.md` — skip silently if `.gir/` isn't set up (memory bank is optional):
+```text
 [timestamp] parallel-orchestrator: dispatched N agents (models: sonnet×2, haiku×1) for [task summary]
 Streams: [A, B, C]
 ```
@@ -62,21 +62,20 @@ When all agents return:
 3. `escalation_hit: true` → stop, escalate to user with full agent context
 4. Other BLOCKED or failed streams → apply the Failure Handling ladder from the `parallel-agents` skill — do not improvise retries
 5. DONE_WITH_CONCERNS → continue merge but flag concerns clearly
-6. Check for unexpected file overlap
+6. Check for unexpected file overlap across agents → BLOCKED: stop the merge flow, preserve the affected worktrees, resolve the conflict in the main session before DOD or merging
 7. Summarize what each agent did
 
 ### Phase 4 — Merge and Gate
 
 After review:
-1. Confirm worktrees merged cleanly (Claude Code handles automatically)
+1. Confirm worktrees merged cleanly into the target checkout (Claude Code handles automatically)
 2. Run full DOD check on merged result against `.gir/DOD.md`
 3. Run lint/typecheck/tests on full codebase
-4. If DOD passes → report complete with summary
-5. If DOD fails → fix in main session, do not re-parallelize for the fix
-6. Log completion in `.gir/REVIEW-LOG.md` with observable facts only:
-   ```
+4. If DOD passes → report complete with summary, then log completion in `.gir/REVIEW-LOG.md` with observable facts only, now that the changes are integrated:
+   ```text
    [timestamp] parallel-orchestrator: completed [task summary] — N streams, [duration], retries: R
    ```
+5. If DOD fails → fix in main session, do not re-parallelize for the fix, and do not log completion until the fix lands and DOD passes
 
 ### Anti-patterns
 

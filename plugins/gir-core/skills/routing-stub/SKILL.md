@@ -86,7 +86,7 @@ sonnet  → default: implementation, review, debugging, orchestration
 inherit → final implementation in autonomous runs, architecture, ambiguous scope
 ```
 
-Routing above a task's tier requires one justification line in `.gir/REVIEW-LOG.md`. External-CLI delegation thresholds live in the `ai-delegation` skill (gir-ai).
+Routing above a task's tier requires one justification line in `.gir/REVIEW-LOG.md` — skip silently if `.gir/` isn't set up (memory bank is optional). External-CLI delegation thresholds live in the `ai-delegation` skill (gir-ai).
 
 ## Task Priority Order
 

@@ -54,13 +54,13 @@ When `unattended: true`:
 
 ### BLOCKED Recovery
 
-Parallel streams inside a phase follow the `parallel-agents` Failure Handling ladder. The ladder below governs phase-level failures:
+Parallel streams inside a phase follow the `parallel-agents` Failure Handling ladder exactly — one retry (only if `retry_safe: true`), then fallback to the main session, then escalate if more than half the streams failed. Do not improvise a separate ladder for streams.
 
-When an agent returns BLOCKED or a phase fails:
+For a phase that fails outside of parallel streams (e.g. a single-agent phase), apply the same shape:
 
-1. **Attempt 1**: Retry the failed task with additional context from the error
-2. **Attempt 2** (if Attempt 1 fails): Try an alternative approach — log the pivot to REVIEW-LOG.md
-3. **Escalate** (if both fail): Stop the run. Write to MISSION.md:
+1. **Retry** (only if the failure looks safe to re-run): retry the failed task once with additional context from the error
+2. **Fallback** (if retry fails, or a retry isn't safe): absorb the phase into the main session and finish it directly — log the fallback to REVIEW-LOG.md
+3. **Escalate** (if fallback also fails): Stop the run. Write to MISSION.md:
    ```
    autonomous_run:
      status: escalated

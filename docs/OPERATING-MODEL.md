@@ -74,7 +74,7 @@ Agent Teams cost a full context window per member. Justify before spawning.
 
 ## Model Routing
 
-```
+```text
 haiku   → mechanical + lookup: docs fetch, log scan, file inventory, boilerplate
 sonnet  → default: implementation, review, debugging, orchestration
 inherit → final implementation in autonomous runs, architecture, ambiguous scope

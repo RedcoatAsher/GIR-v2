@@ -23,8 +23,8 @@ Check whether `.claude-plugin/marketplace.json` exists in the current directory.
 ls .gir/ 2>/dev/null
 ```
 
-- `.gir/` missing entirely → FAIL with remedy: `run /gir:init-memory-bank`
-- `.gir/` exists → verify the core files: `MISSION.md`, `CLAUDE-activeContext.md`, `ESCALATION.md`, `DOD.md`, `REVIEW-LOG.md`. Any missing → FAIL, list them.
+- `.gir/` missing entirely → SKIP: memory bank is optional (see README). Remedy if the project wants one: `run /gir:init-memory-bank`
+- `.gir/` exists → verify the core files: `MISSION.md`, `CLAUDE-activeContext.md`, `ESCALATION.md`, `DOD.md`, `REVIEW-LOG.md`. Any missing → FAIL, list them (a partial memory bank is worse than none).
 
 **Check 2.2 — Module registry coherent**
 
@@ -33,10 +33,10 @@ Read `.gir/GIR.modules` (missing → FAIL with remedy: restart the session so ho
 **Check 2.3 — Escalation conditions defined**
 
 ```bash
-grep -c "Must Escalate" .gir/ESCALATION.md
+[ -f .gir/ESCALATION.md ] && grep -c "Must Escalate" .gir/ESCALATION.md || echo "MISSING"
 ```
 
-Expected: ≥1. Zero → WARN: escalation gates are unset; autonomous runs will have no stop conditions.
+`.gir/ESCALATION.md` missing → WARN: no escalation file, autonomous runs will have no stop conditions. File present but count is zero → WARN: escalation gates are unset. Count ≥1 → PASS.
 
 ### Step 3: Repo checks (GIR development repo only)
 
@@ -71,19 +71,21 @@ Expected: identical lists. Difference → FAIL, name the orphan.
 
 **Check 3.4 — Hook registry drift**
 
-For gir-core: the agents, skills, and commands listed in the `hooks/hooks.json` GIR.modules entry must match `gir-module.json` `provides`. Compare by eye against:
+For gir-core: the agents, skills, and commands listed in the `hooks/hooks.json` GIR.modules entry must match `gir-module.json` `provides`. Diff deterministically:
 
 ```bash
-jq -r '.provides | {agents, skills, skills_on_demand, commands: (.commands)}' plugins/gir-core/gir-module.json
+prompt=$(jq -r '.hooks.SessionStart[0].hooks[0].prompt' plugins/gir-core/hooks/hooks.json)
+diff <(jq -r '.provides.agents + .provides.skills + .provides.skills_on_demand + .provides.commands | .[]' plugins/gir-core/gir-module.json | sort) \
+     <(echo "$prompt" | grep -E '^- \*\*(Agents|Skills|Commands)' | sed -E 's/^- \*\*[^*]+\*\*: //' | tr ', ' '\n' | grep -v '^$' | sort)
 ```
 
-Mismatch → FAIL, list the missing/extra names.
+Non-empty diff → FAIL, list the missing/extra names (`<` = in gir-module.json only, `>` = in hooks.json only).
 
 ### Step 4: Report
 
 Present one table, checks in order:
 
-```
+```text
 GIR Doctor
 ──────────
   [PASS|FAIL|WARN|SKIP]  2.1 Memory bank present

@@ -21,15 +21,21 @@ files beats five calls.
 ## First-Pass Code Review
 
 External models are enabled at will — a tool participates only if configured in
-`.gir/ai-integrations.md`. When one or more review-capable tools are enabled
-(Gemini-CLI, Codex, ...), they tackle code review as the **first pass**:
+`.gir/ai-integrations.md` **and** the user has explicitly consented to sending
+repository content to that external tool. No recorded consent → skip silently,
+same as no tools configured. When one or more review-capable tools are enabled
+and consented (Gemini-CLI, Codex, ...), they tackle code review as the **first
+pass**:
 
-1. Delegate the diff to the configured tool(s) — collect findings cheaply
-2. Feed the findings into the `code-reviewer` agent as input, not verdict
-3. `code-reviewer` runs the final DOD gate — external findings never approve or
+1. Redact secrets/PII from the diff (env values, keys, tokens, credentials) —
+   never send an unredacted diff externally
+2. Delegate the redacted diff to the configured tool(s) — collect findings cheaply
+3. Feed the findings into the `code-reviewer` agent as input, not verdict
+4. `code-reviewer` runs the final DOD gate — external findings never approve or
    reject on their own
 
-No tools configured → skip silently; `code-reviewer` reviews from scratch.
+No tools configured, or consent not given → skip silently; `code-reviewer`
+reviews from scratch.
 
 ## Other AI Tools
 

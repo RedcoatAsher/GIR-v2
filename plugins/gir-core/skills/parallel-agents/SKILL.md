@@ -37,14 +37,14 @@ Maximum useful parallelism: **4 agents**. Beyond that, coordination cost exceeds
 Spawn all agents in a single message (enables true concurrency):
 
 ```
-Agent({ prompt: "[focused task A]", isolation: "worktree" })
-Agent({ prompt: "[focused task B]", isolation: "worktree" })
-Agent({ prompt: "[focused task C]", isolation: "worktree" })
+Agent({ prompt: "[focused task A]", isolation: "worktree", model: "haiku" })
+Agent({ prompt: "[focused task B]", isolation: "worktree", model: "sonnet" })
+Agent({ prompt: "[focused task C]", isolation: "worktree", model: "inherit" })
 ```
 
 `isolation: "worktree"` gives each agent its own git worktree automatically — no manual branch or worktree management needed.
 
-Choose each agent's model per routing-stub Model Routing — mechanical streams get `haiku`, implementation streams `sonnet` or inherit. State the choice at dispatch.
+Choose each agent's model per routing-stub Model Routing — mechanical streams get `haiku`, implementation streams `sonnet` or inherit. Pass the chosen value in the `model` field of every `Agent(...)` call, as shown above.
 
 ## Agent Prompt Template
 
@@ -74,7 +74,7 @@ End your reply with exactly this fenced block:
 
 ```yaml
 agent_result:
-  status: DONE | DONE_WITH_CONCERNS | BLOCKED
+  status: DONE        # one of: DONE, DONE_WITH_CONCERNS, BLOCKED
   summary: "<one line>"
   files_changed: [<paths>]
   concerns: []            # required non-empty if status != DONE
@@ -89,17 +89,18 @@ agent_result:
 1. Parse each agent's fenced `agent_result` block
 2. If any agent returned BLOCKED → apply Failure Handling below
 3. If any agent returned DONE_WITH_CONCERNS → flag for human review
-4. Check for file conflicts across agents (should be none if decomposed correctly)
-5. Merge worktrees — Claude Code handles this automatically when agents complete
+4. Check for file conflicts across agents — unexpected overlap (should be none if decomposed correctly) is BLOCKED: stop, preserve the affected worktrees, resolve the conflict in the main session before merging
+5. Merge worktrees — Claude Code handles this automatically when agents complete, once no unresolved overlap remains
 6. Run full DOD check on merged result
 
 ## Failure Handling
 
 - `escalation_hit: true` → never retry. Stop and escalate to the user.
-- BLOCKED otherwise → retry once: fresh agent, fresh worktree, same Scope/Must-NOT-touch, failure summary appended to Context. Max 1 retry per stream, 2 per run.
+- BLOCKED with `retry_safe: false` → skip the retry, go straight to fallback below.
+- BLOCKED with `retry_safe: true` → retry once: fresh agent, fresh worktree, same Scope/Must-NOT-touch, failure summary appended to Context. Max 1 retry per stream, 2 per run.
 - Retry fails, or `retry_safe: false` → fallback: absorb the stream into the main session and finish it sequentially. Never spawn a third agent for the same stream.
 - More than half the streams failed → abandon the parallel run; finish sequentially or escalate.
-- Log every retry and fallback to `.gir/REVIEW-LOG.md`: `[timestamp] parallel-retry|parallel-fallback: stream, attempt, reason`.
+- Log every retry and fallback to `.gir/REVIEW-LOG.md`: `[timestamp] parallel-retry|parallel-fallback: stream, attempt, reason`. Skip silently if `.gir/` isn't set up (memory bank is optional).
 
 ## DOD Gate
 

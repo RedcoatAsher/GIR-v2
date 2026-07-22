@@ -181,7 +181,7 @@ Real usage numbers come from Claude Code itself — GIR never estimates token co
 - **`/cost`** — token spend and cost for the current session
 - **`/context`** — live context-window breakdown (see exactly what GIR's always-loaded skills cost you)
 - **OpenTelemetry export** — set `CLAUDE_CODE_ENABLE_TELEMETRY=1` plus `OTEL_METRICS_EXPORTER` to ship usage metrics to your own dashboards (team FinOps)
-- **`.gir/REVIEW-LOG.md`** — per-project audit trail: every dispatch logs agent count, models, duration, and retries
+- **`.gir/REVIEW-LOG.md`** — per-project audit trail: every dispatch logs agent count, models, duration, and retries (requires the memory bank — `/gir:init-memory-bank` — skipped silently if absent)
 
 ---
 
@@ -305,7 +305,7 @@ Then run `/gir:init-setup` to scaffold your project.
 | `/gir:status` | Show active context, current plan, installed modules |
 | `/gir:modules` | List installed modules and their tools |
 | `/gir:drift-check` | Detect stale references and doc drift |
-| `/gir:doctor` | Deterministic ecosystem health check (manifests, versions, registry, memory bank) |
+| `/gir:doctor` | Deterministic ecosystem health check (manifests, versions, registry, memory bank — SKIP if `.gir/` was never set up) |
 | `/gir:load-workflows` | Load workflows skill on demand |
 | `/gir:load-specgates` | Load specgates skill on demand |
 | `/gir:load-ralph` | Load ralph-loops skill on demand |

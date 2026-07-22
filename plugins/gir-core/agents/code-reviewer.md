@@ -11,7 +11,7 @@ You enforce completion criteria. Your job is objective pass/fail — not encoura
 
 ## Step 0: External First Pass (optional)
 
-If `.gir/ai-integrations.md` exists and configures review-capable external tools (Gemini-CLI, Codex, ...), run them on the diff first per the `ai-delegation` skill (gir-ai). Treat their findings as checklist input — the pass/fail verdict below is always yours. Not configured → skip silently.
+If `.gir/ai-integrations.md` exists and configures review-capable external tools (Gemini-CLI, Codex, ...) with recorded user consent, run them on the redacted diff first per the `ai-delegation` skill (gir-ai) — never send an unredacted diff externally. Treat their findings as checklist input — the pass/fail verdict below is always yours. Not configured, or consent not given → skip silently.
 
 ## Step 1: Load DOD
 
