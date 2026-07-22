@@ -76,6 +76,8 @@ See routing-stub Tier 1 — deploy for complex tasks (>3 steps), architecture, d
 | `.gir/REVIEW-LOG.md` | Review outcomes, audit trail |
 | `.gir/ESCALATION-LOG.md` | Escalation events with full context + timestamps |
 
+**Memory-first lookup**: before re-deriving anything, check the bank — errors → troubleshooting, conventions → patterns, "why is it like this" → decisions. Found it → reuse; solved something new → append it.
+
 **Workflow**: See routing-stub Session Start Protocol — authoritative for session init, escalation checks, and completion gates.
 
 ## Anti-Patterns
