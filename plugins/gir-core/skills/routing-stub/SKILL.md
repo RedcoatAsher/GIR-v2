@@ -80,7 +80,7 @@ Do not wait for user to type `/gir:parallel` — detect and invoke automatically
 
 Pin models at the agent level; inherit only for open-ended work.
 
-```
+```text
 haiku   → mechanical + lookup: docs fetch, log scan, file inventory, boilerplate
 sonnet  → default: implementation, review, debugging, orchestration
 inherit → final implementation in autonomous runs, architecture, ambiguous scope

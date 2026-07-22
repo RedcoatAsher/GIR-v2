@@ -23,17 +23,19 @@ Check whether `.claude-plugin/marketplace.json` exists in the current directory.
 ls .gir/ 2>/dev/null
 ```
 
-- `.gir/` missing entirely → SKIP: memory bank is optional (see README). Remedy if the project wants one: `run /gir:init-memory-bank`
-- `.gir/` exists → verify the core files: `MISSION.md`, `CLAUDE-activeContext.md`, `ESCALATION.md`, `DOD.md`, `REVIEW-LOG.md`. Any missing → FAIL, list them (a partial memory bank is worse than none).
+- `.gir/` missing entirely → SKIP Checks 2.1, 2.2, and 2.3: memory bank is optional (see README). Remedy if the project wants one: `run /gir:init-memory-bank`
+- `.gir/` exists → verify the core files: `MISSION.md`, `CLAUDE-activeContext.md`, `ESCALATION.md`, `DOD.md`, `REVIEW-LOG.md`. Any missing → FAIL, list them (a partial memory bank is worse than none). Run Checks 2.2 and 2.3 below.
 
 **Check 2.2 — Module registry coherent**
 
-Read `.gir/GIR.modules` (missing → FAIL with remedy: restart the session so hooks regenerate it). For each `### <module> (vX.Y.Z)` entry, the module should correspond to an installed GIR plugin. Stale entries from uninstalled spokes are harmless (WARN, not FAIL) — never delete them yourself.
+Skip if `.gir/` is absent (see Check 2.1). Otherwise, read `.gir/GIR.modules` (missing → FAIL with remedy: restart the session so hooks regenerate it). For each `### <module> (vX.Y.Z)` entry, the module should correspond to an installed GIR plugin. Stale entries from uninstalled spokes are harmless (WARN, not FAIL) — never delete them yourself.
 
 **Check 2.3 — Escalation conditions defined**
 
+Skip if `.gir/` is absent (see Check 2.1). Otherwise:
+
 ```bash
-[ -f .gir/ESCALATION.md ] && grep -c "Must Escalate" .gir/ESCALATION.md || echo "MISSING"
+if [ -f .gir/ESCALATION.md ]; then grep -c "Must Escalate" .gir/ESCALATION.md; else echo "MISSING"; fi
 ```
 
 `.gir/ESCALATION.md` missing → WARN: no escalation file, autonomous runs will have no stop conditions. File present but count is zero → WARN: escalation gates are unset. Count ≥1 → PASS.

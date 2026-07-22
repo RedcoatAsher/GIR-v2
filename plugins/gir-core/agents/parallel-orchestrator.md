@@ -71,11 +71,11 @@ After review:
 1. Confirm worktrees merged cleanly into the target checkout (Claude Code handles automatically)
 2. Run full DOD check on merged result against `.gir/DOD.md`
 3. Run lint/typecheck/tests on full codebase
-4. If DOD passes → report complete with summary, then log completion in `.gir/REVIEW-LOG.md` with observable facts only, now that the changes are integrated:
+4. If DOD, lint, typecheck, tests, and must-escalate checks all pass → report complete with summary, then log completion in `.gir/REVIEW-LOG.md` with observable facts only, now that the changes are integrated:
    ```text
    [timestamp] parallel-orchestrator: completed [task summary] — N streams, [duration], retries: R
    ```
-5. If DOD fails → fix in main session, do not re-parallelize for the fix, and do not log completion until the fix lands and DOD passes
+5. If any of those checks fail → fix in main session, do not re-parallelize for the fix, and do not log completion until the fix lands and all checks pass
 
 ### Anti-patterns
 

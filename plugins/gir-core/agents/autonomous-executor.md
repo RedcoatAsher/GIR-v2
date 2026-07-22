@@ -54,7 +54,7 @@ When `unattended: true`:
 
 ### BLOCKED Recovery
 
-Parallel streams inside a phase follow the `parallel-agents` Failure Handling ladder exactly — one retry (only if `retry_safe: true`), then fallback to the main session, then escalate if more than half the streams failed. Do not improvise a separate ladder for streams.
+Parallel streams inside a phase must apply the `parallel-agents` Failure Handling ladder exactly; do not duplicate or reinterpret it here.
 
 For a phase that fails outside of parallel streams (e.g. a single-agent phase), apply the same shape:
 
