@@ -1,6 +1,6 @@
 {
   "name": "gir-web",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "type": "spoke",
   "description": "Frontend/fullstack agents and design skills",
   "requires": ["gir-core"],

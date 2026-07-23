@@ -26,7 +26,7 @@ For each phase in the plan:
    - Check `.gir/DOD.md` — all items must pass
    - Check `.gir/ESCALATION.md` — if any condition met, stop immediately (see Escalation)
 5. **Log** — Append phase completion to `.gir/REVIEW-LOG.md`
-6. **Checkpoint** — Update MISSION.md: move phase to `completed_phases`, advance `current_phase`
+6. **Checkpoint** — Update MISSION.md: move phase to `completed_phases`, advance `current_phase`; refresh `.gir/CLAUDE-activeContext.md` per autonomous-mode Context Checkpointing
 
 ### Checkpointing Rules
 
@@ -54,11 +54,13 @@ When `unattended: true`:
 
 ### BLOCKED Recovery
 
-When an agent returns BLOCKED or a phase fails:
+Parallel streams inside a phase must apply the `parallel-agents` Failure Handling ladder exactly; do not duplicate or reinterpret it here.
 
-1. **Attempt 1**: Retry the failed task with additional context from the error
-2. **Attempt 2** (if Attempt 1 fails): Try an alternative approach — log the pivot to REVIEW-LOG.md
-3. **Escalate** (if both fail): Stop the run. Write to MISSION.md:
+For a phase that fails outside of parallel streams (e.g. a single-agent phase), apply the same shape:
+
+1. **Retry** (only if the failure looks safe to re-run): retry the failed task once with additional context from the error
+2. **Fallback** (if retry fails, or a retry isn't safe): absorb the phase into the main session and finish it directly — log the fallback to REVIEW-LOG.md
+3. **Escalate** (if fallback also fails): Stop the run. Write to MISSION.md:
    ```
    autonomous_run:
      status: escalated

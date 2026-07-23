@@ -2,7 +2,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/rivit-studio/GIR?style=social)](https://github.com/rivit-studio/GIR/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/rivit-studio/GIR)](https://github.com/rivit-studio/GIR/commits/main)
 [![GitHub issues](https://img.shields.io/github/issues/rivit-studio/GIR)](https://github.com/rivit-studio/GIR/issues)
-![Static Badge](https://img.shields.io/badge/version-2.5.1-blue)
+![Static Badge](https://img.shields.io/badge/version-2.6.0-blue)
 ![Static Badge](https://img.shields.io/badge/works_with-claude_code-orange)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/rivit-studio/GIR/pulls)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -50,7 +50,7 @@ graph TD
     debugger · team-lead · spec-analyst
     parallel-orchestrator · autonomous-executor
     ────────────────────
-    12 commands · 8 skills · hooks · MCP")
+    13 commands · 8 skills · hooks · MCP")
 
     gir --> web("**gir-web**
     docs-fetcher
@@ -93,7 +93,7 @@ flowchart TD
 
     H -->|slash command| I["**/gir:command**
     init-setup · update · status
-    drift-check · modules
+    drift-check · doctor · modules
     init-project · init-memory-bank
     parallel · run
     load-workflows · load-specgates · load-ralph"]
@@ -173,6 +173,15 @@ GIR is designed for **zero wasted context**. You only load what you use.
 **What this means:** Installing just `gir` uses less than 4% of your 200K context window, leaving 193K+ tokens for your actual code and tasks. Each additional module adds only 2-4K tokens.
 
 If you need a module, install it. If you don't, it costs nothing.
+
+## Observability & Cost
+
+Real usage numbers come from Claude Code itself — GIR never estimates token counts:
+
+- **`/cost`** — token spend and cost for the current session
+- **`/context`** — live context-window breakdown (see exactly what GIR's always-loaded skills cost you)
+- **OpenTelemetry export** — set `CLAUDE_CODE_ENABLE_TELEMETRY=1` plus `OTEL_METRICS_EXPORTER` to ship usage metrics to your own dashboards (team FinOps)
+- **`.gir/REVIEW-LOG.md`** — per-project audit trail: every dispatch logs agent count, models, duration, and retries (requires the memory bank — `/gir:init-memory-bank` — skipped silently if absent)
 
 ---
 
@@ -263,7 +272,7 @@ Then run `/gir:init-setup` to scaffold your project.
 
 | Module | Description | Includes | Who needs it |
 |--------|-------------|----------|--------------|
-| [gir](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 7 agents, 8 skills, 12 commands, SessionStart hook, sequential-thinking MCP | Everyone |
+| [gir](plugins/gir-core/) | Core hub. Agents, delegation, workflows, memory bank, slash commands | 7 agents, 8 skills, 13 commands, SessionStart hook, sequential-thinking MCP | Everyone |
 | [gir-web](plugins/gir-web/) | Frontend and fullstack tooling — v0, Figma, Vercel | 3 agents, 3 skills, 5 MCP servers | Frontend/fullstack devs |
 | [gir-automation](plugins/gir-automation/) | n8n workflow building | 1 agent, 1 skill, n8n MCP | Teams using n8n |
 | [gir-atc](plugins/gir-atc/) | Agentic traffic control — multi-agent dispatch and coordination patterns | | Advanced multi-agent coordination |
@@ -296,6 +305,7 @@ Then run `/gir:init-setup` to scaffold your project.
 | `/gir:status` | Show active context, current plan, installed modules |
 | `/gir:modules` | List installed modules and their tools |
 | `/gir:drift-check` | Detect stale references and doc drift |
+| `/gir:doctor` | Deterministic ecosystem health check (manifests, versions, registry, memory bank — SKIP if `.gir/` was never set up) |
 | `/gir:load-workflows` | Load workflows skill on demand |
 | `/gir:load-specgates` | Load specgates skill on demand |
 | `/gir:load-ralph` | Load ralph-loops skill on demand |
@@ -446,7 +456,7 @@ How GIR works day-to-day (session-start, routing rules, Graphify gate, delegatio
 
 **gir** (required):
 - 7 agents: feature-architect, code-reviewer, debugger, spec-analyst, team-lead, parallel-orchestrator, autonomous-executor
-- 12 slash commands under `/gir:`
+- 13 slash commands under `/gir:`
 - Core workflows, delegation rules, memory bank system
 - Session start hook
 

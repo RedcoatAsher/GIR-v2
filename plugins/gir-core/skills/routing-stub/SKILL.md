@@ -76,6 +76,18 @@ Do not wait for user to type `/gir:parallel` — detect and invoke automatically
 **Tier 3 — Never auto-delegate:**
 - Final implementation, direct Q&A, architecture decisions, single-file edits (<50 lines), trivial fixes
 
+## Model Routing
+
+Pin models at the agent level; inherit only for open-ended work.
+
+```text
+haiku   → mechanical + lookup: docs fetch, log scan, file inventory, boilerplate
+sonnet  → default: implementation, review, debugging, orchestration
+inherit → final implementation in autonomous runs, architecture, ambiguous scope
+```
+
+Routing above a task's tier requires one justification line in `.gir/REVIEW-LOG.md` — skip silently if `.gir/` isn't set up (memory bank is optional). External-CLI delegation thresholds live in the `ai-delegation` skill (gir-ai).
+
 ## Task Priority Order
 
 ```
